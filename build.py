@@ -330,54 +330,504 @@ for s in EXTRA3:
 
 # ═══ Enrichment ════════════════════════════════════
 
+# ═══ Platform-specific content database ════════════════
+PLATFORM_DATA = {
+    "discord": {
+        "name": "Discord",
+        "limit": "8MB (free) / 25MB (Nitro)",
+        "formats": "PNG, JPG, GIF, WebP",
+        "about": "Discord免费用户上传文件限制为8MB，Nitro用户为25MB。当你的截图、GIF动图或高清照片超过限制时，会被提示'文件过大'。本工具可以将图片压缩到8MB以下，让你顺利发送。",
+        "faq": [
+            ("Discord的图片上传限制是多少？", "Discord免费用户单个文件限制为8MB，Nitro Basic为50MB，Nitro为500MB。超过限制的图片需要压缩后才能上传。"),
+            ("压缩后图片会模糊吗？", "我们的智能压缩算法在减小文件大小的同时尽可能保持图片清晰度。对于截图和照片，压缩后几乎看不出区别。"),
+            ("支持哪些图片格式？", "支持PNG、JPG、JPEG、GIF和WebP格式。压缩后会自动保留原始格式。"),
+            ("GIF动图也能压缩吗？", "可以。上传GIF文件后，工具会自动压缩到目标大小，同时保留动画效果。"),
+        ],
+        "how_to": [
+            "点击上方的上传区域，选择你要发送的图片或截图",
+            "工具会自动将图片压缩到8MB以下（Discord免费用户限制）",
+            "点击下载按钮，将压缩后的图片保存到本地",
+            "打开Discord，将压缩后的图片拖入聊天窗口发送",
+        ],
+        "tips": "Discord支持PNG、JPG、GIF、WebP格式。如果你的截图超过8MB，建议使用JPG格式压缩，文件会更小。Nitro用户可以上传最大50MB的文件，但压缩后发送速度更快。",
+    },
+    "whatsapp": {
+        "name": "WhatsApp",
+        "limit": "16MB",
+        "formats": "JPG, PNG, GIF",
+        "about": "WhatsApp单张图片发送限制为16MB。高清照片通常超过这个限制，导致发送失败或被自动压缩变模糊。使用本工具预先压缩图片，可以在保持清晰度的同时确保发送成功。",
+        "faq": [
+            ("WhatsApp图片大小限制是多少？", "WhatsApp单个文件发送限制为16MB。超过此大小的图片会被自动压缩，但压缩后质量可能下降。"),
+            ("怎么发送高清图片不被压缩？", "在WhatsApp设置中可以选择'以文档方式发送'来保持原图质量，但文件仍需小于16MB。使用我们的工具压缩到16MB以下即可。"),
+            ("WhatsApp状态视频也能压缩吗？", "本工具支持图片压缩。视频压缩请使用专门的视频压缩工具。"),
+            ("压缩后的图片在手机上能正常显示吗？", "可以。压缩后的图片格式不变，在任何设备上都能正常显示。"),
+        ],
+        "how_to": [
+            "选择你要发送的图片，上传到上方工具",
+            "工具自动将图片压缩到16MB以下",
+            "下载压缩后的图片到手机",
+            "打开WhatsApp聊天窗口，选择压缩后的图片发送",
+        ],
+        "tips": "WhatsApp会自动压缩大图片，但压缩后质量会明显下降。建议先用我们的工具压缩到合适大小，再发送，这样可以控制压缩质量。",
+    },
+    "email": {
+        "name": "Email",
+        "limit": "25MB (Gmail) / 20MB (Outlook) / 25MB (Yahoo)",
+        "formats": "JPG, PNG, GIF, BMP",
+        "about": "大多数邮箱的附件大小限制在20-25MB之间（Gmail 25MB，Outlook 20MB，Yahoo 25MB）。当你要发送多张图片或高清照片时，很容易超过限制。本工具可以将图片压缩到合适的大小，让你顺利发送邮件附件。",
+        "faq": [
+            ("邮箱附件大小限制是多少？", "Gmail为25MB，Outlook为20MB，Yahoo为25MB。超过限制的邮件会被退回。"),
+            ("压缩后图片质量会下降吗？", "轻微压缩几乎看不出区别。如果需要发送高清图片，建议压缩到200KB-500KB之间。"),
+            ("可以一次压缩多张图片吗？", "可以。上传多张图片后，工具会逐个压缩，然后打包下载。"),
+            ("压缩后的图片能打印吗？", "可以。只要压缩后的分辨率足够（建议300DPI以上），打印效果不会有明显差别。"),
+        ],
+        "how_to": [
+            "将需要发送的图片上传到上方工具",
+            "工具自动将每张图片压缩到合适的大小",
+            "下载压缩后的图片",
+            "在邮件客户端中添加压缩后的图片作为附件发送",
+        ],
+        "tips": "Gmail附件限制为25MB，Outlook为20MB。如果要发送多张图片，建议每张压缩到200KB-500KB之间，这样可以同时发送10-20张图片而不超过限制。",
+    },
+    "instagram": {
+        "name": "Instagram",
+        "limit": "30MB (照片) / 650MB (视频)",
+        "formats": "JPG, PNG",
+        "about": "Instagram支持JPG和PNG格式的图片上传，建议分辨率为1080x1080像素（正方形）或1080x1350像素（竖版）。虽然Instagram会自动压缩图片，但预先压缩可以确保上传速度更快，画质更可控。",
+        "faq": [
+            ("Instagram图片最佳尺寸是多少？", "正方形帖子建议1080x1080像素，竖版建议1080x1350像素，横版建议1080x566像素。"),
+            ("Instagram会自动压缩图片吗？", "是的，Instagram会自动压缩上传的图片。预先压缩可以控制最终质量。"),
+            ("Stories和Reels的图片尺寸一样吗？", "Stories和Reels建议使用1080x1920像素（9:16比例）。"),
+            ("上传失败怎么办？", "如果上传失败，可能是图片太大或格式不支持。使用我们的工具压缩后重试。"),
+        ],
+        "how_to": [
+            "将照片上传到上方工具",
+            "工具自动压缩到Instagram推荐的大小",
+            "下载压缩后的照片",
+            "打开Instagram，选择压缩后的照片上传",
+        ],
+        "tips": "Instagram建议图片宽度为1080像素。如果图片太大，Instagram会自动压缩，但可能导致画质下降。预先压缩到1MB以内可以获得最佳效果。",
+    },
+    "facebook": {
+        "name": "Facebook",
+        "limit": "10MB (照片) / 25MB (文件)",
+        "formats": "JPG, PNG, GIF, BMP",
+        "about": "Facebook照片上传限制为10MB，文件分享限制为25MB。高清照片通常超过10MB限制，上传时会被自动压缩。使用本工具预先压缩，可以控制图片质量，同时加快上传速度。",
+        "faq": [
+            ("Facebook图片大小限制是多少？", "照片上传限制为10MB，文件分享限制为25MB。"),
+            ("Facebook会压缩上传的图片吗？", "是的，Facebook会自动压缩图片。预先压缩可以控制最终质量。"),
+            ("封面照片和头像有什么尺寸要求？", "封面照片建议820x312像素，头像建议170x170像素。"),
+            ("相册上传有数量限制吗？", "单次最多可上传100张照片。"),
+        ],
+        "how_to": [
+            "将照片上传到上方工具",
+            "工具自动压缩到Facebook推荐的大小",
+            "下载压缩后的照片",
+            "在Facebook中选择压缩后的照片上传",
+        ],
+        "tips": "Facebook建议照片宽度为2048像素以获得最佳显示效果。但如果文件太大，上传速度会很慢。建议压缩到1MB以内。",
+    },
+    "twitter": {
+        "name": "Twitter/X",
+        "limit": "5MB (图片) / 15MB (GIF)",
+        "formats": "JPG, PNG, GIF, WebP",
+        "about": "Twitter/X的图片上传限制为5MB，GIF限制为15MB。超过限制的图片无法上传。本工具可以将图片压缩到5MB以下，让你顺利发布。",
+        "faq": [
+            ("Twitter图片大小限制是多少？", "单张图片限制为5MB，GIF限制为15MB。"),
+            ("Twitter支持哪些图片格式？", "支持JPG、PNG、GIF和WebP格式。"),
+            ("Twitter会压缩上传的图片吗？", "是的，Twitter会自动压缩图片，特别是JPG格式。预先压缩可以控制质量。"),
+            ("怎么上传高清图片？", "使用PNG格式上传可以保留更多细节，但文件会更大。"),
+        ],
+        "how_to": [
+            "将图片上传到上方工具",
+            "工具自动压缩到5MB以下",
+            "下载压缩后的图片",
+            "在Twitter/X中发布压缩后的图片",
+        ],
+        "tips": "Twitter建议图片比例为16:9或1:1。PNG格式保留更多细节但文件更大，JPG格式文件更小但可能有压缩痕迹。",
+    },
+    "linkedin": {
+        "name": "LinkedIn",
+        "limit": "10MB (照片) / 20MB (文件)",
+        "formats": "JPG, PNG, GIF",
+        "about": "LinkedIn照片上传限制为10MB，文件分享限制为20MB。专业头像和封面照片需要在限制内保持高质量。本工具可以帮助你压缩图片，同时保持专业外观。",
+        "faq": [
+            ("LinkedIn头像尺寸是多少？", "建议400x400像素，最小为200x200像素。"),
+            ("LinkedIn封面照片尺寸是多少？", "个人封面建议1584x396像素，公司封面建议1128x191像素。"),
+            ("帖子图片有什么要求？", "建议宽度为1200像素，比例为1.91:1或1:1。"),
+            ("LinkedIn会压缩图片吗？", "是的，LinkedIn会自动压缩图片。预先压缩可以控制质量。"),
+        ],
+        "how_to": [
+            "将照片上传到上方工具",
+            "工具自动压缩到LinkedIn推荐的大小",
+            "下载压缩后的照片",
+            "在LinkedIn中上传压缩后的照片",
+        ],
+        "tips": "LinkedIn是专业社交平台，头像和封面照片的质量很重要。建议压缩到500KB以内，同时保持清晰度。",
+    },
+    "pinterest": {
+        "name": "Pinterest",
+        "limit": "20MB",
+        "formats": "JPG, PNG, GIF",
+        "about": "Pinterest图片上传限制为20MB。Pinterest是图片驱动的平台，图片质量很重要。本工具可以帮助你压缩图片到合适大小，同时保持高质量。",
+        "faq": [
+            ("Pinterest图片最佳尺寸是多少？", "建议比例为2:3，推荐宽度为1000像素。"),
+            ("Pinterest支持哪些格式？", "支持JPG、PNG和GIF格式。"),
+            ("怎么让Pin获得更多曝光？", "使用高质量、竖版图片，添加详细描述和关键词。"),
+            ("Pinterest会压缩图片吗？", "是的，Pinterest会自动压缩图片。预先压缩可以控制质量。"),
+        ],
+        "how_to": [
+            "将图片上传到上方工具",
+            "工具自动压缩到合适大小",
+            "下载压缩后的图片",
+            "在Pinterest中创建新Pin并上传压缩后的图片",
+        ],
+        "tips": "Pinterest建议使用竖版图片（2:3比例），宽度至少1000像素。压缩到1MB以内可以获得最佳效果。",
+    },
+    "tiktok": {
+        "name": "TikTok",
+        "limit": "2MB (头像) / 10MB (视频封面)",
+        "formats": "JPG, PNG",
+        "about": "TikTok头像上传限制为2MB，视频封面限制为10MB。本工具可以帮助你压缩图片到合适大小。",
+        "faq": [
+            ("TikTok头像尺寸是多少？", "建议200x200像素，文件大小不超过2MB。"),
+            ("TikTok视频封面尺寸是多少？", "建议1080x1920像素，文件大小不超过10MB。"),
+            ("TikTok支持哪些图片格式？", "支持JPG和PNG格式。"),
+            ("怎么制作吸引人的封面？", "使用高清图片，添加文字说明，保持与视频内容相关。"),
+        ],
+        "how_to": [
+            "将图片上传到上方工具",
+            "工具自动压缩到TikTok限制以内",
+            "下载压缩后的图片",
+            "在TikTok中上传压缩后的图片",
+        ],
+        "tips": "TikTok是竖屏平台，建议使用9:16比例的图片。头像建议200x200像素，视频封面建议1080x1920像素。",
+    },
+    "youtube": {
+        "name": "YouTube",
+        "limit": "2MB (缩略图) / 6MB (频道头像)",
+        "formats": "JPG, PNG, GIF, BMP",
+        "about": "YouTube缩略图上传限制为2MB，频道头像限制为6MB。高质量的缩略图可以提高视频点击率。本工具可以帮助你压缩图片到合适大小。",
+        "faq": [
+            ("YouTube缩略图尺寸是多少？", "建议1280x720像素，最小宽度为640像素。"),
+            ("YouTube频道头像尺寸是多少？", "建议800x800像素，显示为圆形。"),
+            ("YouTube频道封面尺寸是多少？", "建议2560x1440像素，安全区域为1546x423像素。"),
+            ("缩略图文件大小限制是多少？", "限制为2MB，建议使用JPG格式。"),
+        ],
+        "how_to": [
+            "将缩略图或头像上传到上方工具",
+            "工具自动压缩到YouTube限制以内",
+            "下载压缩后的图片",
+            "在YouTube Studio中上传压缩后的图片",
+        ],
+        "tips": "YouTube缩略图对视频点击率影响很大。建议使用1280x720像素的JPG格式，文件控制在1MB以内。",
+    },
+    "website": {
+        "name": "Website",
+        "limit": "无固定限制（建议单张<200KB）",
+        "formats": "JPG, PNG, WebP, GIF, SVG",
+        "about": "网站图片加载速度直接影响用户体验和SEO排名。Google建议单张图片控制在200KB以内，使用WebP格式可以获得更好的压缩效果。本工具可以帮助你优化网站图片，提高页面加载速度。",
+        "faq": [
+            ("网站图片应该多大？", "Google建议单张图片控制在200KB以内。Hero图片可以稍大，但不要超过500KB。"),
+            ("WebP格式有什么优势？", "WebP格式比JPG小25-35%，比PNG小25%，同时保持相同质量。"),
+            ("图片大小会影响SEO吗？", "是的。图片过大会导致页面加载慢，影响Google排名。Google Core Web Vitals会评估图片加载性能。"),
+            ("怎么批量压缩网站图片？", "使用我们的工具逐个压缩，或者使用WordPress插件自动压缩。"),
+        ],
+        "how_to": [
+            "将网站图片上传到上方工具",
+            "工具自动压缩到Web优化大小",
+            "下载压缩后的图片",
+            "将压缩后的图片上传到网站服务器",
+        ],
+        "tips": "Google Core Web Vitals会评估图片加载性能。建议使用WebP格式，单张图片控制在200KB以内，使用懒加载技术。",
+    },
+    "wordpress": {
+        "name": "WordPress",
+        "limit": "取决于主机（通常2-10MB）",
+        "formats": "JPG, PNG, GIF, WebP, SVG",
+        "about": "WordPress默认图片上传限制取决于主机设置，通常为2-10MB。大型图片会占用服务器空间，影响网站加载速度。本工具可以帮助你压缩图片到合适大小。",
+        "faq": [
+            ("WordPress图片上传限制是多少？", "取决于主机设置，通常为2-10MB。可以在php.ini中修改upload_max_filesize。"),
+            ("WordPress会自动压缩图片吗？", "是的，WordPress会自动生成不同尺寸的缩略图。但原图不会被压缩。"),
+            ("有什么WordPress插件可以自动压缩？", "推荐ShortPixel、Imagify、Smush等插件。"),
+            ("怎么恢复WordPress压缩前的图片？", "如果使用了插件压缩，通常可以恢复。如果是手动压缩，需要重新上传原图。"),
+        ],
+        "how_to": [
+            "将图片上传到上方工具",
+            "工具自动压缩到WordPress推荐的大小",
+            "下载压缩后的图片",
+            "在WordPress媒体库中上传压缩后的图片",
+        ],
+        "tips": "WordPress建议图片宽度不超过2048像素。使用WebP格式可以获得更好的压缩效果，但需要主机支持。",
+    },
+    "shopify": {
+        "name": "Shopify",
+        "limit": "20MB",
+        "formats": "JPG, PNG, GIF, WebP",
+        "about": "Shopify产品图片上传限制为20MB。高质量的产品图片可以提高转化率，但文件太大会影响页面加载速度。本工具可以帮助你压缩产品图片到合适大小。",
+        "faq": [
+            ("Shopify产品图片尺寸是多少？", "建议2048x2048像素，正方形比例。"),
+            ("Shopify会压缩产品图片吗？", "是的，Shopify会自动生成不同尺寸的缩略图。但原图不会被压缩。"),
+            ("产品图片应该用什么格式？", "建议使用JPG格式，文件更小。PNG格式适合需要透明背景的图片。"),
+            ("怎么提高产品图片加载速度？", "压缩图片到200KB以内，使用懒加载，使用CDN加速。"),
+        ],
+        "how_to": [
+            "将产品图片上传到上方工具",
+            "工具自动压缩到Shopify推荐的大小",
+            "下载压缩后的图片",
+            "在Shopify后台上传压缩后的产品图片",
+        ],
+        "tips": "Shopify建议产品图片为正方形，2048x2048像素。压缩到200KB以内可以提高页面加载速度，提高转化率。",
+    },
+    "amazon": {
+        "name": "Amazon",
+        "limit": "10MB",
+        "formats": "JPG, PNG, GIF",
+        "about": "Amazon产品图片上传限制为10MB。Amazon要求主图为白色背景，最小1000x1000像素。高质量的产品图片可以提高转化率。本工具可以帮助你压缩产品图片到合适大小。",
+        "faq": [
+            ("Amazon产品图片尺寸是多少？", "主图最小1000x1000像素，建议2000x2000像素。"),
+            ("Amazon主图有什么要求？", "必须是白色背景，产品占图片85%以上，不能有文字或水印。"),
+            ("Amazon支持哪些图片格式？", "支持JPG、PNG和GIF格式。建议使用JPG格式。"),
+            ("可以上传多少张产品图片？", "最多可以上传9张产品图片，其中1张为主图。"),
+        ],
+        "how_to": [
+            "将产品图片上传到上方工具",
+            "工具自动压缩到Amazon推荐的大小",
+            "下载压缩后的图片",
+            "在Amazon Seller Central上传压缩后的产品图片",
+        ],
+        "tips": "Amazon要求主图为白色背景，最小1000x1000像素。建议使用2000x2000像素的JPG格式，文件控制在1MB以内。",
+    },
+    "ebay": {
+        "name": "eBay",
+        "limit": "7MB",
+        "formats": "JPG, PNG, GIF, BMP",
+        "about": "eBay产品图片上传限制为7MB。eBay建议使用白色背景，最小500x500像素。高质量的产品图片可以提高销售。本工具可以帮助你压缩产品图片到合适大小。",
+        "faq": [
+            ("eBay产品图片尺寸是多少？", "最小500x500像素，建议1600x1600像素。"),
+            ("eBay主图有什么要求？", "建议白色背景，产品占图片85%以上。"),
+            ("eBay支持哪些图片格式？", "支持JPG、PNG、GIF和BMP格式。"),
+            ("可以上传多少张产品图片？", "最多可以上传12张产品图片。"),
+        ],
+        "how_to": [
+            "将产品图片上传到上方工具",
+            "工具自动压缩到eBay推荐的大小",
+            "下载压缩后的图片",
+            "在eBay Seller Hub上传压缩后的产品图片",
+        ],
+        "tips": "eBay建议使用白色背景，最小500x500像素。建议使用1600x1600像素的JPG格式，文件控制在1MB以内。",
+    },
+    "etsy": {
+        "name": "Etsy",
+        "limit": "20MB",
+        "formats": "JPG, PNG, GIF",
+        "about": "Etsy产品图片上传限制为20MB。Etsy建议使用正方形比例，最小2000x2000像素。高质量的产品图片可以提高销售。本工具可以帮助你压缩产品图片到合适大小。",
+        "faq": [
+            ("Etsy产品图片尺寸是多少？", "建议2000x2000像素，正方形比例。"),
+            ("Etsy支持哪些图片格式？", "支持JPG、PNG和GIF格式。"),
+            ("Etsy会压缩产品图片吗？", "是的，Etsy会自动生成不同尺寸的缩略图。"),
+            ("可以上传多少张产品图片？", "最多可以上传10张产品图片。"),
+        ],
+        "how_to": [
+            "将产品图片上传到上方工具",
+            "工具自动压缩到Etsy推荐的大小",
+            "下载压缩后的图片",
+            "在Etsy Shop Manager上传压缩后的产品图片",
+        ],
+        "tips": "Etsy建议使用正方形比例，2000x2000像素。压缩到1MB以内可以提高页面加载速度。",
+    },
+    "passport": {
+        "name": "Passport/Visa",
+        "limit": "通常50KB-500KB",
+        "formats": "JPG, PNG",
+        "about": "护照、签证和政府申请通常要求照片在50KB-500KB之间。不同国家和机构有不同的尺寸和文件大小要求。本工具可以将照片精确压缩到要求的大小。",
+        "faq": [
+            ("护照照片尺寸是多少？", "中国护照照片尺寸为33mm×48mm，美国护照照片尺寸为2x2英寸（51x51mm）。"),
+            ("护照照片文件大小限制是多少？", "不同机构要求不同，通常在50KB-500KB之间。"),
+            ("护照照片有什么要求？", "通常要求白色背景，正面免冠，不能戴眼镜，表情自然。"),
+            ("可以用手机拍护照照片吗？", "可以，但需要确保光线均匀，背景白色，面部清晰。"),
+        ],
+        "how_to": [
+            "拍摄或扫描护照照片",
+            "将照片上传到上方工具",
+            "设置目标文件大小（如100KB）",
+            "下载压缩后的照片，用于申请提交",
+        ],
+        "tips": "不同国家和机构对护照照片的要求不同。建议先查看具体要求，然后设置相应的目标文件大小。通常要求白色背景，正面免冠。",
+    },
+    "seo": {
+        "name": "SEO",
+        "limit": "建议单张<200KB",
+        "formats": "JPG, PNG, WebP",
+        "about": "图片大小直接影响网站加载速度，而加载速度是Google排名的重要因素。Google Core Web Vitals会评估LCP（最大内容绘制）指标，大图片会导致LCP变差。本工具可以帮助你压缩图片，提高SEO排名。",
+        "faq": [
+            ("图片大小会影响SEO吗？", "是的。图片过大会导致页面加载慢，影响Google Core Web Vitals评分，从而影响排名。"),
+            ("什么是Core Web Vitals？", "Core Web Vitals是Google评估网站用户体验的指标，包括LCP（加载速度）、FID（交互延迟）、CLS（布局偏移）。"),
+            ("WebP格式对SEO有帮助吗？", "是的。WebP格式比JPG小25-35%，可以显著提高页面加载速度。"),
+            ("怎么批量压缩网站图片？", "使用我们的工具逐个压缩，或者使用WordPress插件自动压缩。"),
+        ],
+        "how_to": [
+            "将网站图片上传到上方工具",
+            "工具自动压缩到SEO推荐的大小",
+            "下载压缩后的图片",
+            "将压缩后的图片上传到网站",
+        ],
+        "tips": "Google Core Web Vitals建议LCP小于2.5秒。压缩图片是提高LCP最有效的方法之一。建议使用WebP格式，单张图片控制在200KB以内。",
+    },
+    "ecommerce": {
+        "name": "E-commerce",
+        "limit": "取决于平台（通常10-20MB）",
+        "formats": "JPG, PNG, WebP",
+        "about": "电商平台的产品图片质量直接影响转化率。高质量图片可以提高30%以上的转化率，但文件太大会影响页面加载速度。本工具可以帮助你压缩产品图片到合适大小。",
+        "faq": [
+            ("产品图片应该多大？", "建议至少1000x1000像素，文件控制在200KB-500KB之间。"),
+            ("产品图片用什么格式最好？", "JPG格式适合大多数产品图片，PNG格式适合需要透明背景的图片。"),
+            ("怎么提高产品图片质量？", "使用良好的光线，白色背景，多角度拍摄，后期适当调整。"),
+            ("产品图片会影响销售吗？", "是的。高质量的产品图片可以提高30%以上的转化率。"),
+        ],
+        "how_to": [
+            "将产品图片上传到上方工具",
+            "工具自动压缩到电商平台推荐的大小",
+            "下载压缩后的图片",
+            "在电商平台上上传压缩后的产品图片",
+        ],
+        "tips": "产品图片质量直接影响转化率。建议使用白色背景，多角度拍摄，压缩到200KB-500KB之间。",
+    },
+    "ai": {
+        "name": "AI Tools",
+        "limit": "取决于工具（通常10-20MB）",
+        "formats": "JPG, PNG, WebP, GIF",
+        "about": "AI工具如ChatGPT、Claude、Gemini等通常有图片上传限制。大图片会导致上传失败或处理速度变慢。本工具可以帮助你压缩图片到AI工具的限制以内。",
+        "faq": [
+            ("ChatGPT图片上传限制是多少？", "ChatGPT Plus用户单张图片限制为20MB，免费用户限制更小。"),
+            ("Claude图片上传限制是多少？", "Claude单张图片限制为10MB。"),
+            ("压缩后图片会影响AI识别吗？", "轻微压缩不会影响AI识别。但如果压缩过度，可能会影响细节识别。"),
+            ("AI工具支持哪些图片格式？", "大多数AI工具支持JPG、PNG、WebP和GIF格式。"),
+        ],
+        "how_to": [
+            "将图片上传到上方工具",
+            "工具自动压缩到AI工具的限制以内",
+            "下载压缩后的图片",
+            "在AI工具中上传压缩后的图片",
+        ],
+        "tips": "AI工具通常有图片上传限制。建议压缩到10MB以内，使用JPG或PNG格式。如果需要AI识别细节，不要过度压缩。",
+    },
+    "format": {
+        "name": "Format Conversion",
+        "limit": "无固定限制",
+        "formats": "JPG, PNG, WebP, GIF, BMP, TIFF",
+        "about": "不同的图片格式有不同的特点：JPG适合照片，PNG适合图形和透明图片，WebP是现代网页的最佳选择。本工具可以帮你在不同格式之间转换，同时压缩文件大小。",
+        "faq": [
+            ("JPG和PNG有什么区别？", "JPG是有损压缩，文件更小；PNG是无损压缩，支持透明，文件更大。"),
+            ("WebP格式有什么优势？", "WebP比JPG小25-35%，比PNG小25%，同时保持相同质量。"),
+            ("什么时候用PNG格式？", "需要透明背景、图形、图标、截图时使用PNG格式。"),
+            ("什么时候用JPG格式？", "照片、不需要透明背景的图片使用JPG格式。"),
+        ],
+        "how_to": [
+            "将图片上传到上方工具",
+            "选择目标格式（JPG、PNG、WebP等）",
+            "工具自动转换并压缩",
+            "下载转换后的图片",
+        ],
+        "tips": "JPG适合照片，PNG适合图形和透明图片，WebP是现代网页的最佳选择。根据用途选择合适的格式。",
+    },
+}
+
+# Generic enrichment for pages without specific platform data
 ENRICHMENT = {
     "size": {
         "how_to": [
-            "Upload or drag your image into the tool above.",
-            "Set the target file size (the tool will auto-detect the optimal compression level).",
-            "Click 'Compress' and download your compressed image instantly."
+            "上传或拖拽图片到上方工具区域",
+            "工具会自动压缩到目标文件大小",
+            "点击下载按钮保存压缩后的图片",
         ],
-        "tips": "Compressing to an exact KB size is useful for government forms, passport photos, job applications, and CMS uploads that enforce strict file size limits. Our tool uses smart binary search compression to hit your target size precisely."
+        "tips": "压缩到精确的KB大小适用于政府表格、护照照片、求职申请等有严格文件大小限制的场景。我们的工具使用智能压缩算法，可以精确命中目标大小。",
+        "faq": [
+            ("可以压缩到精确的文件大小吗？", "可以。上传图片后，工具会自动压缩到目标大小。如果第一次没达到目标，可以手动调整质量参数。"),
+            ("压缩后图片质量会下降吗？", "轻微压缩几乎看不出区别。如果需要极小的文件大小，可能会有轻微质量损失。"),
+            ("支持哪些图片格式？", "支持PNG、JPG、JPEG、WebP格式。压缩后会自动保留原始格式。"),
+        ],
     },
     "platform": {
         "how_to": [
-            "Upload your image using the tool above.",
-            "The tool automatically applies platform-optimized compression settings.",
-            "Download the compressed image and upload it to your platform."
+            "点击上方的上传区域，选择要压缩的图片",
+            "工具会自动压缩到平台要求的大小",
+            "点击下载按钮保存压缩后的图片",
+            "将压缩后的图片上传到对应平台",
         ],
-        "tips": "Each platform has different image size and quality requirements. Our tool optimizes compression specifically for the platform you choose, balancing file size and visual quality."
+        "tips": "每个平台对图片大小和格式有不同的要求。我们的工具会根据目标平台自动优化压缩参数，在文件大小和图片质量之间找到最佳平衡。",
+        "faq": [
+            ("平台图片大小限制是多少？", "不同平台有不同的限制。请查看上方工具区域的说明，或访问平台官网了解具体要求。"),
+            ("压缩后图片能正常显示吗？", "可以。压缩后的图片格式不变，在任何设备和平台上都能正常显示。"),
+            ("支持哪些图片格式？", "支持PNG、JPG、JPEG、WebP格式。压缩后会自动保留原始格式。"),
+        ],
     },
     "format": {
         "how_to": [
-            "Upload your image (PNG, JPEG, or WebP).",
-            "Our tool applies format-specific compression algorithms for optimal results.",
-            "Download the compressed image — quality preserved, file size reduced."
+            "上传图片（PNG、JPEG或WebP格式）",
+            "工具会自动应用格式特定的压缩算法",
+            "下载压缩后的图片，质量保持不变",
         ],
-        "tips": "Different image formats compress differently. PNG is best for graphics and transparency, JPEG for photos, and WebP for modern web. Our tool uses the best compression method for each format."
+        "tips": "不同图片格式有不同的压缩特性：PNG适合图形和透明图片，JPEG适合照片，WebP是现代网页的最佳选择。我们的工具会根据格式自动选择最佳压缩方法。",
+        "faq": [
+            ("JPG和PNG有什么区别？", "JPG是有损压缩，文件更小；PNG是无损压缩，支持透明，文件更大。"),
+            ("WebP格式有什么优势？", "WebP比JPG小25-35%，比PNG小25%，同时保持相同质量。"),
+            ("压缩后格式会改变吗？", "不会。压缩后会保留原始格式。如果需要转换格式，请使用格式转换工具。"),
+        ],
     },
     "special": {
         "how_to": [
-            "Upload one or more images using the tool above.",
-            "Configure compression settings (quality, target size, format).",
-            "Download all compressed images at once."
+            "上传一张或多张图片到上方工具",
+            "设置压缩参数（质量、目标大小、格式）",
+            "点击压缩按钮，等待处理完成",
+            "下载所有压缩后的图片",
         ],
-        "tips": "Bulk compression saves time when you have multiple images to process. Our tool processes everything locally in your browser — your images never leave your device."
+        "tips": "批量压缩可以节省大量时间。我们的工具在浏览器本地处理，图片不会上传到服务器，确保隐私安全。",
+        "faq": [
+            ("可以一次压缩多少张图片？", "没有数量限制。但建议每次不超过20张，以确保浏览器性能。"),
+            ("压缩后图片会上传到服务器吗？", "不会。所有处理都在浏览器本地完成，您的图片永远不会离开您的设备。"),
+            ("压缩后图片质量会下降吗？", "轻微压缩几乎看不出区别。如果需要极小的文件大小，可能会有轻微质量损失。"),
+        ],
     },
     "conversion": {
         "how_to": [
-            "Upload your image using the tool above.",
-            "The tool automatically converts to the target format.",
-            "Download the converted image instantly."
+            "上传图片到上方工具",
+            "工具会自动转换为目标格式",
+            "下载转换后的图片",
         ],
-        "tips": "Different formats serve different purposes: PNG supports transparency and is best for graphics, JPEG is ideal for photos with small file sizes, WebP offers the best compression for modern web browsers."
-    }
+        "tips": "不同格式有不同的用途：PNG支持透明，适合图形；JPG适合照片，文件更小；WebP是现代网页的最佳选择，压缩率最高。",
+        "faq": [
+            ("转换后质量会下降吗？", "从无损格式（PNG）转为有损格式（JPG）可能会有轻微质量损失。从有损转无损不会提高质量。"),
+            ("可以批量转换格式吗？", "可以。上传多张图片后，工具会逐个转换，然后打包下载。"),
+            ("WebP格式兼容性好吗？", "现代浏览器都支持WebP格式。如果需要兼容旧浏览器，建议使用JPG或PNG。"),
+        ],
+    },
 }
+
+def get_content(s):
+    """Get platform-specific or generic content for a scenario page."""
+    slug = s.get("slug", "")
+    cat = s.get("cat", "special")
+
+    # Try to find platform-specific content
+    for key, data in PLATFORM_DATA.items():
+        if key in slug:
+            return data
+
+    # Return generic content based on category
+    return ENRICHMENT.get(cat, ENRICHMENT["special"])
 
 # ═══ Page Template ═════════════════════════════════
 
 def build_scene_page(s):
-    e = ENRICHMENT.get(s["cat"], ENRICHMENT["special"])
-    how_to_html = "".join(f"<p>Step {i+1}: {step}</p>" for i, step in enumerate(e["how_to"]))
+    # Get platform-specific or generic content
+    content = get_content(s)
+    how_to_html = "".join(f"<p>Step {i+1}: {step}</p>" for i, step in enumerate(content["how_to"]))
+
+    # Generate FAQ HTML from content
+    faq_html = ""
+    for q, a in content.get("faq", []):
+        faq_html += f'<div class="faq-item"><h3>{q}</h3><p>{a}</p></div>'
 
     # Structured internal linking by user intent
     slug = s["slug"]
@@ -500,7 +950,7 @@ footer a{{color:#CBD5E1;text-decoration:none}}
     {{
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "mainEntity": [{{"@type": "Question", "name": "Can I compress an image to {s.get('size', 'exact')} online?", "acceptedAnswer": {{"@type": "Answer", "text": "Yes. Upload your image and our tool automatically compresses it to the target size. 100% browser-based, no upload to server."}}}}, {{"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {{"@type": "Answer", "text": "Yes, completely free. No signup, no watermarks, no limits."}}}}, {{"@type": "Question", "name": "Is my image uploaded to a server?", "acceptedAnswer": {{"@type": "Answer", "text": "No. All processing happens locally in your browser. Your images never leave your device."}}}}]
+        "mainEntity": [{','.join('{{"@type":"Question","name":"'+q+'","acceptedAnswer":{{"@type":"Answer","text":"'+a+'"}}}}' for q, a in content.get('faq', [])[:4])}]
     }}
     </script>
     <script type="application/ld+json">
@@ -550,11 +1000,11 @@ footer a{{color:#CBD5E1;text-decoration:none}}
         </section>
         <section class="scene-body">
             <h2>About This Tool</h2>
-            <p>{desc}</p>
+            <p>{content.get('about', desc)}</p>
             <h2>How to Use</h2>
             {how_to_html}
             <h2>Tips</h2>
-            <p>{e['tips']}</p>
+            <p>{content.get('tips', '')}</p>
         </section>
         <div class="cross-site">
             <strong>Pro Tip</strong> — After compressing your image, use <a href="https://cvbuild-ai.com">CVBuild-AI</a> to build your resume, <a href="https://messagegen-ai.com">MessageGen-AI</a> to write professional emails, and <a href="https://tonemodifier.com">ToneModifier</a> to perfect your tone.
@@ -562,18 +1012,7 @@ footer a{{color:#CBD5E1;text-decoration:none}}
         <section class="faq-section" id="faq">
             <div class="container">
                 <h2>Frequently Asked Questions</h2>
-                <div class="faq-item">
-                    <h3>Can I compress an image to {s.get('size', 'exact')} online?</h3>
-                    <p>Yes. Upload your image and our tool automatically compresses it to the target size. 100% browser-based, no upload to server.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Is this tool free?</h3>
-                    <p>Yes, completely free. No signup, no watermarks, no limits.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Is my image uploaded to a server?</h3>
-                    <p>No. All processing happens locally in your browser. Your images never leave your device.</p>
-                </div>
+                {faq_html}
             </div>
         </section>
         <section class="related-tools" id="related">
