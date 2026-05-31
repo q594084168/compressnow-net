@@ -132,6 +132,75 @@ CONVERSIONS = [
     {"slug":"png-to-webp","title":"Convert PNG to WebP Online — Free, Instant","desc":"Convert PNG images to WebP format. 25-35% smaller than PNG. Free, browser-based, no upload needed."},
 ]
 
+# Additional long-tail pages (batch 1)
+EXTRA = [
+    # File size variants (photo)
+    {"slug":"compress-photo-to-20kb","title":"Compress Photo to 20KB — Reduce Picture Size Free","desc":"Compress photos to exactly 20KB. Perfect for forms and strict upload limits. Free, browser-based, instant.","cat":"size","size":"20 KB"},
+    {"slug":"compress-photo-to-50kb","title":"Compress Photo to 50KB — Reduce Picture Size Free","desc":"Compress photos to exactly 50KB. Great for email and web thumbnails. Free, browser-based, instant.","cat":"size","size":"50 KB"},
+    {"slug":"compress-photo-to-100kb","title":"Compress Photo to 100KB — Reduce Picture Size Free","desc":"Compress photos to exactly 100KB. Most popular target size. Free, browser-based, instant.","cat":"size","size":"100 KB"},
+    {"slug":"compress-photo-to-200kb","title":"Compress Photo to 200KB — Reduce Picture Size Free","desc":"Compress photos to exactly 200KB. Great for product photos. Free, browser-based, instant.","cat":"size","size":"200 KB"},
+    {"slug":"compress-photo-to-500kb","title":"Compress Photo to 500KB — Reduce Picture Size Free","desc":"Compress photos to exactly 500KB. Good quality, smaller size. Free, browser-based, instant.","cat":"size","size":"500 KB"},
+    # File size variants (image-compressor)
+    {"slug":"image-compressor-to-100kb","title":"Image Compressor to 100KB — Free Online Tool","desc":"Compress any image to 100KB instantly. Free online image compressor, no upload needed.","cat":"size","size":"100 KB"},
+    {"slug":"image-compressor-to-200kb","title":"Image Compressor to 200KB — Free Online Tool","desc":"Compress any image to 200KB instantly. Free online image compressor, no upload needed.","cat":"size","size":"200 KB"},
+    {"slug":"image-compressor-to-500kb","title":"Image Compressor to 500KB — Free Online Tool","desc":"Compress any image to 500KB instantly. Free online image compressor, no upload needed.","cat":"size","size":"500 KB"},
+    # File size variants (reduce/convert)
+    {"slug":"reduce-image-size-to-100kb","title":"Reduce Image Size to 100KB — Free Online Tool","desc":"Reduce image file size to 100KB. Free, browser-based, instant compression.","cat":"size","size":"100 KB"},
+    {"slug":"convert-image-to-100kb","title":"Convert Image to 100KB — Free Online Tool","desc":"Convert any image to 100KB file size. Free, browser-based, instant.","cat":"size","size":"100 KB"},
+
+    # Passport/Visa/Government
+    {"slug":"compress-passport-photo-to-20kb","title":"Compress Passport Photo to 20KB — Meet Requirements","desc":"Compress passport photo to 20KB for government applications. Free, browser-based, instant.","cat":"size","size":"20 KB"},
+    {"slug":"compress-passport-photo-to-50kb","title":"Compress Passport Photo to 50KB — Meet Requirements","desc":"Compress passport photo to 50KB for visa and ID applications. Free, browser-based, instant.","cat":"size","size":"50 KB"},
+    {"slug":"compress-passport-photo-to-100kb","title":"Compress Passport Photo to 100KB — Meet Requirements","desc":"Compress passport photo to 100KB for online applications. Free, browser-based, instant.","cat":"size","size":"100 KB"},
+    {"slug":"passport-photo-compressor","title":"Passport Photo Compressor — Free Online Tool","desc":"Compress passport photos to meet government size requirements. Free, no upload, instant.","cat":"platform"},
+    {"slug":"compress-image-for-visa-application","title":"Compress Image for Visa Application — Meet Size Limits","desc":"Compress photos for visa applications. Meet embassy file size requirements. Free, instant.","cat":"platform"},
+    {"slug":"compress-photo-for-visa","title":"Compress Photo for Visa — Meet Embassy Requirements","desc":"Compress visa photos to required file size. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-for-immigration-form","title":"Compress Image for Immigration Form — Meet Upload Limits","desc":"Compress images for immigration form uploads. Meet government requirements. Free, instant.","cat":"platform"},
+    {"slug":"photo-compressor-for-government-form","title":"Photo Compressor for Government Forms — Free Tool","desc":"Compress photos for government form submissions. Meet strict file size limits. Free, instant.","cat":"platform"},
+    {"slug":"reduce-passport-photo-size","title":"Reduce Passport Photo Size — Free Online Tool","desc":"Reduce passport photo file size for online submissions. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-for-online-application","title":"Compress Image for Online Application — Meet Limits","desc":"Compress images for online job/application submissions. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-for-embassy-application","title":"Compress Image for Embassy Application — Meet Requirements","desc":"Compress images for embassy applications. Meet strict file size limits. Free, instant.","cat":"platform"},
+    {"slug":"compress-image-for-id-card","title":"Compress Image for ID Card — Meet Size Requirements","desc":"Compress photos for ID card applications. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-photo-for-id-card","title":"Compress Photo for ID Card — Free Online Tool","desc":"Compress ID card photos to required size. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"resize-passport-photo-online","title":"Resize Passport Photo Online — Free Tool","desc":"Resize passport photos to meet government dimensions. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"passport-image-size-reducer","title":"Passport Image Size Reducer — Free Online Tool","desc":"Reduce passport image file size for online submissions. Free, no upload, instant.","cat":"platform"},
+    {"slug":"compress-image-for-citizenship-application","title":"Compress Image for Citizenship Application — Free","desc":"Compress photos for citizenship applications. Meet government requirements. Free, instant.","cat":"platform"},
+    {"slug":"compress-image-for-government-upload","title":"Compress Image for Government Upload — Meet Limits","desc":"Compress images for government portal uploads. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"passport-photo-under-100kb","title":"Passport Photo Under 100KB — Free Online Compressor","desc":"Compress passport photos to under 100KB. Meet online application limits. Free, instant.","cat":"size","size":"100 KB"},
+    {"slug":"passport-photo-under-50kb","title":"Passport Photo Under 50KB — Free Online Compressor","desc":"Compress passport photos to under 50KB. Meet strict government limits. Free, instant.","cat":"size","size":"50 KB"},
+
+    # Discord extended
+    {"slug":"discord-image-compressor","title":"Discord Image Compressor — Free Online Tool","desc":"Compress images for Discord uploads. Bypass file size limits. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"discord-image-size-reducer","title":"Discord Image Size Reducer — Free Online Tool","desc":"Reduce image file size for Discord. Free, no upload, instant.","cat":"platform"},
+    {"slug":"reduce-image-size-for-discord","title":"Reduce Image Size for Discord — Free Tool","desc":"Reduce image size to meet Discord's upload limits. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-photo-for-discord","title":"Compress Photo for Discord — Free Online Tool","desc":"Compress photos for Discord sharing. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-png-for-discord","title":"Compress PNG for Discord — Free Online Tool","desc":"Compress PNG images for Discord uploads. Free, browser-based, instant.","cat":"format"},
+    {"slug":"compress-jpg-for-discord","title":"Compress JPG for Discord — Free Online Tool","desc":"Compress JPG images for Discord uploads. Free, browser-based, instant.","cat":"format"},
+    {"slug":"compress-screenshot-for-discord","title":"Compress Screenshot for Discord — Free Tool","desc":"Compress screenshots for Discord sharing. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"discord-avatar-size-reducer","title":"Discord Avatar Size Reducer — Free Online Tool","desc":"Reduce Discord avatar image size. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"discord-profile-image-compressor","title":"Discord Profile Image Compressor — Free Tool","desc":"Compress Discord profile images. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"discord-banner-image-compressor","title":"Discord Banner Image Compressor — Free Tool","desc":"Compress Discord banner images. Free, browser-based, instant.","cat":"platform"},
+
+    # Email extended
+    {"slug":"compress-photo-for-email","title":"Compress Photo for Email — Free Online Tool","desc":"Compress photos for email attachments. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"reduce-image-size-for-email","title":"Reduce Image Size for Email — Free Tool","desc":"Reduce image size for email attachments. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"email-attachment-image-compressor","title":"Email Attachment Image Compressor — Free Tool","desc":"Compress images for email attachments. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-jpg-for-email","title":"Compress JPG for Email — Free Online Tool","desc":"Compress JPG images for email. Free, browser-based, instant.","cat":"format"},
+    {"slug":"compress-png-for-email","title":"Compress PNG for Email — Free Online Tool","desc":"Compress PNG images for email. Free, browser-based, instant.","cat":"format"},
+    {"slug":"compress-screenshot-for-email","title":"Compress Screenshot for Email — Free Tool","desc":"Compress screenshots for email sharing. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"resize-image-for-email","title":"Resize Image for Email — Free Online Tool","desc":"Resize images for email attachments. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"email-image-optimizer","title":"Email Image Optimizer — Free Online Tool","desc":"Optimize images for email delivery. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"reduce-attachment-size","title":"Reduce Attachment Size — Free Online Tool","desc":"Reduce email attachment file size. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"image-attachment-compressor","title":"Image Attachment Compressor — Free Tool","desc":"Compress image attachments for email. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-images-before-emailing","title":"Compress Images Before Emailing — Free Tool","desc":"Compress images before sending via email. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-under-1mb","title":"Compress Image Under 1MB — Free Online Tool","desc":"Compress images to under 1MB for email. Free, browser-based, instant.","cat":"size","size":"1 MB"},
+    {"slug":"compress-image-under-500kb","title":"Compress Image Under 500KB — Free Online Tool","desc":"Compress images to under 500KB. Free, browser-based, instant.","cat":"size","size":"500 KB"},
+    {"slug":"compress-image-under-200kb","title":"Compress Image Under 200KB — Free Online Tool","desc":"Compress images to under 200KB. Free, browser-based, instant.","cat":"size","size":"200 KB"},
+    {"slug":"photo-compressor-for-email","title":"Photo Compressor for Email — Free Online Tool","desc":"Compress photos for email attachments. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"image-reducer-for-email","title":"Image Reducer for Email — Free Online Tool","desc":"Reduce image size for email. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"email-photo-size-reducer","title":"Email Photo Size Reducer — Free Tool","desc":"Reduce photo size for email. Free, browser-based, instant.","cat":"platform"},
+]
+
 ALL_SCENARIOS = []
 
 for s in SIZES:
@@ -148,6 +217,10 @@ for s in SPECIAL:
     ALL_SCENARIOS.append(s)
 for s in CONVERSIONS:
     s["cat"] = "conversion"
+    ALL_SCENARIOS.append(s)
+for s in EXTRA:
+    if "cat" not in s:
+        s["cat"] = "special"
     ALL_SCENARIOS.append(s)
 
 # ═══ Enrichment ════════════════════════════════════

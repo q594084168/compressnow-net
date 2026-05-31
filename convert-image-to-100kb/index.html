@@ -3,21 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Compress images to exact 100KB/200KB/500KB online. 100% browser-based, no upload needed. Support PNG, JPEG, WebP. Free forever.">
+    <meta name="description" content="Convert any image to 100KB file size. Free, browser-based, instant.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://compressnow.net/">
-    <meta property="og:title" content="Compress Image to Exact KB Online — Free, No Upload | CompressNow">
-    <meta property="og:description" content="Compress images to exact 100KB/200KB/500KB online. 100% browser-based, no upload needed. Support PNG, JPEG, WebP. Free forever.">
-    <meta property="og:url" content="https://compressnow.net/">
+    <meta property="og:title" content="Convert Image to 100KB — Free Online Tool">
+    <meta property="og:description" content="Convert any image to 100KB file size. Free, browser-based, instant.">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <title>Compress Image to Exact KB Online — Free, No Upload | CompressNow</title>
+    <meta property="og:url" content="https://compressnow.net/convert-image-to-100kb/">
+    <link rel="canonical" href="https://compressnow.net/convert-image-to-100kb/">
+    <title>Convert Image to 100KB — Free Online Tool</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"CompressNow","url":"https://compressnow.net","description":"Free online image compression tool. Compress PNG, JPEG, WebP images to exact file sizes."}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"CompressNow","url":"https://compressnow.net","applicationCategory":"UtilityApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does CompressNow work?","acceptedAnswer":{"@type":"Answer","text":"Upload your image, set your target file size, and our tool compresses it instantly. Everything happens in your browser — no upload to server."}},{"@type":"Question","name":"Is CompressNow free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free. No signup, no watermarks, no limits. Compress as many images as you need."}},{"@type":"Question","name":"What image formats are supported?","acceptedAnswer":{"@type":"Answer","text":"PNG, JPEG, and WebP are fully supported. Our tool applies format-specific compression for optimal results."}},{"@type":"Question","name":"Is my image uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. All processing happens locally in your browser. Your images never leave your device, ensuring complete privacy."}}]}</script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9NW1GSG04"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-Z9NW1GSG04");</script>
     <style>
         :root{--primary:#4F46E5;--primary-dark:#4338CA;--bg:#F8FAFC;--card-bg:#FFFFFF;--text:#1E293B;--text-secondary:#64748B;--border:#E2E8F0;--radius:12px}
@@ -27,10 +23,8 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans
 header{background:#1E293B;color:#F1F5F9;padding:16px 0;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 header .container{display:flex;justify-content:space-between;align-items:center}
 header nav{display:flex;gap:24px}header nav a{color:#94A3B8;text-decoration:none;font-size:.9rem;font-weight:500}header nav a:hover{color:#fff}
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.5rem;font-weight:800;margin-bottom:16px;line-height:1.2}
-.hero p{color:var(--text-secondary);font-size:1.1rem;max-width:600px;margin:0 auto}
-.tool-area{max-width:700px;margin:0 auto 40px;padding:0 24px}
+.subtitle{color:var(--text-secondary);max-width:560px;margin:0 auto}
+.tool-area{max-width:700px;margin:0 auto 24px;padding:0 24px}
 .tool-area textarea{width:100%;border:2px dashed var(--border);border-radius:var(--radius);padding:20px;font-family:'Consolas',monospace;font-size:14px;resize:vertical;background:var(--card-bg);min-height:200px}
 .tool-area textarea:focus{outline:none;border-color:var(--primary);border-style:solid}
 .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
@@ -39,19 +33,43 @@ header nav{display:flex;gap:24px}header nav a{color:#94A3B8;text-decoration:none
 .btn-secondary{background:var(--card-bg);color:var(--text);border:1px solid var(--border)}
 .output-area{margin-top:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;min-height:80px;word-break:break-all;display:none}
 .error-msg{color:#DC2626;font-size:.85rem;margin-top:8px;display:none}
-.section{padding:40px 0}.section h2{font-size:1.5rem;margin-bottom:20px;text-align:center}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:700px;margin:0 auto}
-@media(max-width:640px){.grid{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:1.8rem}}
-.card{padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:8px;text-align:center;text-decoration:none;color:var(--text);font-weight:600;font-size:.9rem;transition:all .15s}
-.card:hover{border-color:var(--primary);box-shadow:0 2px 8px rgba(79,70,229,0.12)}
 .faq-section{padding:40px 0;text-align:left}.faq-section h2{font-size:1.5rem;margin-bottom:24px;text-align:center}
 .faq-item{margin-bottom:20px}.faq-item h3{font-size:1rem;margin-bottom:6px;color:var(--primary)}
 .faq-item p{color:var(--text-secondary);font-size:.9rem}
-.cross-site{max-width:700px;margin:0 auto 40px;padding:20px;background:#F5F0FF;border-left:3px solid #4F46E5;border-radius:0 8px 8px 0}
-.cross-site strong{color:#4F46E5}.cross-site a{color:#4F46E5;font-weight:600}
 footer{background:#1E293B;color:#94A3B8;padding:32px 0;text-align:center;font-size:.85rem}
 footer a{color:#CBD5E1;text-decoration:none}
+        .scene-hero{padding:40px 0 24px;text-align:center}
+        .scene-hero h1{font-size:2rem;font-weight:800;margin-bottom:12px;line-height:1.3}
+        @media(max-width:640px){.scene-hero h1{font-size:1.5rem}}
+        .scene-body{max-width:700px;margin:0 auto;padding:0 24px 40px}
+        .scene-body h2{font-size:1.25rem;margin:32px 0 12px;color:#1E293B}
+        .scene-body p{color:#475569;margin-bottom:12px;font-size:1rem;line-height:1.7}
+        .related-tools{background:#F8FAFC;border-top:1px solid #E2E8F0;padding:40px 0}
+        .related-tools .container{max-width:960px;margin:0 auto;padding:0 24px}
+        .related-tools h2{font-size:1.5rem;margin-bottom:20px;text-align:center}
+        .related-tools ul{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:600px;margin:0 auto}
+        @media(max-width:640px){.related-tools ul{grid-template-columns:1fr}}
+        .related-tools a{color:#4F46E5;text-decoration:none;font-weight:500;padding:10px 16px;display:block;background:#fff;border-radius:8px;border:1px solid #E2E8F0;transition:all .15s}
+        .related-tools a:hover{border-color:#4F46E5;box-shadow:0 2px 8px rgba(79,70,229,0.12)}
+        .breadcrumb{font-size:.85rem;color:#64748B;padding:16px 0;max-width:960px;margin:0 auto}
+        .breadcrumb a{color:#4F46E5;text-decoration:none}.breadcrumb a:hover{text-decoration:underline}
+        .cross-site{max-width:700px;margin:0 auto 40px;padding:20px;background:#F5F0FF;border-left:3px solid #4F46E5;border-radius:0 8px 8px 0}
+        .cross-site strong{color:#4F46E5}
+        .cross-site a{color:#4F46E5;font-weight:600}
     </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{"@type": "Question", "name": "Can I compress an image to 100 KB online?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Upload your image and our tool automatically compresses it to the target size. 100% browser-based, no upload to server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, completely free. No signup, no watermarks, no limits."}}, {"@type": "Question", "name": "Is my image uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. All processing happens locally in your browser. Your images never leave your device."}}]
+    }
+    </script>
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://compressnow.net/"}, {"@type": "ListItem", "position": 2, "name": "Convert Image to 100KB", "item": "https://compressnow.net/convert-image-to-100kb/"}]}
+    </script>
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Convert Image to 100KB — Free Online Tool", "url": "https://compressnow.net/convert-image-to-100kb/", "description": "Convert any image to 100KB file size. Free, browser-based, instant.", "applicationCategory": "UtilityApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
+    </script>
 </head>
 <body>
     <header>
@@ -60,14 +78,15 @@ footer a{color:#CBD5E1;text-decoration:none}
             <nav>
                 <a href="/">Home</a>
                 <a href="#faq">FAQ</a>
-                <a href="#sizes">Sizes</a>
+                <a href="#related">Related Tools</a>
             </nav>
         </div>
     </header>
     <main>
-        <section class="hero">
-            <h1>Compress Image to Exact KB Online</h1>
-            <p>Free, no upload, 100% browser-based. Support PNG, JPEG, WebP. Compress to 100KB, 200KB, 500KB, or any size you need.</p>
+        <div class="breadcrumb"><a href="/">Home</a> / Convert Image to 100KB</div>
+        <section class="scene-hero">
+            <h1>Convert Image to 100KB — Free Online Tool</h1>
+            <p class="subtitle">Convert any image to 100KB file size. Free, browser-based, instant.</p>
         </section>
         <section class="tool-area">
             <div id="dropZone" style="border:2px dashed var(--border);border-radius:var(--radius);padding:40px 20px;text-align:center;cursor:pointer;background:var(--card-bg);transition:all .2s">
@@ -90,17 +109,13 @@ footer a{color:#CBD5E1;text-decoration:none}
             <div id="progressBar" style="display:none;margin-top:16px;background:var(--border);border-radius:8px;overflow:hidden;height:8px"><div id="progressFill" style="background:var(--primary);height:100%;width:0%;transition:width .3s"></div></div>
             <p class="error-msg" id="errorMsg"></p>
         </section>
-        <section class="section" id="sizes">
-            <h2>Compress by Target Size</h2>
-            <div class="grid"><a href="/compress-image-to-10kb/" class="card">10 KB</a><a href="/compress-image-to-20kb/" class="card">20 KB</a><a href="/compress-image-to-30kb/" class="card">30 KB</a><a href="/compress-image-to-40kb/" class="card">40 KB</a><a href="/compress-image-to-50kb/" class="card">50 KB</a><a href="/compress-image-to-60kb/" class="card">60 KB</a><a href="/compress-image-to-75kb/" class="card">75 KB</a><a href="/compress-image-to-80kb/" class="card">80 KB</a><a href="/compress-image-to-100kb/" class="card">100 KB</a></div>
-        </section>
-        <section class="section">
-            <h2>Compress by Platform</h2>
-            <div class="grid"><a href="/compress-image-for-email/" class="card">Email</a><a href="/compress-image-for-whatsapp/" class="card">WhatsApp</a><a href="/compress-image-for-instagram/" class="card">Instagram</a><a href="/compress-image-for-facebook/" class="card">Facebook</a><a href="/compress-image-for-discord/" class="card">Discord</a><a href="/compress-image-for-twitter/" class="card">Twitter</a><a href="/compress-image-for-linkedin/" class="card">LinkedIn</a><a href="/compress-image-for-website/" class="card">Website</a></div>
-        </section>
-        <section class="section">
-            <h2>Convert Image Format</h2>
-            <div class="grid"><a href="/jpg-to-png/" class="card">Convert JPG to PNG Online</a><a href="/png-to-jpg/" class="card">Convert PNG to JPG Online</a><a href="/webp-to-jpg/" class="card">Convert WebP to JPG Online</a><a href="/webp-to-png/" class="card">Convert WebP to PNG Online</a><a href="/jpg-to-webp/" class="card">Convert JPG to WebP Online</a><a href="/png-to-webp/" class="card">Convert PNG to WebP Online</a></div>
+        <section class="scene-body">
+            <h2>About This Tool</h2>
+            <p>Convert any image to 100KB file size. Free, browser-based, instant.</p>
+            <h2>How to Use</h2>
+            <p>Step 1: Upload or drag your image into the tool above.</p><p>Step 2: Set the target file size (the tool will auto-detect the optimal compression level).</p><p>Step 3: Click 'Compress' and download your compressed image instantly.</p>
+            <h2>Tips</h2>
+            <p>Compressing to an exact KB size is useful for government forms, passport photos, job applications, and CMS uploads that enforce strict file size limits. Our tool uses smart binary search compression to hit your target size precisely.</p>
         </section>
         <div class="cross-site">
             <strong>Pro Tip</strong> — After compressing your image, use <a href="https://cvbuild-ai.com">CVBuild-AI</a> to build your resume, <a href="https://messagegen-ai.com">MessageGen-AI</a> to write professional emails, and <a href="https://tonemodifier.com">ToneModifier</a> to perfect your tone.
@@ -109,21 +124,25 @@ footer a{color:#CBD5E1;text-decoration:none}
             <div class="container">
                 <h2>Frequently Asked Questions</h2>
                 <div class="faq-item">
-                    <h3>How does CompressNow work?</h3>
-                    <p>Upload your image, set your target file size, and our tool compresses it instantly. Everything happens in your browser — no upload to server.</p>
+                    <h3>Can I compress an image to 100 KB online?</h3>
+                    <p>Yes. Upload your image and our tool automatically compresses it to the target size. 100% browser-based, no upload to server.</p>
                 </div>
                 <div class="faq-item">
-                    <h3>Is CompressNow free?</h3>
-                    <p>Yes, completely free. No signup, no watermarks, no limits. Compress as many images as you need.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>What image formats are supported?</h3>
-                    <p>PNG, JPEG, and WebP are fully supported. Our tool applies format-specific compression for optimal results.</p>
+                    <h3>Is this tool free?</h3>
+                    <p>Yes, completely free. No signup, no watermarks, no limits.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Is my image uploaded to a server?</h3>
-                    <p>No. All processing happens locally in your browser. Your images never leave your device, ensuring complete privacy.</p>
+                    <p>No. All processing happens locally in your browser. Your images never leave your device.</p>
                 </div>
+            </div>
+        </section>
+        <section class="related-tools" id="related">
+            <div class="container">
+                <h2>Related Tools</h2>
+                <ul>
+                    <li><a href="/compress-image-to-10kb/">Compress Image to 10KB Online</a></li><li><a href="/compress-image-to-20kb/">Compress Image to 20KB Online</a></li><li><a href="/compress-image-for-email/">Compress Image for Email</a></li><li><a href="/compress-image-for-discord/">Compress Image for Discord</a></li><li><a href="/compress-image-for-whatsapp/">Compress Image for WhatsApp</a></li><li><a href="/jpg-to-png/">Convert JPG to PNG Online</a></li>
+                </ul>
             </div>
         </section>
     </main>
@@ -137,7 +156,7 @@ footer a{color:#CBD5E1;text-decoration:none}
     const IS_CONVERSION = false;
     const TARGET_KB = 100;
     const TARGET_BYTES = TARGET_KB * 1024;
-    const CONVERT_TO = IS_CONVERSION ? 'png' : '';
+    const CONVERT_TO = IS_CONVERSION ? '100kb' : '';
     const dropZone = document.getElementById('dropZone');
     const fileInput = document.getElementById('fileInput');
     const previewArea = document.getElementById('previewArea');
