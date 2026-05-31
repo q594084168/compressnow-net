@@ -122,6 +122,16 @@ SPECIAL = [
     {"slug":"compress-image-for-youtube-thumbnail","title":"Compress Image for YouTube Thumbnail — Optimize Thumbnails","desc":"Compress YouTube thumbnail images. Meet YouTube's requirements. Free, browser-based, instant."},
 ]
 
+# Format conversion pages
+CONVERSIONS = [
+    {"slug":"jpg-to-png","title":"Convert JPG to PNG Online — Free, Instant","desc":"Convert JPG/JPEG images to PNG format online. Preserve quality with lossless conversion. Free, browser-based, no upload."},
+    {"slug":"png-to-jpg","title":"Convert PNG to JPG Online — Free, Instant","desc":"Convert PNG images to JPG/JPEG format online. Reduce file size significantly. Free, browser-based, no upload."},
+    {"slug":"webp-to-jpg","title":"Convert WebP to JPG Online — Free, Instant","desc":"Convert WebP images to JPG/JPEG format. Universal compatibility. Free, browser-based, no upload needed."},
+    {"slug":"webp-to-png","title":"Convert WebP to PNG Online — Free, Instant","desc":"Convert WebP images to PNG format with transparency preserved. Free, browser-based, no upload needed."},
+    {"slug":"jpg-to-webp","title":"Convert JPG to WebP Online — Free, Instant","desc":"Convert JPG images to WebP format for smaller file sizes. Modern web format. Free, browser-based, no upload."},
+    {"slug":"png-to-webp","title":"Convert PNG to WebP Online — Free, Instant","desc":"Convert PNG images to WebP format. 25-35% smaller than PNG. Free, browser-based, no upload needed."},
+]
+
 ALL_SCENARIOS = []
 
 for s in SIZES:
@@ -135,6 +145,9 @@ for s in FORMATS:
     ALL_SCENARIOS.append(s)
 for s in SPECIAL:
     s["cat"] = "special"
+    ALL_SCENARIOS.append(s)
+for s in CONVERSIONS:
+    s["cat"] = "conversion"
     ALL_SCENARIOS.append(s)
 
 # ═══ Enrichment ════════════════════════════════════
@@ -171,6 +184,14 @@ ENRICHMENT = {
             "Download all compressed images at once."
         ],
         "tips": "Bulk compression saves time when you have multiple images to process. Our tool processes everything locally in your browser — your images never leave your device."
+    },
+    "conversion": {
+        "how_to": [
+            "Upload your image using the tool above.",
+            "The tool automatically converts to the target format.",
+            "Download the converted image instantly."
+        ],
+        "tips": "Different formats serve different purposes: PNG supports transparency and is best for graphics, JPEG is ideal for photos with small file sizes, WebP offers the best compression for modern web browsers."
     }
 }
 
@@ -180,12 +201,56 @@ def build_scene_page(s):
     e = ENRICHMENT.get(s["cat"], ENRICHMENT["special"])
     how_to_html = "".join(f"<p>Step {i+1}: {step}</p>" for i, step in enumerate(e["how_to"]))
 
-    # Related pages
-    related = [s2 for s2 in ALL_SCENARIOS if s2["slug"] != s["slug"]]
-    import random
-    random.seed(s["slug"])
-    random.shuffle(related)
-    related_html = "".join(f'<li><a href="/{r["slug"]}/">{r["title"].split("—")[0].strip()}</a></li>' for r in related[:6])
+    # Structured internal linking by user intent
+    slug = s["slug"]
+    cat = s["cat"]
+    related_slugs = []
+
+    # For size pages: link to nearby sizes + popular platforms + conversions
+    if cat == "size":
+        size_val = s.get("size", "100 KB").replace(" KB","").replace(" MB","000")
+        try: size_num = int(size_val)
+        except: size_num = 100
+        # Nearby sizes
+        nearby = [s2 for s2 in SIZES if s2["slug"] != slug and abs(int(s2.get("size","100 KB").replace(" KB","").replace(" MB","000")) - size_num) <= size_num]
+        related_slugs.extend([s2["slug"] for s2 in nearby[:2]])
+        # Popular platforms
+        related_slugs.extend(["compress-image-for-email", "compress-image-for-discord", "compress-image-for-whatsapp"])
+        # Conversion
+        related_slugs.append("jpg-to-png")
+
+    # For platform pages: link to common sizes + other platforms + conversions
+    elif cat == "platform":
+        related_slugs.extend(["compress-image-to-100kb", "compress-image-to-50kb", "compress-image-to-200kb"])
+        other_platforms = [s2["slug"] for s2 in PLATFORMS if s2["slug"] != slug]
+        related_slugs.extend(other_platforms[:2])
+        related_slugs.append("png-to-jpg")
+
+    # For format pages: link to conversions + sizes + platforms
+    elif cat == "format":
+        related_slugs.extend(["jpg-to-png", "png-to-jpg", "webp-to-jpg"])
+        related_slugs.extend(["compress-image-to-100kb", "compress-image-to-50kb"])
+        related_slugs.append("compress-image-for-website")
+
+    # For special pages: link to sizes + platforms
+    elif cat == "special":
+        related_slugs.extend(["compress-image-to-100kb", "compress-image-to-50kb", "compress-image-to-200kb"])
+        related_slugs.extend(["compress-image-for-email", "compress-image-for-discord"])
+        related_slugs.append("jpg-to-png")
+
+    # For conversion pages: link to other conversions + sizes
+    elif cat == "conversion":
+        other_conv = [s2["slug"] for s2 in CONVERSIONS if s2["slug"] != slug]
+        related_slugs.extend(other_conv[:3])
+        related_slugs.extend(["compress-image-to-100kb", "compress-image-to-50kb"])
+        related_slugs.append("compress-image-for-website")
+
+    # Build related HTML
+    related_html = ""
+    for rs in related_slugs[:6]:
+        r = next((s2 for s2 in ALL_SCENARIOS if s2["slug"] == rs), None)
+        if r:
+            related_html += f'<li><a href="/{r["slug"]}/">{r["title"].split("—")[0].strip()}</a></li>'
 
     # Cross-site links
     cross_links = """<p>Need to compress images for other tools? Try <a href="https://cvbuild-ai.com">CVBuild-AI</a> for resume content, <a href="https://messagegen-ai.com">MessageGen-AI</a> for email writing, and <a href="https://tonemodifier.com">ToneModifier</a> for tone adjustment.</p>"""
@@ -349,8 +414,10 @@ footer a{{color:#CBD5E1;text-decoration:none}}
         </div>
     </footer>
     <script>
+    const IS_CONVERSION = {"true" if s.get("cat") == "conversion" else "false"};
     const TARGET_KB = {s.get('size', '100').replace(' KB','').replace(' MB','000')};
     const TARGET_BYTES = TARGET_KB * 1024;
+    const CONVERT_TO = IS_CONVERSION ? '{s.get("slug","").split("-to-")[1] if "-to-" in s.get("slug","") else "png"}' : '';
     const dropZone = document.getElementById('dropZone');
     const fileInput = document.getElementById('fileInput');
     const previewArea = document.getElementById('previewArea');
@@ -362,19 +429,20 @@ footer a{{color:#CBD5E1;text-decoration:none}}
     const progressBar = document.getElementById('progressBar');
     const progressFill = document.getElementById('progressFill');
     const errorMsg = document.getElementById('errorMsg');
-    let compressedBlob = null;
-    let compressedUrl = null;
+    let resultBlob = null;
+    let resultUrl = null;
     dropZone.addEventListener('click', () => fileInput.click());
     dropZone.addEventListener('dragover', e => {{ e.preventDefault(); dropZone.style.borderColor = 'var(--primary)'; dropZone.style.background = '#F5F3FF'; }});
     dropZone.addEventListener('dragleave', () => {{ dropZone.style.borderColor = 'var(--border)'; dropZone.style.background = 'var(--card-bg)'; }});
     dropZone.addEventListener('drop', e => {{ e.preventDefault(); dropZone.style.borderColor = 'var(--border)'; dropZone.style.background = 'var(--card-bg)'; if(e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]); }});
     fileInput.addEventListener('change', () => {{ if(fileInput.files.length) handleFile(fileInput.files[0]); }});
-    resetBtn.addEventListener('click', () => {{ previewArea.style.display = 'none'; dropZone.style.display = 'block'; fileInput.value = ''; if(compressedUrl) URL.revokeObjectURL(compressedUrl); compressedBlob = null; compressedUrl = null; errorMsg.style.display = 'none'; }});
-    downloadBtn.addEventListener('click', () => {{ if(!compressedBlob) return; const a = document.createElement('a'); a.href = compressedUrl; a.download = 'compressed-' + fileInput.files[0].name; a.click(); }});
+    resetBtn.addEventListener('click', () => {{ previewArea.style.display = 'none'; dropZone.style.display = 'block'; fileInput.value = ''; if(resultUrl) URL.revokeObjectURL(resultUrl); resultBlob = null; resultUrl = null; errorMsg.style.display = 'none'; }});
+    downloadBtn.addEventListener('click', () => {{ if(!resultBlob) return; const a = document.createElement('a'); a.href = resultUrl; const ext = CONVERT_TO || 'jpg'; const name = fileInput.files[0].name.replace(/\.[^.]+$/, '') + '.' + ext; a.download = name; a.click(); }});
     function formatSize(bytes) {{ if(bytes < 1024) return bytes + ' B'; if(bytes < 1048576) return (bytes/1024).toFixed(1) + ' KB'; return (bytes/1048576).toFixed(2) + ' MB'; }}
-    function handleFile(file) {{ if(!file.type.match(/^image\/(png|jpeg|webp)$/)) {{ errorMsg.textContent = 'Please upload a PNG, JPEG, or WebP image.'; errorMsg.style.display = 'block'; return; }} errorMsg.style.display = 'none'; const reader = new FileReader(); reader.onload = e => {{ const img = new Image(); img.onload = () => {{ originalPreview.src = e.target.result; dropZone.style.display = 'none'; previewArea.style.display = 'block'; progressBar.style.display = 'block'; progressFill.style.width = '30%'; compressImage(img, file.type); }}; img.src = e.target.result; }}; reader.readAsDataURL(file); }}
-    function compressImage(img, type) {{ const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0); progressFill.style.width = '60%'; const mimeType = type === 'image/png' ? 'image/png' : type === 'image/webp' ? 'image/webp' : 'image/jpeg'; if(mimeType === 'image/png') {{ canvas.toBlob(blob => {{ compressedBlob = blob; showResult(blob, img.width, img.height, type); }}, mimeType); }} else {{ let low = 0.01, high = 1.0, bestBlob = null; function tryQuality(q) {{ canvas.toBlob(blob => {{ if(!blob) {{ showResult(bestBlob || new Blob(), img.width, img.height, type); return; }} if(blob.size <= TARGET_BYTES * 1.05) {{ bestBlob = blob; low = q; }} else {{ high = q; }} if(high - low < 0.01) {{ compressedBlob = bestBlob || blob; showResult(compressedBlob, img.width, img.height, type); }} else {{ progressFill.style.width = (60 + (1 - (high-low)) * 30) + '%'; tryQuality((low + high) / 2); }} }}, mimeType, q); }} tryQuality(0.7); }} }}
-    function showResult(blob, w, h, type) {{ if(compressedUrl) URL.revokeObjectURL(compressedUrl); compressedBlob = blob; compressedUrl = URL.createObjectURL(blob); compressedPreview.src = compressedUrl; progressFill.style.width = '100%'; setTimeout(() => progressBar.style.display = 'none', 500); const originalSize = fileInput.files[0].size; const compressedSize = blob.size; const reduction = ((1 - compressedSize/originalSize) * 100).toFixed(1); stats.innerHTML = '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><div><strong>Original:</strong> ' + formatSize(originalSize) + '</div><div><strong>Compressed:</strong> ' + formatSize(compressedSize) + '</div><div><strong>Reduction:</strong> ' + reduction + '%</div><div><strong>Dimensions:</strong> ' + w + ' x ' + h + '</div></div>'; }}
+    function handleFile(file) {{ if(!file.type.match(/^image\/(png|jpeg|webp)$/)) {{ errorMsg.textContent = 'Please upload a PNG, JPEG, or WebP image.'; errorMsg.style.display = 'block'; return; }} errorMsg.style.display = 'none'; const reader = new FileReader(); reader.onload = e => {{ const img = new Image(); img.onload = () => {{ originalPreview.src = e.target.result; dropZone.style.display = 'none'; previewArea.style.display = 'block'; progressBar.style.display = 'block'; progressFill.style.width = '30%'; if(IS_CONVERSION) convertImage(img); else compressImage(img, file.type); }}; img.src = e.target.result; }}; reader.readAsDataURL(file); }}
+    function convertImage(img) {{ const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0); progressFill.style.width = '60%'; const mimeMap = {{'png':'image/png','jpg':'image/jpeg','jpeg':'image/jpeg','webp':'image/webp'}}; const mime = mimeMap[CONVERT_TO] || 'image/jpeg'; const quality = mime === 'image/png' ? undefined : 0.92; canvas.toBlob(blob => {{ resultBlob = blob; showResult(blob, img.width, img.height); }}, mime, quality); }}
+    function compressImage(img, type) {{ const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0); progressFill.style.width = '60%'; const mimeType = type === 'image/png' ? 'image/png' : type === 'image/webp' ? 'image/webp' : 'image/jpeg'; if(mimeType === 'image/png') {{ canvas.toBlob(blob => {{ resultBlob = blob; showResult(blob, img.width, img.height); }}, mimeType); }} else {{ let low = 0.01, high = 1.0, bestBlob = null; function tryQuality(q) {{ canvas.toBlob(blob => {{ if(!blob) {{ showResult(bestBlob || new Blob(), img.width, img.height); return; }} if(blob.size <= TARGET_BYTES * 1.05) {{ bestBlob = blob; low = q; }} else {{ high = q; }} if(high - low < 0.01) {{ resultBlob = bestBlob || blob; showResult(resultBlob, img.width, img.height); }} else {{ progressFill.style.width = (60 + (1 - (high-low)) * 30) + '%'; tryQuality((low + high) / 2); }} }}, mimeType, q); }} tryQuality(0.7); }} }}
+    function showResult(blob, w, h) {{ if(resultUrl) URL.revokeObjectURL(resultUrl); resultBlob = blob; resultUrl = URL.createObjectURL(blob); compressedPreview.src = resultUrl; progressFill.style.width = '100%'; setTimeout(() => progressBar.style.display = 'none', 500); const originalSize = fileInput.files[0].size; const resultSize = blob.size; const change = ((1 - resultSize/originalSize) * 100).toFixed(1); const label = IS_CONVERSION ? 'Converted' : 'Compressed'; stats.innerHTML = '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><div><strong>Original:</strong> ' + formatSize(originalSize) + '</div><div><strong>' + label + ':</strong> ' + formatSize(resultSize) + '</div><div><strong>Change:</strong> ' + change + '%</div><div><strong>Dimensions:</strong> ' + w + ' x ' + h + '</div></div>'; }}
     </script>
 </body>
 </html>"""
@@ -387,6 +455,8 @@ def build_home():
     size_cards = "".join(f'<a href="/{s["slug"]}/" class="card">{s["size"]}</a>' for s in SIZES[:9])
     # Platform cards
     platform_cards = "".join(f'<a href="/{s["slug"]}/" class="card">{s["platform"]}</a>' for s in PLATFORMS[:8])
+    # Conversion cards
+    conversion_cards = "".join(f'<a href="/{s["slug"]}/" class="card">{s["title"].split("—")[0].strip()}</a>' for s in CONVERSIONS)
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -488,6 +558,10 @@ footer a{{color:#CBD5E1;text-decoration:none}}
             <h2>Compress by Platform</h2>
             <div class="grid">{platform_cards}</div>
         </section>
+        <section class="section">
+            <h2>Convert Image Format</h2>
+            <div class="grid">{conversion_cards}</div>
+        </section>
         <div class="cross-site">
             <strong>Pro Tip</strong> — After compressing your image, use <a href="https://cvbuild-ai.com">CVBuild-AI</a> to build your resume, <a href="https://messagegen-ai.com">MessageGen-AI</a> to write professional emails, and <a href="https://tonemodifier.com">ToneModifier</a> to perfect your tone.
         </div>
@@ -520,8 +594,10 @@ footer a{{color:#CBD5E1;text-decoration:none}}
         </div>
     </footer>
     <script>
+    const IS_CONVERSION = {"true" if s.get("cat") == "conversion" else "false"};
     const TARGET_KB = {s.get('size', '100').replace(' KB','').replace(' MB','000')};
     const TARGET_BYTES = TARGET_KB * 1024;
+    const CONVERT_TO = IS_CONVERSION ? '{s.get("slug","").split("-to-")[1] if "-to-" in s.get("slug","") else "png"}' : '';
     const dropZone = document.getElementById('dropZone');
     const fileInput = document.getElementById('fileInput');
     const previewArea = document.getElementById('previewArea');
@@ -533,19 +609,20 @@ footer a{{color:#CBD5E1;text-decoration:none}}
     const progressBar = document.getElementById('progressBar');
     const progressFill = document.getElementById('progressFill');
     const errorMsg = document.getElementById('errorMsg');
-    let compressedBlob = null;
-    let compressedUrl = null;
+    let resultBlob = null;
+    let resultUrl = null;
     dropZone.addEventListener('click', () => fileInput.click());
     dropZone.addEventListener('dragover', e => {{ e.preventDefault(); dropZone.style.borderColor = 'var(--primary)'; dropZone.style.background = '#F5F3FF'; }});
     dropZone.addEventListener('dragleave', () => {{ dropZone.style.borderColor = 'var(--border)'; dropZone.style.background = 'var(--card-bg)'; }});
     dropZone.addEventListener('drop', e => {{ e.preventDefault(); dropZone.style.borderColor = 'var(--border)'; dropZone.style.background = 'var(--card-bg)'; if(e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]); }});
     fileInput.addEventListener('change', () => {{ if(fileInput.files.length) handleFile(fileInput.files[0]); }});
-    resetBtn.addEventListener('click', () => {{ previewArea.style.display = 'none'; dropZone.style.display = 'block'; fileInput.value = ''; if(compressedUrl) URL.revokeObjectURL(compressedUrl); compressedBlob = null; compressedUrl = null; errorMsg.style.display = 'none'; }});
-    downloadBtn.addEventListener('click', () => {{ if(!compressedBlob) return; const a = document.createElement('a'); a.href = compressedUrl; a.download = 'compressed-' + fileInput.files[0].name; a.click(); }});
+    resetBtn.addEventListener('click', () => {{ previewArea.style.display = 'none'; dropZone.style.display = 'block'; fileInput.value = ''; if(resultUrl) URL.revokeObjectURL(resultUrl); resultBlob = null; resultUrl = null; errorMsg.style.display = 'none'; }});
+    downloadBtn.addEventListener('click', () => {{ if(!resultBlob) return; const a = document.createElement('a'); a.href = resultUrl; const ext = CONVERT_TO || 'jpg'; const name = fileInput.files[0].name.replace(/\.[^.]+$/, '') + '.' + ext; a.download = name; a.click(); }});
     function formatSize(bytes) {{ if(bytes < 1024) return bytes + ' B'; if(bytes < 1048576) return (bytes/1024).toFixed(1) + ' KB'; return (bytes/1048576).toFixed(2) + ' MB'; }}
-    function handleFile(file) {{ if(!file.type.match(/^image\/(png|jpeg|webp)$/)) {{ errorMsg.textContent = 'Please upload a PNG, JPEG, or WebP image.'; errorMsg.style.display = 'block'; return; }} errorMsg.style.display = 'none'; const reader = new FileReader(); reader.onload = e => {{ const img = new Image(); img.onload = () => {{ originalPreview.src = e.target.result; dropZone.style.display = 'none'; previewArea.style.display = 'block'; progressBar.style.display = 'block'; progressFill.style.width = '30%'; compressImage(img, file.type); }}; img.src = e.target.result; }}; reader.readAsDataURL(file); }}
-    function compressImage(img, type) {{ const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0); progressFill.style.width = '60%'; const mimeType = type === 'image/png' ? 'image/png' : type === 'image/webp' ? 'image/webp' : 'image/jpeg'; if(mimeType === 'image/png') {{ canvas.toBlob(blob => {{ compressedBlob = blob; showResult(blob, img.width, img.height, type); }}, mimeType); }} else {{ let low = 0.01, high = 1.0, bestBlob = null; function tryQuality(q) {{ canvas.toBlob(blob => {{ if(!blob) {{ showResult(bestBlob || new Blob(), img.width, img.height, type); return; }} if(blob.size <= TARGET_BYTES * 1.05) {{ bestBlob = blob; low = q; }} else {{ high = q; }} if(high - low < 0.01) {{ compressedBlob = bestBlob || blob; showResult(compressedBlob, img.width, img.height, type); }} else {{ progressFill.style.width = (60 + (1 - (high-low)) * 30) + '%'; tryQuality((low + high) / 2); }} }}, mimeType, q); }} tryQuality(0.7); }} }}
-    function showResult(blob, w, h, type) {{ if(compressedUrl) URL.revokeObjectURL(compressedUrl); compressedBlob = blob; compressedUrl = URL.createObjectURL(blob); compressedPreview.src = compressedUrl; progressFill.style.width = '100%'; setTimeout(() => progressBar.style.display = 'none', 500); const originalSize = fileInput.files[0].size; const compressedSize = blob.size; const reduction = ((1 - compressedSize/originalSize) * 100).toFixed(1); stats.innerHTML = '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><div><strong>Original:</strong> ' + formatSize(originalSize) + '</div><div><strong>Compressed:</strong> ' + formatSize(compressedSize) + '</div><div><strong>Reduction:</strong> ' + reduction + '%</div><div><strong>Dimensions:</strong> ' + w + ' x ' + h + '</div></div>'; }}
+    function handleFile(file) {{ if(!file.type.match(/^image\/(png|jpeg|webp)$/)) {{ errorMsg.textContent = 'Please upload a PNG, JPEG, or WebP image.'; errorMsg.style.display = 'block'; return; }} errorMsg.style.display = 'none'; const reader = new FileReader(); reader.onload = e => {{ const img = new Image(); img.onload = () => {{ originalPreview.src = e.target.result; dropZone.style.display = 'none'; previewArea.style.display = 'block'; progressBar.style.display = 'block'; progressFill.style.width = '30%'; if(IS_CONVERSION) convertImage(img); else compressImage(img, file.type); }}; img.src = e.target.result; }}; reader.readAsDataURL(file); }}
+    function convertImage(img) {{ const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0); progressFill.style.width = '60%'; const mimeMap = {{'png':'image/png','jpg':'image/jpeg','jpeg':'image/jpeg','webp':'image/webp'}}; const mime = mimeMap[CONVERT_TO] || 'image/jpeg'; const quality = mime === 'image/png' ? undefined : 0.92; canvas.toBlob(blob => {{ resultBlob = blob; showResult(blob, img.width, img.height); }}, mime, quality); }}
+    function compressImage(img, type) {{ const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0); progressFill.style.width = '60%'; const mimeType = type === 'image/png' ? 'image/png' : type === 'image/webp' ? 'image/webp' : 'image/jpeg'; if(mimeType === 'image/png') {{ canvas.toBlob(blob => {{ resultBlob = blob; showResult(blob, img.width, img.height); }}, mimeType); }} else {{ let low = 0.01, high = 1.0, bestBlob = null; function tryQuality(q) {{ canvas.toBlob(blob => {{ if(!blob) {{ showResult(bestBlob || new Blob(), img.width, img.height); return; }} if(blob.size <= TARGET_BYTES * 1.05) {{ bestBlob = blob; low = q; }} else {{ high = q; }} if(high - low < 0.01) {{ resultBlob = bestBlob || blob; showResult(resultBlob, img.width, img.height); }} else {{ progressFill.style.width = (60 + (1 - (high-low)) * 30) + '%'; tryQuality((low + high) / 2); }} }}, mimeType, q); }} tryQuality(0.7); }} }}
+    function showResult(blob, w, h) {{ if(resultUrl) URL.revokeObjectURL(resultUrl); resultBlob = blob; resultUrl = URL.createObjectURL(blob); compressedPreview.src = resultUrl; progressFill.style.width = '100%'; setTimeout(() => progressBar.style.display = 'none', 500); const originalSize = fileInput.files[0].size; const resultSize = blob.size; const change = ((1 - resultSize/originalSize) * 100).toFixed(1); const label = IS_CONVERSION ? 'Converted' : 'Compressed'; stats.innerHTML = '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><div><strong>Original:</strong> ' + formatSize(originalSize) + '</div><div><strong>' + label + ':</strong> ' + formatSize(resultSize) + '</div><div><strong>Change:</strong> ' + change + '%</div><div><strong>Dimensions:</strong> ' + w + ' x ' + h + '</div></div>'; }}
     </script>
 </body>
 </html>"""

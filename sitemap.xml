@@ -91,4 +91,10 @@
   <url><loc>https://compressnow.net/compress-image-for-website-thumbnail/</loc><priority>0.8</priority></url>
   <url><loc>https://compressnow.net/compress-image-for-wordpress-media-library/</loc><priority>0.8</priority></url>
   <url><loc>https://compressnow.net/compress-image-for-youtube-thumbnail/</loc><priority>0.8</priority></url>
+  <url><loc>https://compressnow.net/jpg-to-png/</loc><priority>0.8</priority></url>
+  <url><loc>https://compressnow.net/png-to-jpg/</loc><priority>0.8</priority></url>
+  <url><loc>https://compressnow.net/webp-to-jpg/</loc><priority>0.8</priority></url>
+  <url><loc>https://compressnow.net/webp-to-png/</loc><priority>0.8</priority></url>
+  <url><loc>https://compressnow.net/jpg-to-webp/</loc><priority>0.8</priority></url>
+  <url><loc>https://compressnow.net/png-to-webp/</loc><priority>0.8</priority></url>
 </urlset>
