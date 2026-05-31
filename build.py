@@ -201,6 +201,103 @@ EXTRA = [
     {"slug":"email-photo-size-reducer","title":"Email Photo Size Reducer — Free Tool","desc":"Reduce photo size for email. Free, browser-based, instant.","cat":"platform"},
 ]
 
+# Batch 2: WhatsApp, Social Media, Website Optimization
+EXTRA2 = [
+    # WhatsApp extended
+    {"slug":"whatsapp-image-compressor","title":"WhatsApp Image Compressor — Free Online Tool","desc":"Compress images for WhatsApp sharing. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"reduce-image-size-for-whatsapp","title":"Reduce Image Size for WhatsApp — Free Tool","desc":"Reduce image size for WhatsApp. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-photo-for-whatsapp","title":"Compress Photo for WhatsApp — Free Online Tool","desc":"Compress photos for WhatsApp. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"whatsapp-image-size-reducer","title":"WhatsApp Image Size Reducer — Free Tool","desc":"Reduce WhatsApp image file size. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-jpg-for-whatsapp","title":"Compress JPG for WhatsApp — Free Online Tool","desc":"Compress JPG images for WhatsApp. Free, browser-based, instant.","cat":"format"},
+    {"slug":"compress-png-for-whatsapp","title":"Compress PNG for WhatsApp — Free Online Tool","desc":"Compress PNG images for WhatsApp. Free, browser-based, instant.","cat":"format"},
+    {"slug":"resize-image-for-whatsapp","title":"Resize Image for WhatsApp — Free Online Tool","desc":"Resize images for WhatsApp sharing. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"whatsapp-profile-photo-compressor","title":"WhatsApp Profile Photo Compressor — Free Tool","desc":"Compress WhatsApp profile photos. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-before-sending-whatsapp","title":"Compress Image Before Sending WhatsApp — Free","desc":"Compress images before sending on WhatsApp. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"whatsapp-image-optimizer","title":"WhatsApp Image Optimizer — Free Online Tool","desc":"Optimize images for WhatsApp. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-screenshot-for-whatsapp","title":"Compress Screenshot for WhatsApp — Free Tool","desc":"Compress screenshots for WhatsApp sharing. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"whatsapp-dp-photo-compressor","title":"WhatsApp DP Photo Compressor — Free Tool","desc":"Compress WhatsApp display picture. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"whatsapp-photo-size-reducer","title":"WhatsApp Photo Size Reducer — Free Tool","desc":"Reduce WhatsApp photo file size. Free, browser-based, instant.","cat":"platform"},
+
+    # Social Media extended
+    {"slug":"compress-image-for-threads","title":"Compress Image for Threads — Free Online Tool","desc":"Compress images for Threads posts. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-for-x","title":"Compress Image for X/Twitter — Free Online Tool","desc":"Compress images for X/Twitter posts. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"social-media-image-compressor","title":"Social Media Image Compressor — Free Tool","desc":"Compress images for any social media platform. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"resize-image-for-instagram","title":"Resize Image for Instagram — Free Online Tool","desc":"Resize images for Instagram posts and stories. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"instagram-image-size-reducer","title":"Instagram Image Size Reducer — Free Tool","desc":"Reduce image size for Instagram. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"optimize-image-for-instagram","title":"Optimize Image for Instagram — Free Tool","desc":"Optimize images for Instagram uploads. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-profile-photo","title":"Compress Profile Photo — Free Online Tool","desc":"Compress profile photos for any platform. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-cover-photo","title":"Compress Cover Photo — Free Online Tool","desc":"Compress cover/banner photos. Free, browser-based, instant.","cat":"platform"},
+
+    # Website Optimization extended
+    {"slug":"website-image-compressor","title":"Website Image Compressor — Free Online Tool","desc":"Compress images for websites. Improve loading speed. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-for-seo","title":"Compress Image for SEO — Free Online Tool","desc":"Compress images for better SEO rankings. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"image-optimization-for-website","title":"Image Optimization for Website — Free Tool","desc":"Optimize images for website performance. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-images-for-web","title":"Compress Images for Web — Free Online Tool","desc":"Compress images for web publishing. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"web-image-optimizer","title":"Web Image Optimizer — Free Online Tool","desc":"Optimize images for web. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"website-speed-image-compressor","title":"Website Speed Image Compressor — Free Tool","desc":"Compress images to speed up website. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-without-losing-quality","title":"Compress Image Without Losing Quality — Free","desc":"Compress images while preserving quality. Free, browser-based, instant.","cat":"format"},
+    {"slug":"optimize-website-images","title":"Optimize Website Images — Free Online Tool","desc":"Optimize all website images for speed. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-hero-image","title":"Compress Hero Image — Free Online Tool","desc":"Compress hero banner images for websites. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-blog-images","title":"Compress Blog Images — Free Online Tool","desc":"Compress images for blog posts. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-png-for-website","title":"Compress PNG for Website — Free Online Tool","desc":"Compress PNG images for websites. Free, browser-based, instant.","cat":"format"},
+    {"slug":"compress-jpg-for-website","title":"Compress JPG for Website — Free Online Tool","desc":"Compress JPG images for websites. Free, browser-based, instant.","cat":"format"},
+    {"slug":"image-optimizer-online","title":"Image Optimizer Online — Free Tool","desc":"Optimize images online for free. Browser-based, instant.","cat":"format"},
+    {"slug":"website-performance-image-compressor","title":"Website Performance Image Compressor — Free","desc":"Compress images for website performance. Free, browser-based, instant.","cat":"platform"},
+]
+
+# Batch 3: E-commerce, Format Conversion extended, AI Upload
+EXTRA3 = [
+    # E-commerce extended
+    {"slug":"product-image-compressor","title":"Product Image Compressor — Free Online Tool","desc":"Compress product images for e-commerce. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"amazon-image-optimizer","title":"Amazon Image Optimizer — Free Online Tool","desc":"Optimize images for Amazon listings. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"shopify-image-compressor","title":"Shopify Image Compressor — Free Online Tool","desc":"Compress images for Shopify stores. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"ebay-photo-compressor","title":"eBay Photo Compressor — Free Online Tool","desc":"Compress photos for eBay listings. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"etsy-image-size-reducer","title":"Etsy Image Size Reducer — Free Tool","desc":"Reduce image size for Etsy listings. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-catalog-images","title":"Compress Catalog Images — Free Online Tool","desc":"Compress product catalog images. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-product-photos","title":"Compress Product Photos — Free Online Tool","desc":"Compress product photos for e-commerce. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"optimize-ecommerce-images","title":"Optimize E-commerce Images — Free Tool","desc":"Optimize images for e-commerce stores. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-for-online-store","title":"Compress Image for Online Store — Free Tool","desc":"Compress images for online stores. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"reduce-product-image-size","title":"Reduce Product Image Size — Free Tool","desc":"Reduce product image file size. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-listing-images","title":"Compress Listing Images — Free Online Tool","desc":"Compress marketplace listing images. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"product-photo-size-reducer","title":"Product Photo Size Reducer — Free Tool","desc":"Reduce product photo file size. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-images-for-ecommerce","title":"Compress Images for E-commerce — Free Tool","desc":"Compress images for e-commerce platforms. Free, browser-based, instant.","cat":"platform"},
+
+    # Format Conversion extended
+    {"slug":"heic-to-jpg","title":"Convert HEIC to JPG Online — Free, Instant","desc":"Convert HEIC/HEIF photos to JPG format. Free, browser-based, no upload.","cat":"conversion"},
+    {"slug":"heic-to-png","title":"Convert HEIC to PNG Online — Free, Instant","desc":"Convert HEIC/HEIF photos to PNG format. Free, browser-based, no upload.","cat":"conversion"},
+    {"slug":"avif-to-jpg","title":"Convert AVIF to JPG Online — Free, Instant","desc":"Convert AVIF images to JPG format. Free, browser-based, no upload.","cat":"conversion"},
+    {"slug":"avif-to-png","title":"Convert AVIF to PNG Online — Free, Instant","desc":"Convert AVIF images to PNG format. Free, browser-based, no upload.","cat":"conversion"},
+    {"slug":"image-format-converter","title":"Image Format Converter — Free Online Tool","desc":"Convert between any image format. Free, browser-based, instant.","cat":"conversion"},
+    {"slug":"free-image-converter","title":"Free Image Converter — Online Format Conversion","desc":"Free online image format converter. No upload needed.","cat":"conversion"},
+    {"slug":"batch-image-converter","title":"Batch Image Converter — Convert Multiple Images Free","desc":"Convert multiple images at once. Free, browser-based, instant.","cat":"conversion"},
+    {"slug":"convert-photo-format","title":"Convert Photo Format — Free Online Tool","desc":"Convert photo formats online. Free, browser-based, instant.","cat":"conversion"},
+    {"slug":"jpg-converter-online","title":"JPG Converter Online — Free Format Conversion","desc":"Convert images to/from JPG format. Free, browser-based.","cat":"conversion"},
+    {"slug":"png-converter-online","title":"PNG Converter Online — Free Format Conversion","desc":"Convert images to/from PNG format. Free, browser-based.","cat":"conversion"},
+    {"slug":"webp-converter-online","title":"WebP Converter Online — Free Format Conversion","desc":"Convert images to/from WebP format. Free, browser-based.","cat":"conversion"},
+    {"slug":"image-file-converter","title":"Image File Converter — Free Online Tool","desc":"Convert image files between formats. Free, browser-based, instant.","cat":"conversion"},
+
+    # AI Upload scenarios
+    {"slug":"compress-image-for-chatgpt","title":"Compress Image for ChatGPT — Free Online Tool","desc":"Compress images for ChatGPT uploads. Meet file size limits. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-for-claude","title":"Compress Image for Claude — Free Online Tool","desc":"Compress images for Claude AI uploads. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-for-gemini","title":"Compress Image for Gemini — Free Online Tool","desc":"Compress images for Google Gemini uploads. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-for-ai-upload","title":"Compress Image for AI Upload — Free Tool","desc":"Compress images for AI tool uploads. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"reduce-image-size-for-ai","title":"Reduce Image Size for AI — Free Online Tool","desc":"Reduce image size for AI processing. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-screenshot-for-chatgpt","title":"Compress Screenshot for ChatGPT — Free Tool","desc":"Compress screenshots for ChatGPT. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-before-ai-upload","title":"Compress Image Before AI Upload — Free Tool","desc":"Compress images before uploading to AI tools. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"image-compressor-for-ai-tools","title":"Image Compressor for AI Tools — Free Online","desc":"Compress images for AI tools. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-for-midjourney","title":"Compress Image for Midjourney — Free Online Tool","desc":"Compress images for Midjourney. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-for-stable-diffusion","title":"Compress Image for Stable Diffusion — Free","desc":"Compress images for Stable Diffusion. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-for-ai-training","title":"Compress Image for AI Training — Free Tool","desc":"Compress images for AI model training datasets. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"reduce-image-size-for-ai-processing","title":"Reduce Image Size for AI Processing — Free","desc":"Reduce image size for AI processing. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"ai-image-upload-compressor","title":"AI Image Upload Compressor — Free Online Tool","desc":"Compress images for AI uploads. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-dataset-images","title":"Compress Dataset Images — Free Online Tool","desc":"Compress images for machine learning datasets. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-for-machine-learning","title":"Compress Image for Machine Learning — Free","desc":"Compress images for ML training. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"image-optimizer-for-ai","title":"Image Optimizer for AI — Free Online Tool","desc":"Optimize images for AI tools. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-for-vision-models","title":"Compress Image for Vision Models — Free Tool","desc":"Compress images for AI vision models. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"compress-image-for-multimodal-ai","title":"Compress Image for Multimodal AI — Free Tool","desc":"Compress images for multimodal AI systems. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"ai-image-size-reducer","title":"AI Image Size Reducer — Free Online Tool","desc":"Reduce image size for AI applications. Free, browser-based, instant.","cat":"platform"},
+]
+
 ALL_SCENARIOS = []
 
 for s in SIZES:
@@ -219,6 +316,14 @@ for s in CONVERSIONS:
     s["cat"] = "conversion"
     ALL_SCENARIOS.append(s)
 for s in EXTRA:
+    if "cat" not in s:
+        s["cat"] = "special"
+    ALL_SCENARIOS.append(s)
+for s in EXTRA2:
+    if "cat" not in s:
+        s["cat"] = "special"
+    ALL_SCENARIOS.append(s)
+for s in EXTRA3:
     if "cat" not in s:
         s["cat"] = "special"
     ALL_SCENARIOS.append(s)
