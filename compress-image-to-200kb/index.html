@@ -89,14 +89,25 @@ footer a{color:#CBD5E1;text-decoration:none}
             <p class="subtitle">Compress any image to exactly 200KB. Perfect for product photos and portfolios. 100% browser-based, no upload needed.</p>
         </section>
         <section class="tool-area">
-            <textarea id="toolInput" placeholder="Paste or upload your content here..."></textarea>
-            <div class="output-area" id="toolOutput"></div>
-            <p class="error-msg" id="errorMsg"></p>
-            <div class="btn-row">
-                <button class="btn btn-primary" id="actionBtn">Process Now</button>
-                <button class="btn btn-secondary" id="clearBtn">Clear</button>
-                <button class="btn btn-secondary" id="copyBtn">Copy Result</button>
+            <div id="dropZone" style="border:2px dashed var(--border);border-radius:var(--radius);padding:40px 20px;text-align:center;cursor:pointer;background:var(--card-bg);transition:all .2s">
+                <p style="font-size:2rem;margin-bottom:8px">📁</p>
+                <p style="font-weight:600;margin-bottom:4px">Drop image here or click to upload</p>
+                <p style="color:var(--text-secondary);font-size:.85rem">Supports PNG, JPEG, WebP</p>
+                <input type="file" id="fileInput" accept="image/*" style="display:none">
             </div>
+            <div id="previewArea" style="display:none;margin-top:20px">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+                    <div style="text-align:center"><p style="font-size:.8rem;color:var(--text-secondary);margin-bottom:8px">Original</p><img id="originalPreview" style="max-width:100%;border-radius:8px;border:1px solid var(--border)"></div>
+                    <div style="text-align:center"><p style="font-size:.8rem;color:var(--text-secondary);margin-bottom:8px">Compressed</p><img id="compressedPreview" style="max-width:100%;border-radius:8px;border:1px solid var(--border)"></div>
+                </div>
+                <div id="stats" style="background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px;font-size:.9rem"></div>
+                <div class="btn-row">
+                    <button class="btn btn-primary" id="downloadBtn">⬇ Download Compressed</button>
+                    <button class="btn btn-secondary" id="resetBtn">🔄 Compress Another</button>
+                </div>
+            </div>
+            <div id="progressBar" style="display:none;margin-top:16px;background:var(--border);border-radius:8px;overflow:hidden;height:8px"><div id="progressFill" style="background:var(--primary);height:100%;width:0%;transition:width .3s"></div></div>
+            <p class="error-msg" id="errorMsg"></p>
         </section>
         <section class="scene-body">
             <h2>About This Tool</h2>
@@ -142,10 +153,32 @@ footer a{color:#CBD5E1;text-decoration:none}
         </div>
     </footer>
     <script>
-        const input=document.getElementById('toolInput');const output=document.getElementById('toolOutput');const errorMsg=document.getElementById('errorMsg');
-        document.getElementById('actionBtn').addEventListener('click',()=>{const v=input.value.trim();if(!v){errorMsg.textContent='Please enter some input.';errorMsg.style.display='block';output.style.display='none';return}errorMsg.style.display='none';output.textContent=v;output.style.display='block'});
-        document.getElementById('clearBtn').addEventListener('click',()=>{input.value='';output.style.display='none';errorMsg.style.display='none'});
-        document.getElementById('copyBtn').addEventListener('click',()=>{if(!output.textContent)return;navigator.clipboard.writeText(output.textContent).then(()=>{const b=document.getElementById('copyBtn');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy Result',1500)})});
+    const TARGET_KB = 200;
+    const TARGET_BYTES = TARGET_KB * 1024;
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const previewArea = document.getElementById('previewArea');
+    const originalPreview = document.getElementById('originalPreview');
+    const compressedPreview = document.getElementById('compressedPreview');
+    const stats = document.getElementById('stats');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    const errorMsg = document.getElementById('errorMsg');
+    let compressedBlob = null;
+    let compressedUrl = null;
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor = 'var(--primary)'; dropZone.style.background = '#F5F3FF'; });
+    dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = 'var(--border)'; dropZone.style.background = 'var(--card-bg)'; });
+    dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.style.borderColor = 'var(--border)'; dropZone.style.background = 'var(--card-bg)'; if(e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]); });
+    fileInput.addEventListener('change', () => { if(fileInput.files.length) handleFile(fileInput.files[0]); });
+    resetBtn.addEventListener('click', () => { previewArea.style.display = 'none'; dropZone.style.display = 'block'; fileInput.value = ''; if(compressedUrl) URL.revokeObjectURL(compressedUrl); compressedBlob = null; compressedUrl = null; errorMsg.style.display = 'none'; });
+    downloadBtn.addEventListener('click', () => { if(!compressedBlob) return; const a = document.createElement('a'); a.href = compressedUrl; a.download = 'compressed-' + fileInput.files[0].name; a.click(); });
+    function formatSize(bytes) { if(bytes < 1024) return bytes + ' B'; if(bytes < 1048576) return (bytes/1024).toFixed(1) + ' KB'; return (bytes/1048576).toFixed(2) + ' MB'; }
+    function handleFile(file) { if(!file.type.match(/^image\/(png|jpeg|webp)$/)) { errorMsg.textContent = 'Please upload a PNG, JPEG, or WebP image.'; errorMsg.style.display = 'block'; return; } errorMsg.style.display = 'none'; const reader = new FileReader(); reader.onload = e => { const img = new Image(); img.onload = () => { originalPreview.src = e.target.result; dropZone.style.display = 'none'; previewArea.style.display = 'block'; progressBar.style.display = 'block'; progressFill.style.width = '30%'; compressImage(img, file.type); }; img.src = e.target.result; }; reader.readAsDataURL(file); }
+    function compressImage(img, type) { const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0); progressFill.style.width = '60%'; const mimeType = type === 'image/png' ? 'image/png' : type === 'image/webp' ? 'image/webp' : 'image/jpeg'; if(mimeType === 'image/png') { canvas.toBlob(blob => { compressedBlob = blob; showResult(blob, img.width, img.height, type); }, mimeType); } else { let low = 0.01, high = 1.0, bestBlob = null; function tryQuality(q) { canvas.toBlob(blob => { if(!blob) { showResult(bestBlob || new Blob(), img.width, img.height, type); return; } if(blob.size <= TARGET_BYTES * 1.05) { bestBlob = blob; low = q; } else { high = q; } if(high - low < 0.01) { compressedBlob = bestBlob || blob; showResult(compressedBlob, img.width, img.height, type); } else { progressFill.style.width = (60 + (1 - (high-low)) * 30) + '%'; tryQuality((low + high) / 2); } }, mimeType, q); } tryQuality(0.7); } }
+    function showResult(blob, w, h, type) { if(compressedUrl) URL.revokeObjectURL(compressedUrl); compressedBlob = blob; compressedUrl = URL.createObjectURL(blob); compressedPreview.src = compressedUrl; progressFill.style.width = '100%'; setTimeout(() => progressBar.style.display = 'none', 500); const originalSize = fileInput.files[0].size; const compressedSize = blob.size; const reduction = ((1 - compressedSize/originalSize) * 100).toFixed(1); stats.innerHTML = '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><div><strong>Original:</strong> ' + formatSize(originalSize) + '</div><div><strong>Compressed:</strong> ' + formatSize(compressedSize) + '</div><div><strong>Reduction:</strong> ' + reduction + '%</div><div><strong>Dimensions:</strong> ' + w + ' x ' + h + '</div></div>'; }
     </script>
 </body>
 </html>
