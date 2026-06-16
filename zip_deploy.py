@@ -2,7 +2,9 @@ import zipfile, os
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-with zipfile.ZipFile('C:/Users/Administrator/Desktop/compressnow-deploy.zip', 'w', zipfile.ZIP_DEFLATED) as zf:
+OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'deploy')
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+with zipfile.ZipFile(os.path.join(OUTPUT_DIR, 'compressnow-deploy.zip'), 'w', zipfile.ZIP_DEFLATED) as zf:
     for root, dirs, files in os.walk('.'):
         if '.git' in root:
             continue
@@ -14,4 +16,4 @@ with zipfile.ZipFile('C:/Users/Administrator/Desktop/compressnow-deploy.zip', 'w
             zf.write(filepath, arcname)
             print(f'  Added: {arcname}')
 
-print('\nDone! File saved to Desktop: compressnow-deploy.zip')
+print(f'\nDone! File saved to: {os.path.join(OUTPUT_DIR, "compressnow-deploy.zip")}')

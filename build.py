@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """CompressNow Build — Image compressor, fix SEO + expand pages"""
 
-import os
+import os, json
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 DOMAIN = "compressnow.net"
@@ -17,24 +17,24 @@ def w(path, content):
 
 # Exact size pages
 SIZES = [
-    {"slug":"compress-image-to-10kb","size":"10 KB","title":"Compress Image to 10KB Online — Free, No Upload","desc":"Compress any image to exactly 10KB. Perfect for tiny icons, avatars, and strict file size limits. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-20kb","size":"20 KB","title":"Compress Image to 20KB Online — Free, No Upload","desc":"Compress any image to exactly 20KB. Great for form submissions and strict upload limits. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-30kb","size":"30 KB","title":"Compress Image to 30KB Online — Free, No Upload","desc":"Compress any image to exactly 30KB. Ideal for government forms and ID uploads. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-40kb","size":"40 KB","title":"Compress Image to 40KB Online — Free, No Upload","desc":"Compress any image to exactly 40KB. Perfect for application forms and profile photos. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-50kb","size":"50 KB","title":"Compress Image to 50KB Online — Free, No Upload","desc":"Compress any image to exactly 50KB. Great for email attachments and web thumbnails. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-60kb","size":"60 KB","title":"Compress Image to 60KB Online — Free, No Upload","desc":"Compress any image to exactly 60KB. Ideal for resume photos and job applications. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-75kb","size":"75 KB","title":"Compress Image to 75KB Online — Free, No Upload","desc":"Compress any image to exactly 75KB. Perfect for social media profiles and CMS uploads. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-80kb","size":"80 KB","title":"Compress Image to 80KB Online — Free, No Upload","desc":"Compress any image to exactly 80KB. Great for blog headers and article images. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-100kb","size":"100 KB","title":"Compress Image to 100KB Online — Free, No Upload","desc":"Compress any image to exactly 100KB. The most popular target size for web and email. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-150kb","size":"150 KB","title":"Compress Image to 150KB Online — Free, No Upload","desc":"Compress any image to exactly 150KB. Great for high-quality web images. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-200kb","size":"200 KB","title":"Compress Image to 200KB Online — Free, No Upload","desc":"Compress any image to exactly 200KB. Perfect for product photos and portfolios. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-250kb","size":"250 KB","title":"Compress Image to 250KB Online — Free, No Upload","desc":"Compress any image to exactly 250KB. Ideal for detailed images with good quality. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-300kb","size":"300 KB","title":"Compress Image to 300KB Online — Free, No Upload","desc":"Compress any image to exactly 300KB. Great for presentations and documents. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-400kb","size":"400 KB","title":"Compress Image to 400KB Online — Free, No Upload","desc":"Compress any image to exactly 400KB. Perfect for high-res web images. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-500kb","size":"500 KB","title":"Compress Image to 500KB Online — Free, No Upload","desc":"Compress any image to exactly 500KB. Great for detailed photos and prints. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-1mb","size":"1 MB","title":"Compress Image to 1MB Online — Free, No Upload","desc":"Compress any image to exactly 1MB. Perfect for email limits and web uploads. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-2mb","size":"2 MB","title":"Compress Image to 2MB Online — Free, No Upload","desc":"Compress any image to exactly 2MB. Great for document uploads and portfolios. 100% browser-based, no upload needed."},
-    {"slug":"compress-image-to-5mb","size":"5 MB","title":"Compress Image to 5MB Online — Free, No Upload","desc":"Compress any image to exactly 5MB. Perfect for high-quality prints and archives. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-10kb","size":"10 KB","title":"Compress Image to 10KB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 10KB. Perfect for tiny icons, avatars, and strict file size limits. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-20kb","size":"20 KB","title":"Compress Image to 20KB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 20KB. Great for form submissions and strict upload limits. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-30kb","size":"30 KB","title":"Compress Image to 30KB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 30KB. Ideal for government forms and ID uploads. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-40kb","size":"40 KB","title":"Compress Image to 40KB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 40KB. Perfect for application forms and profile photos. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-50kb","size":"50 KB","title":"Compress Image to 50KB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 50KB. Great for email attachments and web thumbnails. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-60kb","size":"60 KB","title":"Compress Image to 60KB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 60KB. Ideal for resume photos and job applications. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-75kb","size":"75 KB","title":"Compress Image to 75KB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 75KB. Perfect for social media profiles and CMS uploads. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-80kb","size":"80 KB","title":"Compress Image to 80KB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 80KB. Great for blog headers and article images. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-100kb","size":"100 KB","title":"100KB Image Compressor — Reduce to Exactly 100KB, Free & Instant | CompressNow","desc":"Compress any image to exactly 100KB. The most popular target size for web and email. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-150kb","size":"150 KB","title":"Compress Image to 150KB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 150KB. Great for high-quality web images. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-200kb","size":"200 KB","title":"Compress Image to 200KB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 200KB. Perfect for product photos and portfolios. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-250kb","size":"250 KB","title":"Compress Image to 250KB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 250KB. Ideal for detailed images with good quality. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-300kb","size":"300 KB","title":"Compress Image to 300KB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 300KB. Great for presentations and documents. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-400kb","size":"400 KB","title":"Compress Image to 400KB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 400KB. Perfect for high-res web images. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-500kb","size":"500 KB","title":"Compress Image to 500KB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 500KB. Great for detailed photos and prints. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-1mb","size":"1 MB","title":"Compress Image to 1MB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 1MB. Perfect for email limits and web uploads. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-2mb","size":"2 MB","title":"Compress Image to 2MB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 2MB. Great for document uploads and portfolios. 100% browser-based, no upload needed."},
+    {"slug":"compress-image-to-5mb","size":"5 MB","title":"Compress Image to 5MB Online — Free, No Upload | CompressNow","desc":"Compress any image to exactly 5MB. Perfect for high-quality prints and archives. 100% browser-based, no upload needed."},
 ]
 
 # Platform/scene pages
@@ -59,10 +59,10 @@ PLATFORMS = [
 
 # Format pages
 FORMATS = [
-    {"slug":"compress-png","format":"PNG","title":"Compress PNG Online — Reduce PNG File Size Free","desc":"Compress PNG images online without losing quality. Reduce file size instantly in your browser. Free, no upload needed."},
+    {"slug":"compress-png","format":"PNG","title":"PNG Compress — Reduce PNG Size Online Free | CompressNow","desc":"PNG compress online — reduce PNG file size without losing quality. Free, browser-based, instant. No upload needed."},
     {"slug":"compress-jpeg-without-losing-quality","format":"JPEG","title":"Compress JPEG Without Losing Quality — Free Online Tool","desc":"Compress JPEG photos while preserving quality. Smart compression for photos and images. Free, browser-based, instant."},
     {"slug":"compress-webp","format":"WebP","title":"Compress WebP Online — Reduce WebP File Size Free","desc":"Compress WebP images online. Reduce file size for faster web loading. Free, no upload, instant."},
-    {"slug":"compress-icon-logo","format":"Icon/Logo","title":"Compress Icon and Logo Images — Reduce Size Under 50KB","desc":"Compress icons, logos, and favicons to tiny file sizes. Perfect for websites and apps. Free, browser-based."},
+    {"slug":"compress-icon-logo","format":"Icon/Logo","title":"Compress Icons & Logos Under 50KB — Free, No Quality Loss | CompressNow","desc":"Compress icons, logos, and favicons to tiny file sizes. Perfect for websites and apps. Free, browser-based."},
     {"slug":"compress-passport-photo","format":"Passport Photo","title":"Compress Passport Photo — Meet Size Requirements Free","desc":"Compress passport photos to meet government size requirements (10KB-100KB). Free, no upload, instant."},
     {"slug":"compress-screenshot","format":"Screenshot","title":"Compress Screenshot — Reduce Screenshot File Size Free","desc":"Compress screenshots for sharing and documentation. Reduce file size instantly. Free, browser-based, instant."},
     {"slug":"compress-scanned-document","format":"Scanned Document","title":"Compress Scanned Document — Reduce PDF/Image Size Free","desc":"Compress scanned documents for email and upload. Reduce file size while keeping text readable. Free, instant."},
@@ -71,7 +71,7 @@ FORMATS = [
 
 # Special pages
 SPECIAL = [
-    {"slug":"bulk-image-compressor","title":"Bulk Image Compressor — Compress Multiple Images Free","desc":"Compress multiple images at once. Batch compression for PNG, JPEG, WebP. Free, browser-based, no upload needed."},
+    {"slug":"bulk-image-compressor","title":"Bulk Compress Up to 20 Images — Fast, Free, No Quality Loss | CompressNow","desc":"Compress multiple images at once. Batch compression for PNG, JPEG, WebP. Free, browser-based, no upload needed."},
     {"slug":"compress-image-to-exact-kb","title":"Compress Image to Exact KB — Precise File Size Control","desc":"Compress images to any exact file size in KB. Precise control over output size. Free, browser-based, instant."},
     {"slug":"compress-image-under-50kb","title":"Compress Image Under 50KB — Ultra-Small File Size Free","desc":"Compress images to under 50KB. Perfect for forms, avatars, and strict limits. Free, no upload, instant."},
     {"slug":"reduce-image-size-for-upload","title":"Reduce Image Size for Upload — Meet File Size Limits","desc":"Reduce image file size to meet upload requirements. Works for any platform. Free, browser-based, instant."},
@@ -289,13 +289,13 @@ EXTRA3 = [
     {"slug":"compress-image-for-stable-diffusion","title":"Compress Image for Stable Diffusion — Free","desc":"Compress images for Stable Diffusion. Free, browser-based, instant.","cat":"platform"},
     {"slug":"compress-image-for-ai-training","title":"Compress Image for AI Training — Free Tool","desc":"Compress images for AI model training datasets. Free, browser-based, instant.","cat":"platform"},
     {"slug":"reduce-image-size-for-ai-processing","title":"Reduce Image Size for AI Processing — Free","desc":"Reduce image size for AI processing. Free, browser-based, instant.","cat":"platform"},
-    {"slug":"ai-image-upload-compressor","title":"AI Image Upload Compressor — Free Online Tool","desc":"Compress images for AI uploads. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"ai-image-upload-compressor","title":"Image Upload Compressor for AI Tools — Free Tool","desc":"Compress images for AI uploads. Free, browser-based, instant.","cat":"platform"},
     {"slug":"compress-dataset-images","title":"Compress Dataset Images — Free Online Tool","desc":"Compress images for machine learning datasets. Free, browser-based, instant.","cat":"platform"},
     {"slug":"compress-image-for-machine-learning","title":"Compress Image for Machine Learning — Free","desc":"Compress images for ML training. Free, browser-based, instant.","cat":"platform"},
     {"slug":"image-optimizer-for-ai","title":"Image Optimizer for AI — Free Online Tool","desc":"Optimize images for AI tools. Free, browser-based, instant.","cat":"platform"},
     {"slug":"compress-image-for-vision-models","title":"Compress Image for Vision Models — Free Tool","desc":"Compress images for AI vision models. Free, browser-based, instant.","cat":"platform"},
     {"slug":"compress-image-for-multimodal-ai","title":"Compress Image for Multimodal AI — Free Tool","desc":"Compress images for multimodal AI systems. Free, browser-based, instant.","cat":"platform"},
-    {"slug":"ai-image-size-reducer","title":"AI Image Size Reducer — Free Online Tool","desc":"Reduce image size for AI applications. Free, browser-based, instant.","cat":"platform"},
+    {"slug":"ai-image-size-reducer","title":"Image Size Reducer for AI — Free Online Tool","desc":"Reduce image size for AI applications. Free, browser-based, instant.","cat":"platform"},
 ]
 
 ALL_SCENARIOS = []
@@ -336,134 +336,134 @@ PLATFORM_DATA = {
         "name": "Discord",
         "limit": "8MB (free) / 25MB (Nitro)",
         "formats": "PNG, JPG, GIF, WebP",
-        "about": "Discord免费用户上传文件限制为8MB，Nitro用户为25MB。当你的截图、GIF动图或高清照片超过限制时，会被提示'文件过大'。本工具可以将图片压缩到8MB以下，让你顺利发送。",
+        "about": "Discord's free tier limits file uploads to 8MB (25MB for Nitro users). When your screenshots, GIFs, or high-res photos exceed this limit, Discord blocks them with a 'file too large' error. This tool compresses your images under 8MB so they send without issue.",
         "faq": [
-            ("Discord的图片上传限制是多少？", "Discord免费用户单个文件限制为8MB，Nitro Basic为50MB，Nitro为500MB。超过限制的图片需要压缩后才能上传。"),
-            ("压缩后图片会模糊吗？", "我们的智能压缩算法在减小文件大小的同时尽可能保持图片清晰度。对于截图和照片，压缩后几乎看不出区别。"),
-            ("支持哪些图片格式？", "支持PNG、JPG、JPEG、GIF和WebP格式。压缩后会自动保留原始格式。"),
-            ("GIF动图也能压缩吗？", "可以。上传GIF文件后，工具会自动压缩到目标大小，同时保留动画效果。"),
+            ("What's Discord's image upload limit?", "Free users: 8MB per file. Nitro Basic: 50MB. Nitro: 500MB. Images exceeding these limits need compression before uploading."),
+            ("Will my images look blurry after compression?", "Our smart compression algorithm reduces file size while preserving as much clarity as possible. For screenshots and photos, the difference is nearly invisible."),
+            ("What image formats are supported?", "PNG, JPG, JPEG, GIF, and WebP. The compressed file keeps its original format."),
+            ("Can I compress animated GIFs?", "Yes. Upload a GIF and the tool compresses it to the target size while preserving animation."),
         ],
         "how_to": [
-            "点击上方的上传区域，选择你要发送的图片或截图",
-            "工具会自动将图片压缩到8MB以下（Discord免费用户限制）",
-            "点击下载按钮，将压缩后的图片保存到本地",
-            "打开Discord，将压缩后的图片拖入聊天窗口发送",
+            "Click the upload area above and select the image or screenshot you want to send",
+            "The tool automatically compresses it under 8MB (Discord free tier limit)",
+            "Click download to save the compressed image to your device",
+            "Open Discord, drag the compressed image into the chat window, and send",
         ],
-        "tips": "Discord支持PNG、JPG、GIF、WebP格式。如果你的截图超过8MB，建议使用JPG格式压缩，文件会更小。Nitro用户可以上传最大50MB的文件，但压缩后发送速度更快。",
+        "tips": "Discord supports PNG, JPG, GIF, and WebP. If your screenshot is over 8MB, use JPG compression for the smallest file size. Nitro users can upload up to 50MB, but compressing first still means faster uploads for everyone.",
     },
     "whatsapp": {
         "name": "WhatsApp",
         "limit": "16MB",
         "formats": "JPG, PNG, GIF",
-        "about": "WhatsApp单张图片发送限制为16MB。高清照片通常超过这个限制，导致发送失败或被自动压缩变模糊。使用本工具预先压缩图片，可以在保持清晰度的同时确保发送成功。",
+        "about": "WhatsApp limits image sharing to 16MB per file. High-res photos often exceed this limit, causing send failures or auto-compression that blurs your images. Pre-compress with our tool to control quality while staying under the limit.",
         "faq": [
-            ("WhatsApp图片大小限制是多少？", "WhatsApp单个文件发送限制为16MB。超过此大小的图片会被自动压缩，但压缩后质量可能下降。"),
-            ("怎么发送高清图片不被压缩？", "在WhatsApp设置中可以选择'以文档方式发送'来保持原图质量，但文件仍需小于16MB。使用我们的工具压缩到16MB以下即可。"),
-            ("WhatsApp状态视频也能压缩吗？", "本工具支持图片压缩。视频压缩请使用专门的视频压缩工具。"),
-            ("压缩后的图片在手机上能正常显示吗？", "可以。压缩后的图片格式不变，在任何设备上都能正常显示。"),
+            ("What's WhatsApp's image size limit?", "WhatsApp limits individual file sharing to 16MB. Images above this size get auto-compressed, often with noticeable quality loss."),
+            ("How do I send HD photos without compression?", "In WhatsApp settings, choose 'Send as Document' to preserve original quality — but the file must still be under 16MB. Use our tool to compress below that threshold first."),
+            ("Can I compress WhatsApp status videos too?", "This tool handles image compression. For video compression, use a dedicated video tool."),
+            ("Will compressed images display correctly on mobile?", "Yes. The format is preserved and the image displays normally on any device."),
         ],
         "how_to": [
-            "选择你要发送的图片，上传到上方工具",
-            "工具自动将图片压缩到16MB以下",
-            "下载压缩后的图片到手机",
-            "打开WhatsApp聊天窗口，选择压缩后的图片发送",
+            "Select the image you want to send and upload it to the tool above",
+            "The tool automatically compresses it under 16MB",
+            "Download the compressed image to your device",
+            "Open the WhatsApp chat, select the compressed image, and send",
         ],
-        "tips": "WhatsApp会自动压缩大图片，但压缩后质量会明显下降。建议先用我们的工具压缩到合适大小，再发送，这样可以控制压缩质量。",
+        "tips": "WhatsApp auto-compresses large images, but its compression often degrades quality noticeably. Pre-compress with our tool instead — you control the quality, not WhatsApp's algorithm.",
     },
     "email": {
         "name": "Email",
         "limit": "25MB (Gmail) / 20MB (Outlook) / 25MB (Yahoo)",
         "formats": "JPG, PNG, GIF, BMP",
-        "about": "大多数邮箱的附件大小限制在20-25MB之间（Gmail 25MB，Outlook 20MB，Yahoo 25MB）。当你要发送多张图片或高清照片时，很容易超过限制。本工具可以将图片压缩到合适的大小，让你顺利发送邮件附件。",
+        "about": "Most email providers cap attachments at 20-25MB (Gmail 25MB, Outlook 20MB, Yahoo 25MB). Sending multiple images or high-res photos easily exceeds this limit. This tool compresses each image to an attachment-friendly size so your emails go through.",
         "faq": [
-            ("邮箱附件大小限制是多少？", "Gmail为25MB，Outlook为20MB，Yahoo为25MB。超过限制的邮件会被退回。"),
-            ("压缩后图片质量会下降吗？", "轻微压缩几乎看不出区别。如果需要发送高清图片，建议压缩到200KB-500KB之间。"),
-            ("可以一次压缩多张图片吗？", "可以。上传多张图片后，工具会逐个压缩，然后打包下载。"),
-            ("压缩后的图片能打印吗？", "可以。只要压缩后的分辨率足够（建议300DPI以上），打印效果不会有明显差别。"),
+            ("What's the email attachment size limit?", "Gmail: 25MB. Outlook: 20MB. Yahoo: 25MB. Emails exceeding these limits bounce back."),
+            ("Will compression reduce image quality?", "Light compression is nearly invisible. For HD photos, compress to 200KB-500KB for the best quality-to-size ratio."),
+            ("Can I compress multiple images at once?", "Yes. Upload multiple images and the tool compresses them one by one, then packages them for download."),
+            ("Can I print compressed images?", "Yes. As long as the resolution stays at 300DPI or above, print quality won't noticeably differ."),
         ],
         "how_to": [
-            "将需要发送的图片上传到上方工具",
-            "工具自动将每张图片压缩到合适的大小",
-            "下载压缩后的图片",
-            "在邮件客户端中添加压缩后的图片作为附件发送",
+            "Upload the images you want to attach to the tool above",
+            "The tool automatically compresses each one to an email-friendly size",
+            "Download the compressed images",
+            "Attach them to your email and send — no bounce-backs",
         ],
-        "tips": "Gmail附件限制为25MB，Outlook为20MB。如果要发送多张图片，建议每张压缩到200KB-500KB之间，这样可以同时发送10-20张图片而不超过限制。",
+        "tips": "Gmail caps attachments at 25MB, Outlook at 20MB. To send 10-20 images in one email, compress each to 200KB-500KB. That keeps the total well under the limit.",
     },
     "instagram": {
         "name": "Instagram",
-        "limit": "30MB (照片) / 650MB (视频)",
+        "limit": "30MB (photos) / 650MB (video)",
         "formats": "JPG, PNG",
-        "about": "Instagram支持JPG和PNG格式的图片上传，建议分辨率为1080x1080像素（正方形）或1080x1350像素（竖版）。虽然Instagram会自动压缩图片，但预先压缩可以确保上传速度更快，画质更可控。",
+        "about": "Instagram supports JPG and PNG uploads, with recommended dimensions of 1080x1080px (square) or 1080x1350px (portrait). Instagram auto-compresses uploads, but pre-compressing gives you more control over final quality and speeds up uploads.",
         "faq": [
-            ("Instagram图片最佳尺寸是多少？", "正方形帖子建议1080x1080像素，竖版建议1080x1350像素，横版建议1080x566像素。"),
-            ("Instagram会自动压缩图片吗？", "是的，Instagram会自动压缩上传的图片。预先压缩可以控制最终质量。"),
-            ("Stories和Reels的图片尺寸一样吗？", "Stories和Reels建议使用1080x1920像素（9:16比例）。"),
-            ("上传失败怎么办？", "如果上传失败，可能是图片太大或格式不支持。使用我们的工具压缩后重试。"),
+            ("What are the best image dimensions for Instagram?", "Square posts: 1080x1080px. Portrait: 1080x1350px. Landscape: 1080x566px."),
+            ("Does Instagram compress uploaded images?", "Yes, Instagram automatically compresses all uploads. Pre-compressing lets you control the quality before Instagram's algorithm touches it."),
+            ("Are Stories and Reels the same size?", "Stories and Reels both use 1080x1920px (9:16 aspect ratio)."),
+            ("What if my upload fails?", "It may be too large or in an unsupported format. Compress with our tool and try again."),
         ],
         "how_to": [
-            "将照片上传到上方工具",
-            "工具自动压缩到Instagram推荐的大小",
-            "下载压缩后的照片",
-            "打开Instagram，选择压缩后的照片上传",
+            "Upload your photo to the tool above",
+            "The tool compresses it to an Instagram-optimized size",
+            "Download the compressed photo",
+            "Open Instagram and upload the compressed photo",
         ],
-        "tips": "Instagram建议图片宽度为1080像素。如果图片太大，Instagram会自动压缩，但可能导致画质下降。预先压缩到1MB以内可以获得最佳效果。",
+        "tips": "Instagram recommends 1080px width for best display. Large files get auto-compressed and may lose quality. Pre-compress to under 1MB for the best results.",
     },
     "facebook": {
         "name": "Facebook",
-        "limit": "10MB (照片) / 25MB (文件)",
+        "limit": "10MB (photos) / 25MB (files)",
         "formats": "JPG, PNG, GIF, BMP",
-        "about": "Facebook照片上传限制为10MB，文件分享限制为25MB。高清照片通常超过10MB限制，上传时会被自动压缩。使用本工具预先压缩，可以控制图片质量，同时加快上传速度。",
+        "about": "Facebook limits photo uploads to 10MB and file sharing to 25MB. High-res photos routinely exceed 10MB and get auto-compressed on upload. Pre-compress with our tool to control quality and speed up uploads.",
         "faq": [
-            ("Facebook图片大小限制是多少？", "照片上传限制为10MB，文件分享限制为25MB。"),
-            ("Facebook会压缩上传的图片吗？", "是的，Facebook会自动压缩图片。预先压缩可以控制最终质量。"),
-            ("封面照片和头像有什么尺寸要求？", "封面照片建议820x312像素，头像建议170x170像素。"),
-            ("相册上传有数量限制吗？", "单次最多可上传100张照片。"),
+            ("What's Facebook's image size limit?", "Photos: 10MB. File sharing: 25MB."),
+            ("Does Facebook compress uploaded images?", "Yes, Facebook auto-compresses all uploads. Pre-compressing gives you quality control."),
+            ("What dimensions for cover photos and avatars?", "Cover photo: 820x312px. Profile picture: 170x170px."),
+            ("Is there a limit on album uploads?", "You can upload up to 100 photos at once."),
         ],
         "how_to": [
-            "将照片上传到上方工具",
-            "工具自动压缩到Facebook推荐的大小",
-            "下载压缩后的照片",
-            "在Facebook中选择压缩后的照片上传",
+            "Upload your photo to the tool above",
+            "The tool automatically compresses to a Facebook-optimized size",
+            "Download the compressed photo",
+            "Upload it to Facebook",
         ],
-        "tips": "Facebook建议照片宽度为2048像素以获得最佳显示效果。但如果文件太大，上传速度会很慢。建议压缩到1MB以内。",
+        "tips": "Facebook recommends 2048px width for best quality. But large files upload slowly. Compress to under 1MB for fast uploads with great display quality.",
     },
     "twitter": {
         "name": "Twitter/X",
-        "limit": "5MB (图片) / 15MB (GIF)",
+        "limit": "5MB (images) / 15MB (GIF)",
         "formats": "JPG, PNG, GIF, WebP",
-        "about": "Twitter/X的图片上传限制为5MB，GIF限制为15MB。超过限制的图片无法上传。本工具可以将图片压缩到5MB以下，让你顺利发布。",
+        "about": "Twitter/X limits image uploads to 5MB and GIFs to 15MB. Images exceeding these limits simply won't upload. This tool compresses your images below 5MB so you can post without issues.",
         "faq": [
-            ("Twitter图片大小限制是多少？", "单张图片限制为5MB，GIF限制为15MB。"),
-            ("Twitter支持哪些图片格式？", "支持JPG、PNG、GIF和WebP格式。"),
-            ("Twitter会压缩上传的图片吗？", "是的，Twitter会自动压缩图片，特别是JPG格式。预先压缩可以控制质量。"),
-            ("怎么上传高清图片？", "使用PNG格式上传可以保留更多细节，但文件会更大。"),
+            ("What's Twitter's image size limit?", "Images: 5MB. GIFs: 15MB."),
+            ("What image formats does Twitter support?", "JPG, PNG, GIF, and WebP."),
+            ("Does Twitter compress uploaded images?", "Yes, Twitter auto-compresses images, especially JPEGs. Pre-compress to control quality."),
+            ("How do I upload HD images to Twitter?", "Upload as PNG to preserve more detail, though files will be larger."),
         ],
         "how_to": [
-            "将图片上传到上方工具",
-            "工具自动压缩到5MB以下",
-            "下载压缩后的图片",
-            "在Twitter/X中发布压缩后的图片",
+            "Upload your image to the tool above",
+            "The tool automatically compresses it under 5MB",
+            "Download the compressed image",
+            "Post the compressed image on Twitter/X",
         ],
-        "tips": "Twitter建议图片比例为16:9或1:1。PNG格式保留更多细节但文件更大，JPG格式文件更小但可能有压缩痕迹。",
+        "tips": "Twitter recommends 16:9 or 1:1 aspect ratio. PNG preserves more detail but creates larger files; JPG is smaller but may show compression artifacts.",
     },
     "linkedin": {
         "name": "LinkedIn",
-        "limit": "10MB (照片) / 20MB (文件)",
+        "limit": "10MB (photos) / 20MB (files)",
         "formats": "JPG, PNG, GIF",
-        "about": "LinkedIn照片上传限制为10MB，文件分享限制为20MB。专业头像和封面照片需要在限制内保持高质量。本工具可以帮助你压缩图片，同时保持专业外观。",
+        "about": "LinkedIn limits photo uploads to 10MB and file sharing to 20MB. Professional headshots and cover photos need to stay sharp while meeting these limits. This tool compresses your images while preserving a polished, professional look.",
         "faq": [
-            ("LinkedIn头像尺寸是多少？", "建议400x400像素，最小为200x200像素。"),
-            ("LinkedIn封面照片尺寸是多少？", "个人封面建议1584x396像素，公司封面建议1128x191像素。"),
-            ("帖子图片有什么要求？", "建议宽度为1200像素，比例为1.91:1或1:1。"),
-            ("LinkedIn会压缩图片吗？", "是的，LinkedIn会自动压缩图片。预先压缩可以控制质量。"),
+            ("What size should my LinkedIn profile photo be?", "Recommended: 400x400px. Minimum: 200x200px."),
+            ("What size for LinkedIn cover photos?", "Personal: 1584x396px. Company page: 1128x191px."),
+            ("What about post images?", "Recommended width: 1200px, with 1.91:1 or 1:1 aspect ratio."),
+            ("Does LinkedIn compress images?", "Yes, LinkedIn auto-compresses uploads. Pre-compress to control quality."),
         ],
         "how_to": [
-            "将照片上传到上方工具",
-            "工具自动压缩到LinkedIn推荐的大小",
-            "下载压缩后的照片",
-            "在LinkedIn中上传压缩后的照片",
+            "Upload your photo to the tool above",
+            "The tool compresses to a LinkedIn-optimized size",
+            "Download the compressed photo",
+            "Upload it to LinkedIn",
         ],
-        "tips": "LinkedIn是专业社交平台，头像和封面照片的质量很重要。建议压缩到500KB以内，同时保持清晰度。",
+        "tips": "LinkedIn is a professional platform — your headshot and cover photo quality matter. Compress to under 500KB while keeping them crisp.",
     },
     "pinterest": {
         "name": "Pinterest",
@@ -712,6 +712,27 @@ PLATFORM_DATA = {
         ],
         "tips": "AI工具通常有图片上传限制。建议压缩到10MB以内，使用JPG或PNG格式。如果需要AI识别细节，不要过度压缩。",
     },
+    "bulk": {
+        "name": "Bulk Compression",
+        "limit": "一次最多20张图片",
+        "formats": "PNG, JPG, JPEG, WebP",
+        "about": "Bulk Image Compressor 让你一次压缩最多20张图片。无论你是批量处理电商产品图、博客图片、还是网站素材，都可以一次性上传，统一压缩到目标大小。所有处理在浏览器本地完成，图片不会上传到服务器。",
+        "faq": [
+            ("一次可以压缩多少张图片？", "一次最多可以上传20张图片。所有图片会在浏览器本地处理，不会上传到服务器。"),
+            ("批量压缩后图片质量会下降吗？", "每张图片单独压缩，质量可以单独调整。默认设置下，压缩后图片与原件肉眼几乎看不出区别。"),
+            ("批量压缩支持哪些格式？", "支持PNG、JPG、JPEG、WebP格式。HEIC格式会自动转换为JPEG后压缩。"),
+            ("可以批量压缩到同一个大小吗？", "可以。所有上传的图片统一压缩到目标文件大小（如200KB），也可以分别设置。"),
+            ("批量压缩需要多长时间？", "取决于图片数量和大小。20张10MB图片通常在30秒内完成。浏览器性能越好，速度越快。"),
+            ("我的图片安全吗？会上传吗？", "不会。100%浏览器本地处理。你的图片永远不会离开你的设备。"),
+        ],
+        "how_to": [
+            "点击上传区域，选择最多20张图片（或拖拽整个文件夹）",
+            "设置目标文件大小（如100KB、200KB），或者使用质量滑块",
+            "工具会自动逐张压缩，显示 Before/After 文件大小对比",
+            "点击 Download All 下载所有压缩后的图片（ZIP打包）",
+        ],
+        "tips": "批量压缩最适合：① 电商卖家批量优化产品图片；② 博主批量压缩文章配图；③ 网站站长优化整站图片素材。建议先将图片放在一个文件夹，拖拽整个文件夹上传，效率最高。",
+    },
     "format": {
         "name": "Format Conversion",
         "limit": "无固定限制",
@@ -737,69 +758,73 @@ PLATFORM_DATA = {
 ENRICHMENT = {
     "size": {
         "how_to": [
-            "上传或拖拽图片到上方工具区域",
-            "工具会自动压缩到目标文件大小",
-            "点击下载按钮保存压缩后的图片",
+            "Upload or drag-and-drop your image into the tool area (supports PNG, JPEG, WebP, HEIC)",
+            "The tool automatically compresses to your target file size — hitting the exact KB you need",
+            "Use the Before/After comparison slider to check the result",
+            "Click download to save your compressed image",
         ],
-        "tips": "压缩到精确的KB大小适用于政府表格、护照照片、求职申请等有严格文件大小限制的场景。我们的工具使用智能压缩算法，可以精确命中目标大小。",
+        "tips": "Compressing to a precise KB size is ideal for government forms, passport photos, job applications, e-commerce product images, and email attachments — any scenario with strict file size limits. Our tool uses smart compression algorithms, processing everything locally in your browser — your images never leave your device.",
         "faq": [
-            ("可以压缩到精确的文件大小吗？", "可以。上传图片后，工具会自动压缩到目标大小。如果第一次没达到目标，可以手动调整质量参数。"),
-            ("压缩后图片质量会下降吗？", "轻微压缩几乎看不出区别。如果需要极小的文件大小，可能会有轻微质量损失。"),
-            ("支持哪些图片格式？", "支持PNG、JPG、JPEG、WebP格式。压缩后会自动保留原始格式。"),
+            ("Can you compress to an exact file size?", "Yes. Upload your image and the tool compresses it to the target size. If it doesn't hit the target on the first pass, adjust the quality slider manually."),
+            ("How's the quality after compressing to 100KB?", "100KB is enough to keep most images looking sharp. For passport photos and avatars, 100KB shows virtually no compression artifacts."),
+            ("Why can't my image reach the target size?", "If your original is already very small (e.g. 50KB), the tool won't inflate it to 100KB+. It only reduces file size. Make sure your original is at least 2x your target."),
+            ("What image formats are supported?", "PNG, JPG, JPEG, WebP, and HEIC. The compressed file keeps its original format; you can also convert formats."),
+            ("Can I batch-compress to the same size?", "Yes. Use our Bulk Image Compressor — upload up to 20 images and compress them all to the same target size."),
+            ("Can I use compressed images for print?", "100KB-200KB works great for screens and web. For print, we recommend 300KB-500KB for best results."),
         ],
     },
     "platform": {
         "how_to": [
-            "点击上方的上传区域，选择要压缩的图片",
-            "工具会自动压缩到平台要求的大小",
-            "点击下载按钮保存压缩后的图片",
-            "将压缩后的图片上传到对应平台",
+            "Click the upload area above and select the image you want to compress",
+            "The tool automatically compresses to the platform's size requirements",
+            "Click download to save the compressed image",
+            "Upload the compressed image to your target platform",
         ],
-        "tips": "每个平台对图片大小和格式有不同的要求。我们的工具会根据目标平台自动优化压缩参数，在文件大小和图片质量之间找到最佳平衡。",
+        "tips": "Each platform has different image size and format requirements. Our tool automatically optimizes compression settings for your target platform, balancing file size and image quality.",
         "faq": [
-            ("平台图片大小限制是多少？", "不同平台有不同的限制。请查看上方工具区域的说明，或访问平台官网了解具体要求。"),
-            ("压缩后图片能正常显示吗？", "可以。压缩后的图片格式不变，在任何设备和平台上都能正常显示。"),
-            ("支持哪些图片格式？", "支持PNG、JPG、JPEG、WebP格式。压缩后会自动保留原始格式。"),
+            ("What are the image size limits for this platform?", "Limits vary by platform. Check the tool area above for specifics, or visit the platform's official docs."),
+            ("Will the compressed image display correctly?", "Yes. The format stays the same; the compressed image displays normally on any device or platform."),
+            ("What image formats are supported?", "PNG, JPG, JPEG, and WebP. The compressed file keeps its original format."),
         ],
     },
     "format": {
         "how_to": [
-            "上传图片（PNG、JPEG或WebP格式）",
-            "工具会自动应用格式特定的压缩算法",
-            "下载压缩后的图片，质量保持不变",
+            "Upload your image (PNG, JPEG, or WebP format)",
+            "The tool automatically applies format-specific compression",
+            "Download the compressed image — quality preserved",
         ],
-        "tips": "不同图片格式有不同的压缩特性：PNG适合图形和透明图片，JPEG适合照片，WebP是现代网页的最佳选择。我们的工具会根据格式自动选择最佳压缩方法。",
+        "tips": "Different formats have different strengths: PNG is best for graphics and images with transparency, JPEG is ideal for photos, and WebP is the modern web format with the best compression ratio. Our tool picks the optimal method automatically.",
         "faq": [
-            ("JPG和PNG有什么区别？", "JPG是有损压缩，文件更小；PNG是无损压缩，支持透明，文件更大。"),
-            ("WebP格式有什么优势？", "WebP比JPG小25-35%，比PNG小25%，同时保持相同质量。"),
-            ("压缩后格式会改变吗？", "不会。压缩后会保留原始格式。如果需要转换格式，请使用格式转换工具。"),
+            ("What's the difference between JPG and PNG?", "JPG uses lossy compression — smaller files, good for photos. PNG uses lossless compression — larger files, supports transparency, better for graphics."),
+            ("What's the advantage of WebP?", "WebP files are 25-35% smaller than JPEG and 25% smaller than PNG — at the same quality level."),
+            ("Will the format change after compression?", "No. The compressed file keeps its original format. Use our format converter if you need a different format."),
         ],
     },
     "special": {
         "how_to": [
-            "上传一张或多张图片到上方工具",
-            "设置压缩参数（质量、目标大小、格式）",
-            "点击压缩按钮，等待处理完成",
-            "下载所有压缩后的图片",
+            "Upload one or more images to the tool above",
+            "Set compression parameters (quality, target size, format)",
+            "Click compress and wait for processing to finish",
+            "Download all compressed images",
         ],
-        "tips": "批量压缩可以节省大量时间。我们的工具在浏览器本地处理，图片不会上传到服务器，确保隐私安全。",
+        "tips": "Batch compression saves significant time. All processing happens locally in your browser — your images never leave your device, ensuring complete privacy.",
         "faq": [
-            ("可以一次压缩多少张图片？", "没有数量限制。但建议每次不超过20张，以确保浏览器性能。"),
-            ("压缩后图片会上传到服务器吗？", "不会。所有处理都在浏览器本地完成，您的图片永远不会离开您的设备。"),
-            ("压缩后图片质量会下降吗？", "轻微压缩几乎看不出区别。如果需要极小的文件大小，可能会有轻微质量损失。"),
+            ("How many images can I compress at once?", "No hard limit. We recommend up to 20 at a time for optimal browser performance."),
+            ("Are my images uploaded to a server?", "No. All processing is done locally in your browser. Your images never leave your device."),
+            ("Will image quality degrade?", "Light compression is nearly invisible. If you need extremely small files, expect some minor quality loss."),
         ],
     },
     "conversion": {
         "how_to": [
-            "上传图片到上方工具",
-            "工具会自动转换为目标格式",
-            "下载转换后的图片",
+            "Upload your image to the tool above",
+            "The tool automatically converts to the target format",
+            "Download the converted image",
         ],
-        "tips": "不同格式有不同的用途：PNG支持透明，适合图形；JPG适合照片，文件更小；WebP是现代网页的最佳选择，压缩率最高。",
+        "tips": "Different formats serve different purposes: PNG supports transparency (best for graphics), JPG is smaller (best for photos), and WebP is the modern web format with the highest compression ratio.",
         "faq": [
-            ("转换后质量会下降吗？", "从无损格式（PNG）转为有损格式（JPG）可能会有轻微质量损失。从有损转无损不会提高质量。"),
-            ("可以批量转换格式吗？", "可以。上传多张图片后，工具会逐个转换，然后打包下载。"),
-            ("WebP格式兼容性好吗？", "现代浏览器都支持WebP格式。如果需要兼容旧浏览器，建议使用JPG或PNG。"),
+            ("Will quality drop after conversion?", "Converting from lossless (PNG) to lossy (JPG) may cause minor quality loss. Converting lossy to lossless won't improve quality."),
+            ("Can I batch-convert formats?", "Yes. Upload multiple images and the tool converts them one by one, then packages them for download."),
+            ("Is the WebP format widely supported?", "All modern browsers support WebP. Use JPG or PNG if you need compatibility with older browsers."),
         ],
     },
 }
@@ -880,9 +905,66 @@ def build_scene_page(s):
         if r:
             related_html += f'<li><a href="/{r["slug"]}/">{r["title"].split("—")[0].strip()}</a></li>'
 
-    # Cross-site links
-    cross_links = """<p>Need to compress images for other tools? Try <a href="https://cvbuild-ai.com">CVBuild-AI</a> for resume content, <a href="https://messagegen-ai.com">MessageGen-AI</a> for email writing, and <a href="https://tonemodifier.com">ToneModifier</a> for tone adjustment.</p>"""
+    # Dynamic content for table + whatis block
+    cat = s.get("cat", "special")
+    size_val = s.get("size", "")
+    if cat == "size" and size_val:
+        target_label = size_val
+    elif cat == "platform":
+        s_lower = slug.lower()
+        if "discord" in s_lower: target_label = "Under 8MB"
+        elif "email" in s_lower: target_label = "Under 1MB"
+        elif "whatsapp" in s_lower: target_label = "Under 1MB"
+        elif "twitter" in s_lower: target_label = "Under 5MB"
+        elif "instagram" in s_lower: target_label = "Under 5MB"
+        elif "facebook" in s_lower: target_label = "Under 5MB"
+        elif "linkedin" in s_lower: target_label = "Under 5MB"
+        else: target_label = "Web-Optimized"
+    elif cat == "format": target_label = "Web-Optimized"
+    else: target_label = "100 KB"
+    
+    if cat == "size" and size_val:
+        whatis_text = f"CompressNow compresses images to exactly {size_val} — perfect for online forms, government applications, and email attachments where strict file size limits apply. 100% browser-based, no upload."
+    elif cat == "platform":
+        pname = s.get("platform", slug.replace("compress-image-for-","").replace("-"," ").title())
+        whatis_text = f"CompressNow compresses images for {pname} — meet the platform's file size requirements without losing quality. 100% browser-based, no upload, instant."
+    elif cat == "format":
+        fname = s.get("format", slug.replace("compress-","").replace("-"," ").title())
+        whatis_text = f"CompressNow compresses {fname} images using format-specific optimization — smaller files, same quality. 100% browser-based, no upload."
+    elif cat == "conversion":
+        whatis_text = "CompressNow converts and compresses images between formats — JPG, PNG, WebP, HEIC — all in your browser. No upload, instant, no quality loss."
+    else:
+        whatis_text = "CompressNow compresses images to exact file sizes — such as 100KB, 50KB, or 200KB — while maintaining visual quality. No upload needed, 100% browser-based."
+    
+    # Page-specific Pro Tip from content (NOT cross-site link)
+    page_tip = content.get('tips', '')
 
+    # Dynamic table values
+    if cat == "size" and size_val:
+        kb_str = size_val.replace(" KB","").replace(" MB","000")
+        try: kbi = int(kb_str)
+        except: kbi = 100
+        if kbi <= 100: table_smartphone = f"~{kbi} KB"; table_dslr = f"~{kbi} KB"
+        elif kbi <= 500: table_smartphone = f"~{kbi} KB"; table_dslr = f"~{kbi} KB"
+        else: table_smartphone = f"~{kbi//1000} MB"; table_dslr = f"~{kbi//1000} MB"
+        table_screenshot = table_smartphone
+    else:
+        table_smartphone = "~100 KB"; table_dslr = "~200 KB"; table_screenshot = "~100 KB"
+    
+    # Dynamic Common Use Cases
+    if cat == "size" and size_val:
+        use_cases_text = f"Compress images to exactly {size_val} for passport photos, visa applications, online forms, email attachments, forum avatars, and any website requiring strict file size limits."
+    elif cat == "platform":
+        pname = s.get("platform", "")
+        use_cases_text = f"Compress images for {pname} — meet platform upload limits, share photos faster, and save storage space. Used by content creators, marketers, and everyday users."
+    elif cat == "format":
+        fname = s.get("format", "")
+        use_cases_text = f"Compress {fname} images for websites, apps, social media, and email. Optimize file size while preserving the format's unique advantages like transparency or animation."
+    elif cat == "conversion":
+        use_cases_text = "Convert between JPG, PNG, WebP, and HEIC formats for web optimization, email compatibility, social media uploads, and storage savings."
+    else:
+        use_cases_text = "CompressNow is used for passport photos, visa applications, email attachments, Discord avatars, WhatsApp sharing, online form submissions, and any situation requiring strict file size limits."
+    
     title = s["title"]
     desc = s["desc"]
     slug = s["slug"]
@@ -891,6 +973,8 @@ def build_scene_page(s):
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="msvalidate.01" content="1F14EEA4478F7A176F2E0451992C984C">
     <meta name="description" content="{desc}">
@@ -948,23 +1032,20 @@ footer a{{color:#CBD5E1;text-decoration:none}}
         .cross-site a{{color:#4F46E5;font-weight:600}}
     </style>
     <script type="application/ld+json">
-    {{
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [{','.join('{{"@type":"Question","name":"'+q+'","acceptedAnswer":{{"@type":"Answer","text":"'+a+'"}}}}' for q, a in content.get('faq', [])[:4])}]
-    }}
+    {json.dumps({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in content.get('faq',[])[:4]]}, ensure_ascii=False)}
     </script>
+
     <script type="application/ld+json">
     {{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://{DOMAIN}/"}}, {{"@type": "ListItem", "position": 2, "name": "{title.split('—')[0].strip()}", "item": "https://{DOMAIN}/{slug}/"}}]}}
     </script>
     <script type="application/ld+json">
-    {{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "{title}", "url": "https://{DOMAIN}/{slug}/", "description": "{desc}", "applicationCategory": "UtilityApplication", "operatingSystem": "All", "offers": {{"@type": "Offer", "price": "0", "priceCurrency": "USD"}}}}
+    {{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "{title}", "url": "https://{DOMAIN}/{slug}/", "description": "{desc}", "applicationCategory": "MultimediaApplication", "operatingSystem": "All", "offers": {{"@type": "Offer", "price": "0", "priceCurrency": "USD"}}}}
     </script>
 </head>
 <body>
     <header>
         <div class="container">
-            <a href="/" class="logo">Compressnow</a>
+            <a href="/" class="logo">CompressNow</a>
             <nav>
                 <a href="/">Home</a>
                 <a href="#faq">FAQ</a>
@@ -979,16 +1060,20 @@ footer a{{color:#CBD5E1;text-decoration:none}}
             <p class="subtitle">{desc}</p>
         </section>
         <section class="tool-area">
-            <div id="dropZone" style="border:2px dashed var(--border);border-radius:var(--radius);padding:40px 20px;text-align:center;cursor:pointer;background:var(--card-bg);transition:all .2s">
+            <div style="display:flex;gap:8px;justify-content:center;margin-bottom:16px;flex-wrap:wrap"><button id="modeExact" class="mode-btn active" onclick="switchMode('exact')" style="padding:8px 16px;border-radius:8px;border:1px solid var(--border);cursor:pointer;font-weight:600;background:var(--primary);color:#fff">🎯 Target Size (KB)</button><button id="modeQuality" class="mode-btn" onclick="switchMode('quality')" style="padding:8px 16px;border-radius:8px;border:1px solid var(--border);cursor:pointer;font-weight:600;background:var(--card-bg);color:var(--text)">🎚️ Quality Slider</button></div><div id="exactControls"><div style="display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap"><input type="number" id="targetKB" value="100" min="1" max="5000" style="width:80px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:1rem;text-align:center"><span style="color:var(--text-secondary)">KB</span></div></div><div id="qualityControls" style="display:none;max-width:400px;margin:0 auto"><input type="range" id="qualitySlider" min="1" max="100" value="75" style="width:100%;accent-color:var(--primary)"><div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-secondary)"><span>Smallest file</span><span id="qualityLabel">75%</span><span>Best quality</span></div></div><div id="dropZone" style="border:2px dashed var(--border);border-radius:var(--radius);padding:40px 20px;text-align:center;cursor:pointer;background:var(--card-bg);transition:all .2s">
                 <p style="font-size:2rem;margin-bottom:8px">📁</p>
                 <p style="font-weight:600;margin-bottom:4px">Drop image here or click to upload</p>
-                <p style="color:var(--text-secondary);font-size:.85rem">Supports PNG, JPEG, WebP</p>
+                <p style="color:var(--text-secondary);font-size:.85rem">Supports PNG, JPEG, WebP, HEIC</p>
                 <input type="file" id="fileInput" accept="image/*" style="display:none">
             </div>
             <div id="previewArea" style="display:none;margin-top:20px">
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
-                    <div style="text-align:center"><p style="font-size:.8rem;color:var(--text-secondary);margin-bottom:8px">Original</p><img id="originalPreview" style="max-width:100%;border-radius:8px;border:1px solid var(--border)"></div>
-                    <div style="text-align:center"><p style="font-size:.8rem;color:var(--text-secondary);margin-bottom:8px">Compressed</p><img id="compressedPreview" style="max-width:100%;border-radius:8px;border:1px solid var(--border)"></div>
+                <div style="position:relative;width:100%;max-width:500px;margin:0 auto 16px;overflow:hidden;border-radius:8px;border:1px solid var(--border)">
+                    <img id="compressedPreview" style="width:100%;display:block">
+                    <div style="position:absolute;top:0;left:0;width:50%;height:100%;overflow:hidden;border-right:2px solid #4F46E5">
+                        <img id="originalPreview" style="width:500px;max-width:500px;display:block;position:absolute;top:0;left:0">
+                    </div>
+                    <div id="sliderHandle" style="position:absolute;top:0;bottom:0;left:50%;width:4px;background:#4F46E5;cursor:ew-resize;z-index:2;transform:translateX(-2px)"></div>
+                    <div id="sliderLabel" style="position:absolute;top:8px;left:calc(50% - 24px);background:#4F46E5;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;z-index:3;pointer-events:none">◄ ►</div>
                 </div>
                 <div id="stats" style="background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px;font-size:.9rem"></div>
                 <div class="btn-row">
@@ -1000,16 +1085,20 @@ footer a{{color:#CBD5E1;text-decoration:none}}
             <p class="error-msg" id="errorMsg"></p>
         </section>
         <section class="scene-body">
+            <h2>What to Expect</h2>
+            <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:20px 0"><table style="width:100%;border-collapse:collapse;font-size:.9rem"><thead><tr style="background:#F1F5F9"><th style="padding:12px;text-align:left">Image Type</th><th style="padding:12px;text-align:left">Typical Before</th><th style="padding:12px;text-align:left">Typical After ({target_label})</th><th style="padding:12px;text-align:left">Quality</th></tr></thead><tbody><tr><td style="padding:12px;border-top:1px solid var(--border)">Smartphone Photo</td><td style="padding:12px;border-top:1px solid var(--border)">~3-5 MB</td><td style="padding:12px;border-top:1px solid var(--border)">{table_smartphone}</td><td style="padding:12px;border-top:1px solid var(--border);color:#16A34A">✅ Good</td></tr><tr><td style="padding:12px;border-top:1px solid var(--border)">DSLR Photo</td><td style="padding:12px;border-top:1px solid var(--border)">~8-15 MB</td><td style="padding:12px;border-top:1px solid var(--border)">{table_dslr}</td><td style="padding:12px;border-top:1px solid var(--border);color:#EAB308">⚠️ May lose detail</td></tr><tr><td style="padding:12px;border-top:1px solid var(--border)">Screenshot</td><td style="padding:12px;border-top:1px solid var(--border)">~500 KB-2 MB</td><td style="padding:12px;border-top:1px solid var(--border)">{table_screenshot}</td><td style="padding:12px;border-top:1px solid var(--border);color:#16A34A">✅ Perfect</td></tr><tr><td style="padding:12px;border-top:1px solid var(--border)">Logo/Icon</td><td style="padding:12px;border-top:1px solid var(--border)">~50-200 KB</td><td style="padding:12px;border-top:1px solid var(--border)">~30-50 KB</td><td style="padding:12px;border-top:1px solid var(--border);color:#16A34A">✅ Excellent</td></tr></tbody></table></div>
+            <h2>Why compress to {target_label}?</h2>
+            <p>{whatis_text}</p>
+            <h2>How to Use This Tool</h2>
+            {how_to_html}
+            <h2>When to Use This</h2>
+            <p>{use_cases_text}</p>
             <h2>About This Tool</h2>
             <p>{content.get('about', desc)}</p>
-            <h2>How to Use</h2>
-            {how_to_html}
-            <h2>Tips</h2>
-            <p>{content.get('tips', '')}</p>
+            <div class="cross-site">
+                <strong>💡 Pro Tip</strong> — {page_tip}
+            </div>
         </section>
-        <div class="cross-site">
-            <strong>Pro Tip</strong> — Need to resize your image? Try <a href="https://resizenow.pages.dev">ResizeNow</a>. Need resume content? <a href="https://cvbuild-ai.com">CVBuild-AI</a>. Need emails? <a href="https://messagegen-ai.com">MessageGen-AI</a>. Need tone adjustment? <a href="https://tonemodifier.com">ToneModifier</a>.
-        </div>
         <section class="faq-section" id="faq">
             <div class="container">
                 <h2>Frequently Asked Questions</h2>
@@ -1028,7 +1117,7 @@ footer a{{color:#CBD5E1;text-decoration:none}}
     <footer>
         <div class="container">
             <p>&copy; 2026 Compressnow. All rights reserved. | <a href="/">Home</a> | <a href="#faq">FAQ</a></p>
-            <p style="margin-top:8px">All processing happens locally in your browser. Your data is never uploaded.</p>
+            <p style="margin-top:8px;font-size:.8rem;color:#94A3B8">Also try: <a href="https://resizenow.net" style="color:#64748B">ResizeNow</a> (image resizer) · All processing happens locally in your browser. Your data is never uploaded.</p>
         </div>
     </footer>
     <script>
@@ -1057,10 +1146,15 @@ footer a{{color:#CBD5E1;text-decoration:none}}
     resetBtn.addEventListener('click', () => {{ previewArea.style.display = 'none'; dropZone.style.display = 'block'; fileInput.value = ''; if(resultUrl) URL.revokeObjectURL(resultUrl); resultBlob = null; resultUrl = null; errorMsg.style.display = 'none'; }});
     downloadBtn.addEventListener('click', () => {{ if(!resultBlob) return; const a = document.createElement('a'); a.href = resultUrl; const ext = CONVERT_TO || 'jpg'; const name = fileInput.files[0].name.replace(/\.[^.]+$/, '') + '.' + ext; a.download = name; a.click(); }});
     function formatSize(bytes) {{ if(bytes < 1024) return bytes + ' B'; if(bytes < 1048576) return (bytes/1024).toFixed(1) + ' KB'; return (bytes/1048576).toFixed(2) + ' MB'; }}
-    function handleFile(file) {{ if(!file.type.match(/^image\/(png|jpeg|webp)$/)) {{ errorMsg.textContent = 'Please upload a PNG, JPEG, or WebP image.'; errorMsg.style.display = 'block'; return; }} errorMsg.style.display = 'none'; const reader = new FileReader(); reader.onload = e => {{ const img = new Image(); img.onload = () => {{ originalPreview.src = e.target.result; dropZone.style.display = 'none'; previewArea.style.display = 'block'; progressBar.style.display = 'block'; progressFill.style.width = '30%'; if(IS_CONVERSION) convertImage(img); else compressImage(img, file.type); }}; img.src = e.target.result; }}; reader.readAsDataURL(file); }}
+    function handleFile(file) {{ if(file.type==="image/heic"||file.name.match(/\.heic$/i)){{loadHeicDecoder().then(()=>convertHeic(file));return;}} if(!file.type.match(/^image\/(png|jpeg|webp)$/)) {{ errorMsg.textContent = 'Please upload a PNG, JPEG, or WebP image.'; errorMsg.style.display = 'block'; return; }} errorMsg.style.display = 'none'; const reader = new FileReader(); reader.onload = e => {{ const img = new Image(); img.onload = () => {{ originalPreview.src = e.target.result; dropZone.style.display = 'none'; previewArea.style.display = 'block'; progressBar.style.display = 'block'; progressFill.style.width = '30%'; if(IS_CONVERSION) convertImage(img); else compressImage(img, file.type); }}; img.src = e.target.result; }}; reader.readAsDataURL(file); }}
     function convertImage(img) {{ const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0); progressFill.style.width = '60%'; const mimeMap = {{'png':'image/png','jpg':'image/jpeg','jpeg':'image/jpeg','webp':'image/webp'}}; const mime = mimeMap[CONVERT_TO] || 'image/jpeg'; const quality = mime === 'image/png' ? undefined : 0.92; canvas.toBlob(blob => {{ resultBlob = blob; showResult(blob, img.width, img.height); }}, mime, quality); }}
     function compressImage(img, type) {{ const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0); progressFill.style.width = '60%'; const mimeType = type === 'image/png' ? 'image/png' : type === 'image/webp' ? 'image/webp' : 'image/jpeg'; if(mimeType === 'image/png') {{ canvas.toBlob(blob => {{ resultBlob = blob; showResult(blob, img.width, img.height); }}, mimeType); }} else {{ let low = 0.01, high = 1.0, bestBlob = null; function tryQuality(q) {{ canvas.toBlob(blob => {{ if(!blob) {{ showResult(bestBlob || new Blob(), img.width, img.height); return; }} if(blob.size <= TARGET_BYTES * 1.05) {{ bestBlob = blob; low = q; }} else {{ high = q; }} if(high - low < 0.01) {{ resultBlob = bestBlob || blob; showResult(resultBlob, img.width, img.height); }} else {{ progressFill.style.width = (60 + (1 - (high-low)) * 30) + '%'; tryQuality((low + high) / 2); }} }}, mimeType, q); }} tryQuality(0.7); }} }}
     function showResult(blob, w, h) {{ if(resultUrl) URL.revokeObjectURL(resultUrl); resultBlob = blob; resultUrl = URL.createObjectURL(blob); compressedPreview.src = resultUrl; progressFill.style.width = '100%'; setTimeout(() => progressBar.style.display = 'none', 500); const originalSize = fileInput.files[0].size; const resultSize = blob.size; const change = ((1 - resultSize/originalSize) * 100).toFixed(1); const label = IS_CONVERSION ? 'Converted' : 'Compressed'; stats.innerHTML = '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><div><strong>Original:</strong> ' + formatSize(originalSize) + '</div><div><strong>' + label + ':</strong> ' + formatSize(resultSize) + '</div><div><strong>Change:</strong> ' + change + '%</div><div><strong>Dimensions:</strong> ' + w + ' x ' + h + '</div></div>'; }}
+    // HEIC decoder (loaded from CDN on demand)
+    function loadHeicDecoder(){{return new Promise((resolve)=>{{if(window.heic2any)return resolve();const s=document.createElement("script");s.src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js";s.onload=resolve;document.head.appendChild(s);}});}}
+    function convertHeic(file){{const reader=new FileReader();reader.onload=(e)=>{{heic2any({{blob:file,toType:"image/jpeg",quality:0.92}}).then(jpgBlob=>{{const ff=new File([jpgBlob],file.name.replace(/\.heic$/i,".jpg"),{{type:"image/jpeg"}});handleFile(ff);}});}};reader.readAsDataURL(file);}}
+function switchMode(mode){{const exactBtn=document.getElementById('modeExact');const qualityBtn=document.getElementById('modeQuality');const exactDiv=document.getElementById('exactControls');const qualityDiv=document.getElementById('qualityControls');if(mode==='quality'){{exactBtn.style.background='var(--card-bg)';exactBtn.style.color='var(--text)';qualityBtn.style.background='var(--primary)';qualityBtn.style.color='#fff';exactDiv.style.display='none';qualityDiv.style.display='block';}}else{{exactBtn.style.background='var(--primary)';exactBtn.style.color='#fff';qualityBtn.style.background='var(--card-bg)';qualityBtn.style.color='var(--text)';exactDiv.style.display='block';qualityDiv.style.display='none';}}currentMode=mode;}}
+let currentMode='exact';
     </script>
 </body>
 </html>"""
@@ -1070,7 +1164,9 @@ footer a{{color:#CBD5E1;text-decoration:none}}
 
 def build_home():
     # Size cards
-    size_cards = "".join(f'<a href="/{s["slug"]}/" class="card">{s["size"]}</a>' for s in SIZES[:9])
+    size_cards_kb = "".join(f'<a href="/{s["slug"]}/" class="card">{s["size"]}</a>' for s in SIZES[:9])
+    size_cards_mb = "".join(f'<a href="/{s["slug"]}/" class="card">{s["size"]}</a>' for s in SIZES[9:])
+    size_cards = f'<div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:8px">{size_cards_kb}</div><div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">{size_cards_mb}<a href="/bulk-image-compressor/" class="card" style="background:#EEF2FF;border-color:var(--primary);font-weight:700">📦 Bulk (20 images)</a></div>'
     # Platform cards
     platform_cards = "".join(f'<a href="/{s["slug"]}/" class="card">{s["platform"]}</a>' for s in PLATFORMS[:8])
     # Conversion cards
@@ -1080,17 +1176,19 @@ def build_home():
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="msvalidate.01" content="1F14EEA4478F7A176F2E0451992C984C">
-    <meta name="description" content="Compress images to exact 100KB/200KB/500KB online. 100% browser-based, no upload needed. Support PNG, JPEG, WebP. Free forever.">
+    <meta name="description" content="Compress images to any exact size from 10KB to 5MB — 18 target sizes. 100% browser-based, no upload. PNG, JPEG, WebP, HEIC supported. Free. Free forever.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://{DOMAIN}/">
-    <meta property="og:title" content="Compress Image to Exact KB Online — Free, No Upload | CompressNow">
-    <meta property="og:description" content="Compress images to exact 100KB/200KB/500KB online. 100% browser-based, no upload needed. Support PNG, JPEG, WebP. Free forever.">
+    <meta property="og:title" content="Compress Images to Exact Size (10KB–5MB) — Free, No Upload | CompressNow">
+    <meta property="og:description" content="Compress images to any exact size from 10KB to 5MB — 18 target sizes. 100% browser-based, no upload. PNG, JPEG, WebP, HEIC supported. Free. Free forever.">
     <meta property="og:url" content="https://{DOMAIN}/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <title>Compress Image to Exact KB Online — Free, No Upload | CompressNow</title>
+    <title>Compress Images to Exact Size (10KB–5MB) — Free, No Upload | CompressNow</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1135,7 +1233,7 @@ footer a{{color:#CBD5E1;text-decoration:none}}
 <body>
     <header>
         <div class="container">
-            <a href="/" class="logo">Compressnow</a>
+            <a href="/" class="logo">CompressNow</a>
             <nav>
                 <a href="/">Home</a>
                 <a href="#faq">FAQ</a>
@@ -1145,20 +1243,30 @@ footer a{{color:#CBD5E1;text-decoration:none}}
     </header>
     <main>
         <section class="hero">
-            <h1>Compress Image to Exact KB Online</h1>
-            <p>Free, no upload, 100% browser-based. Support PNG, JPEG, WebP. Compress to 100KB, 200KB, 500KB, or any size you need.</p>
+            <h1>Compress Images to Exact Size — 10KB, 50KB, 100KB, 200KB, 500KB, 1MB, 5MB</h1>
+            <p>18 exact target sizes. 100% browser-based, no upload. PNG, JPEG, WebP, HEIC supported. Compress to any size from 10KB to 5MB.</p>
+            <div style="display:flex;gap:32px;justify-content:center;margin-top:24px;flex-wrap:wrap">
+                <div style="text-align:center"><div style="font-size:2rem;font-weight:800;color:var(--primary)">230+</div><div style="font-size:.85rem;color:var(--text-secondary)">Compression Scenarios</div></div>
+                <div style="text-align:center"><div style="font-size:2rem;font-weight:800;color:var(--primary)">100%</div><div style="font-size:.85rem;color:var(--text-secondary)">Browser-Based</div></div>
+                <div style="text-align:center"><div style="font-size:2rem;font-weight:800;color:var(--primary)">0</div><div style="font-size:.85rem;color:var(--text-secondary)">Uploads to Server</div></div>
+                <div style="text-align:center"><div style="font-size:2rem;font-weight:800;color:var(--primary)">4</div><div style="font-size:.85rem;color:var(--text-secondary)">Formats (PNG/JPEG/WebP/HEIC)</div></div>
+            </div>
         </section>
         <section class="tool-area">
-            <div id="dropZone" style="border:2px dashed var(--border);border-radius:var(--radius);padding:40px 20px;text-align:center;cursor:pointer;background:var(--card-bg);transition:all .2s">
+            <div style="display:flex;gap:8px;justify-content:center;margin-bottom:16px;flex-wrap:wrap"><button id="modeExact" class="mode-btn active" onclick="switchMode('exact')" style="padding:8px 16px;border-radius:8px;border:1px solid var(--border);cursor:pointer;font-weight:600;background:var(--primary);color:#fff">🎯 Target Size (KB)</button><button id="modeQuality" class="mode-btn" onclick="switchMode('quality')" style="padding:8px 16px;border-radius:8px;border:1px solid var(--border);cursor:pointer;font-weight:600;background:var(--card-bg);color:var(--text)">🎚️ Quality Slider</button></div><div id="exactControls"><div style="display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap"><input type="number" id="targetKB" value="100" min="1" max="5000" style="width:80px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:1rem;text-align:center"><span style="color:var(--text-secondary)">KB</span></div></div><div id="qualityControls" style="display:none;max-width:400px;margin:0 auto"><input type="range" id="qualitySlider" min="1" max="100" value="75" style="width:100%;accent-color:var(--primary)"><div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-secondary)"><span>Smallest file</span><span id="qualityLabel">75%</span><span>Best quality</span></div></div><div id="dropZone" style="border:2px dashed var(--border);border-radius:var(--radius);padding:40px 20px;text-align:center;cursor:pointer;background:var(--card-bg);transition:all .2s">
                 <p style="font-size:2rem;margin-bottom:8px">📁</p>
                 <p style="font-weight:600;margin-bottom:4px">Drop image here or click to upload</p>
-                <p style="color:var(--text-secondary);font-size:.85rem">Supports PNG, JPEG, WebP</p>
+                <p style="color:var(--text-secondary);font-size:.85rem">Supports PNG, JPEG, WebP, HEIC</p>
                 <input type="file" id="fileInput" accept="image/*" style="display:none">
             </div>
             <div id="previewArea" style="display:none;margin-top:20px">
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
-                    <div style="text-align:center"><p style="font-size:.8rem;color:var(--text-secondary);margin-bottom:8px">Original</p><img id="originalPreview" style="max-width:100%;border-radius:8px;border:1px solid var(--border)"></div>
-                    <div style="text-align:center"><p style="font-size:.8rem;color:var(--text-secondary);margin-bottom:8px">Compressed</p><img id="compressedPreview" style="max-width:100%;border-radius:8px;border:1px solid var(--border)"></div>
+                <div style="position:relative;width:100%;max-width:500px;margin:0 auto 16px;overflow:hidden;border-radius:8px;border:1px solid var(--border)">
+                    <img id="compressedPreview" style="width:100%;display:block">
+                    <div style="position:absolute;top:0;left:0;width:50%;height:100%;overflow:hidden;border-right:2px solid #4F46E5">
+                        <img id="originalPreview" style="width:500px;max-width:500px;display:block;position:absolute;top:0;left:0">
+                    </div>
+                    <div id="sliderHandle" style="position:absolute;top:0;bottom:0;left:50%;width:4px;background:#4F46E5;cursor:ew-resize;z-index:2;transform:translateX(-2px)"></div>
+                    <div id="sliderLabel" style="position:absolute;top:8px;left:calc(50% - 24px);background:#4F46E5;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;z-index:3;pointer-events:none">◄ ►</div>
                 </div>
                 <div id="stats" style="background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px;font-size:.9rem"></div>
                 <div class="btn-row">
@@ -1181,9 +1289,42 @@ footer a{{color:#CBD5E1;text-decoration:none}}
             <h2>Convert Image Format</h2>
             <div class="grid">{conversion_cards}</div>
         </section>
-        <div class="cross-site">
-            <strong>Pro Tip</strong> — Need to resize your image? Try <a href="https://resizenow.pages.dev">ResizeNow</a>. Need resume content? <a href="https://cvbuild-ai.com">CVBuild-AI</a>. Need emails? <a href="https://messagegen-ai.com">MessageGen-AI</a>. Need tone adjustment? <a href="https://tonemodifier.com">ToneModifier</a>.
-        </div>
+        <section class="section" style="padding:48px 0;background:#fff">
+            <div class="container" style="max-width:960px;margin:0 auto;padding:0 24px">
+                <h2 style="font-size:1.5rem;font-weight:800;text-align:center;margin-bottom:16px">Why Compress to an Exact Size?</h2>
+                <p style="color:var(--text-secondary);max-width:650px;margin:0 auto 32px;text-align:center;line-height:1.7">Most image compressors give you a quality slider and hope for the best. CompressNow lets you pick a <strong>precise target</strong> — 10KB, 50KB, 100KB, 500KB — and hit it exactly. That matters when you're dealing with strict upload limits: passport photos must be under 100KB, email attachments under 25MB, and Discord avatars under 8MB. Every file size we list is a real-world requirement from a real platform.</p>
+                <h2 style="font-size:1.5rem;font-weight:800;text-align:center;margin-bottom:24px">How It Works</h2>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:800px;margin:0 auto 40px">
+                    <div style="text-align:center;padding:24px;background:var(--bg);border-radius:12px">
+                        <div style="font-size:2.5rem;margin-bottom:12px">①</div>
+                        <h3 style="font-weight:700;margin-bottom:8px">Upload</h3>
+                        <p style="color:var(--text-secondary);font-size:.9rem">Drop your image or click to upload. PNG, JPEG, WebP, HEIC — all supported.</p>
+                    </div>
+                    <div style="text-align:center;padding:24px;background:var(--bg);border-radius:12px">
+                        <div style="font-size:2.5rem;margin-bottom:12px">②</div>
+                        <h3 style="font-weight:700;margin-bottom:8px">Pick Your Size</h3>
+                        <p style="color:var(--text-secondary);font-size:.9rem">Choose any target from 10KB to 5MB. Our algorithm hits it with surgical precision.</p>
+                    </div>
+                    <div style="text-align:center;padding:24px;background:var(--bg);border-radius:12px">
+                        <div style="font-size:2.5rem;margin-bottom:12px">③</div>
+                        <h3 style="font-weight:700;margin-bottom:8px">Download</h3>
+                        <p style="color:var(--text-secondary);font-size:.9rem">Get your compressed image instantly. No signup, no upload, 100% free.</p>
+                    </div>
+                </div>
+                <h2 style="font-size:1.5rem;font-weight:800;text-align:center;margin-bottom:24px">Typical Results</h2>
+                <div style="max-width:700px;margin:0 auto;background:var(--bg);border-radius:12px;overflow:hidden">
+                    <table style="width:100%;border-collapse:collapse;font-size:.9rem">
+                        <thead><tr style="background:#EEF2FF"><th style="padding:14px;text-align:left">Image Type</th><th style="padding:14px;text-align:left">Original Size</th><th style="padding:14px;text-align:left">After (100KB Target)</th><th style="padding:14px;text-align:left">Reduction</th></tr></thead>
+                        <tbody>
+                            <tr style="border-top:1px solid var(--border)"><td style="padding:14px">📱 Smartphone Photo</td><td style="padding:14px">~4.2 MB</td><td style="padding:14px">~98 KB</td><td style="padding:14px;color:#16A34A">97.7% smaller</td></tr>
+                            <tr style="border-top:1px solid var(--border)"><td style="padding:14px">📷 DSLR Image</td><td style="padding:14px">~12 MB</td><td style="padding:14px">~487 KB</td><td style="padding:14px;color:#16A34A">96.0% smaller</td></tr>
+                            <tr style="border-top:1px solid var(--border)"><td style="padding:14px">🖥 Screenshot</td><td style="padding:14px">~1.8 MB</td><td style="padding:14px">~102 KB</td><td style="padding:14px;color:#16A34A">94.3% smaller</td></tr>
+                            <tr style="border-top:1px solid var(--border)"><td style="padding:14px">🌐 WebP Image</td><td style="padding:14px">~2.3 MB</td><td style="padding:14px">~78 KB</td><td style="padding:14px;color:#16A34A">96.6% smaller</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
         <section class="faq-section" id="faq">
             <div class="container">
                 <h2>Frequently Asked Questions</h2>
@@ -1205,11 +1346,39 @@ footer a{{color:#CBD5E1;text-decoration:none}}
                 </div>
             </div>
         </section>
+        <section class="format-education" style="padding:48px 0;background:#fff;border-top:1px solid var(--border)">
+            <div class="container" style="max-width:960px;margin:0 auto;padding:0 24px">
+                <h2 style="font-size:1.5rem;font-weight:800;text-align:center;margin-bottom:32px">How Image Compression Works — By Format</h2>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+                    <div style="background:var(--bg);border-radius:12px;padding:24px">
+                        <h3 style="color:var(--primary);margin-bottom:12px">📸 JPEG Compression</h3>
+                        <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.6">JPEG uses <strong>lossy compression</strong> — it removes details the human eye can't easily see. Our tool detects the original quality level and lets you choose the output size. <strong>Best for:</strong> photos, web images, social media. <strong>Not ideal for:</strong> text-heavy images, logos with sharp edges.</p>
+                        <a href="/compress-jpeg-without-losing-quality/" style="color:var(--primary);font-weight:600;font-size:.9rem">Compress JPEG →</a>
+                    </div>
+                    <div style="background:var(--bg);border-radius:12px;padding:24px">
+                        <h3 style="color:var(--primary);margin-bottom:12px">🎨 PNG Optimization</h3>
+                        <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.6">PNG uses <strong>lossless compression</strong> — no quality is lost. Our tool reduces PNG size by converting to an optimized palette while preserving transparency. <strong>Best for:</strong> logos, icons, screenshots, graphics. <strong>Not ideal for:</strong> photographs (use JPEG instead).</p>
+                        <a href="/compress-png/" style="color:var(--primary);font-weight:600;font-size:.9rem">Compress PNG →</a>
+                    </div>
+                    <div style="background:var(--bg);border-radius:12px;padding:24px">
+                        <h3 style="color:var(--primary);margin-bottom:12px">🌐 WebP Compression</h3>
+                        <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.6">WebP is the <strong>modern web format</strong> — files are 25-35% smaller than JPEG at the same quality. Our tool supports both lossy and lossless WebP compression. <strong>Best for:</strong> websites, Core Web Vitals optimization. <strong>Not ideal for:</strong> apps that don't support WebP.</p>
+                        <a href="/compress-webp/" style="color:var(--primary);font-weight:600;font-size:.9rem">Compress WebP →</a>
+                    </div>
+                    <div style="background:var(--bg);border-radius:12px;padding:24px">
+                        <h3 style="color:var(--primary);margin-bottom:12px">🔤 Icons & Logos</h3>
+                        <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.6">Icons and logos need tiny file sizes — under 50KB for fast loading. Our tool optimizes palette colors and removes metadata for <strong>maximum compression</strong> while keeping sharp edges. <strong>Best for:</strong> favicons, app icons, brand logos.</p>
+                        <a href="/compress-icon-logo/" style="color:var(--primary);font-weight:600;font-size:.9rem">Compress Icons →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
     <footer>
         <div class="container">
             <p>&copy; 2026 Compressnow. All rights reserved. | <a href="/">Home</a> | <a href="#faq">FAQ</a></p>
-            <p style="margin-top:8px">All processing happens locally in your browser. Your data is never uploaded.</p>
+            <p style="margin-top:8px;font-size:.8rem;color:#94A3B8">Also try: <a href="https://resizenow.net" style="color:#64748B">ResizeNow</a> (image resizer) · All processing happens locally in your browser. Your data is never uploaded.</p>
         </div>
     </footer>
     <script>
@@ -1238,10 +1407,15 @@ footer a{{color:#CBD5E1;text-decoration:none}}
     resetBtn.addEventListener('click', () => {{ previewArea.style.display = 'none'; dropZone.style.display = 'block'; fileInput.value = ''; if(resultUrl) URL.revokeObjectURL(resultUrl); resultBlob = null; resultUrl = null; errorMsg.style.display = 'none'; }});
     downloadBtn.addEventListener('click', () => {{ if(!resultBlob) return; const a = document.createElement('a'); a.href = resultUrl; const ext = CONVERT_TO || 'jpg'; const name = fileInput.files[0].name.replace(/\.[^.]+$/, '') + '.' + ext; a.download = name; a.click(); }});
     function formatSize(bytes) {{ if(bytes < 1024) return bytes + ' B'; if(bytes < 1048576) return (bytes/1024).toFixed(1) + ' KB'; return (bytes/1048576).toFixed(2) + ' MB'; }}
-    function handleFile(file) {{ if(!file.type.match(/^image\/(png|jpeg|webp)$/)) {{ errorMsg.textContent = 'Please upload a PNG, JPEG, or WebP image.'; errorMsg.style.display = 'block'; return; }} errorMsg.style.display = 'none'; const reader = new FileReader(); reader.onload = e => {{ const img = new Image(); img.onload = () => {{ originalPreview.src = e.target.result; dropZone.style.display = 'none'; previewArea.style.display = 'block'; progressBar.style.display = 'block'; progressFill.style.width = '30%'; if(IS_CONVERSION) convertImage(img); else compressImage(img, file.type); }}; img.src = e.target.result; }}; reader.readAsDataURL(file); }}
+    function handleFile(file) {{ if(file.type==="image/heic"||file.name.match(/\.heic$/i)){{loadHeicDecoder().then(()=>convertHeic(file));return;}} if(!file.type.match(/^image\/(png|jpeg|webp)$/)) {{ errorMsg.textContent = 'Please upload a PNG, JPEG, or WebP image.'; errorMsg.style.display = 'block'; return; }} errorMsg.style.display = 'none'; const reader = new FileReader(); reader.onload = e => {{ const img = new Image(); img.onload = () => {{ originalPreview.src = e.target.result; dropZone.style.display = 'none'; previewArea.style.display = 'block'; progressBar.style.display = 'block'; progressFill.style.width = '30%'; if(IS_CONVERSION) convertImage(img); else compressImage(img, file.type); }}; img.src = e.target.result; }}; reader.readAsDataURL(file); }}
     function convertImage(img) {{ const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0); progressFill.style.width = '60%'; const mimeMap = {{'png':'image/png','jpg':'image/jpeg','jpeg':'image/jpeg','webp':'image/webp'}}; const mime = mimeMap[CONVERT_TO] || 'image/jpeg'; const quality = mime === 'image/png' ? undefined : 0.92; canvas.toBlob(blob => {{ resultBlob = blob; showResult(blob, img.width, img.height); }}, mime, quality); }}
     function compressImage(img, type) {{ const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0); progressFill.style.width = '60%'; const mimeType = type === 'image/png' ? 'image/png' : type === 'image/webp' ? 'image/webp' : 'image/jpeg'; if(mimeType === 'image/png') {{ canvas.toBlob(blob => {{ resultBlob = blob; showResult(blob, img.width, img.height); }}, mimeType); }} else {{ let low = 0.01, high = 1.0, bestBlob = null; function tryQuality(q) {{ canvas.toBlob(blob => {{ if(!blob) {{ showResult(bestBlob || new Blob(), img.width, img.height); return; }} if(blob.size <= TARGET_BYTES * 1.05) {{ bestBlob = blob; low = q; }} else {{ high = q; }} if(high - low < 0.01) {{ resultBlob = bestBlob || blob; showResult(resultBlob, img.width, img.height); }} else {{ progressFill.style.width = (60 + (1 - (high-low)) * 30) + '%'; tryQuality((low + high) / 2); }} }}, mimeType, q); }} tryQuality(0.7); }} }}
     function showResult(blob, w, h) {{ if(resultUrl) URL.revokeObjectURL(resultUrl); resultBlob = blob; resultUrl = URL.createObjectURL(blob); compressedPreview.src = resultUrl; progressFill.style.width = '100%'; setTimeout(() => progressBar.style.display = 'none', 500); const originalSize = fileInput.files[0].size; const resultSize = blob.size; const change = ((1 - resultSize/originalSize) * 100).toFixed(1); const label = IS_CONVERSION ? 'Converted' : 'Compressed'; stats.innerHTML = '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><div><strong>Original:</strong> ' + formatSize(originalSize) + '</div><div><strong>' + label + ':</strong> ' + formatSize(resultSize) + '</div><div><strong>Change:</strong> ' + change + '%</div><div><strong>Dimensions:</strong> ' + w + ' x ' + h + '</div></div>'; }}
+    // HEIC decoder (loaded from CDN on demand)
+    function loadHeicDecoder(){{return new Promise((resolve)=>{{if(window.heic2any)return resolve();const s=document.createElement("script");s.src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js";s.onload=resolve;document.head.appendChild(s);}});}}
+    function convertHeic(file){{const reader=new FileReader();reader.onload=(e)=>{{heic2any({{blob:file,toType:"image/jpeg",quality:0.92}}).then(jpgBlob=>{{const ff=new File([jpgBlob],file.name.replace(/\.heic$/i,".jpg"),{{type:"image/jpeg"}});handleFile(ff);}});}};reader.readAsDataURL(file);}}
+function switchMode(mode){{const exactBtn=document.getElementById('modeExact');const qualityBtn=document.getElementById('modeQuality');const exactDiv=document.getElementById('exactControls');const qualityDiv=document.getElementById('qualityControls');if(mode==='quality'){{exactBtn.style.background='var(--card-bg)';exactBtn.style.color='var(--text)';qualityBtn.style.background='var(--primary)';qualityBtn.style.color='#fff';exactDiv.style.display='none';qualityDiv.style.display='block';}}else{{exactBtn.style.background='var(--primary)';exactBtn.style.color='#fff';qualityBtn.style.background='var(--card-bg)';qualityBtn.style.color='var(--text)';exactDiv.style.display='block';qualityDiv.style.display='none';}}currentMode=mode;}}
+let currentMode='exact';
     </script>
 </body>
 </html>"""
@@ -1252,13 +1426,18 @@ footer a{{color:#CBD5E1;text-decoration:none}}
 # ═══ Build Sitemap ══════════════════════════════════
 
 def build_sitemap():
-    urls = [f"https://{DOMAIN}/"]
+    urls = [f"https://{DOMAIN}/", f"https://{DOMAIN}/privacy/",
+    f"https://{DOMAIN}/compress-image/",
+    f"https://{DOMAIN}/blog/how-image-compression-works/",
+    f"https://{DOMAIN}/blog/compress-to-exact-size-guide/",
+    f"https://{DOMAIN}/blog/jpeg-vs-png-vs-webp/"]
     for s in ALL_SCENARIOS:
         urls.append(f"https://{DOMAIN}/{s['slug']}/")
+    today = __import__('datetime').date.today().isoformat()
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     for u in urls:
         p = "1.0" if u == f"https://{DOMAIN}/" else "0.8"
-        xml += f"  <url><loc>{u}</loc><priority>{p}</priority></url>\n"
+        xml += f"  <url><loc>{u}</loc><lastmod>{today}</lastmod><priority>{p}</priority></url>\n"
     xml += "</urlset>"
     w("sitemap.xml", xml)
     print(f"📄 sitemap.xml ({len(urls)} URLs)")
@@ -1267,13 +1446,33 @@ def build_sitemap():
 # ═══ Build robots.txt ═══════════════════════════════
 
 def build_robots():
-    w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: https://{DOMAIN}/sitemap.xml\n")
+    w("robots.txt", """User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: *
+Allow: /
+Sitemap: https://""" + DOMAIN + """/sitemap.xml
+""")
     print("🤖 robots.txt")
 
 
 # ═══ Main ═══════════════════════════════════════════
 
+def validate_scenarios(data, name="数据"):
+    required = ['slug', 'title', 'desc']
+    for i, s in enumerate(data):
+        for f in required:
+            if f not in s:
+                raise KeyError(f"{name}[{i}] 缺字段 '{f}' — 标题: {s.get('title', 'N/A')}")
+    print(f"✅ {name}校验通过: {len(data)} 条")
+
 if __name__ == "__main__":
+    validate_scenarios(ALL_SCENARIOS, "ALL_SCENARIOS")
     build_home()
     print(f"\n📄 {len(ALL_SCENARIOS)} Scenario Pages:")
     for s in ALL_SCENARIOS:

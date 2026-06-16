@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="msvalidate.01" content="1F14EEA4478F7A176F2E0451992C984C">
     <meta name="description" content="Compress images for embassy applications. Meet strict file size limits. Free, instant.">
@@ -59,23 +61,20 @@ footer a{color:#CBD5E1;text-decoration:none}
         .cross-site a{color:#4F46E5;font-weight:600}
     </style>
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [{{"@type":"Question","name":"平台图片大小限制是多少？","acceptedAnswer":{{"@type":"Answer","text":"不同平台有不同的限制。请查看上方工具区域的说明，或访问平台官网了解具体要求。"}}}},{{"@type":"Question","name":"压缩后图片能正常显示吗？","acceptedAnswer":{{"@type":"Answer","text":"可以。压缩后的图片格式不变，在任何设备和平台上都能正常显示。"}}}},{{"@type":"Question","name":"支持哪些图片格式？","acceptedAnswer":{{"@type":"Answer","text":"支持PNG、JPG、JPEG、WebP格式。压缩后会自动保留原始格式。"}}}}]
-    }
+    {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are the image size limits for this platform?", "acceptedAnswer": {"@type": "Answer", "text": "Limits vary by platform. Check the tool area above for specifics, or visit the platform's official docs."}}, {"@type": "Question", "name": "Will the compressed image display correctly?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The format stays the same; the compressed image displays normally on any device or platform."}}, {"@type": "Question", "name": "What image formats are supported?", "acceptedAnswer": {"@type": "Answer", "text": "PNG, JPG, JPEG, and WebP. The compressed file keeps its original format."}}]}
     </script>
+
     <script type="application/ld+json">
     {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://compressnow.net/"}, {"@type": "ListItem", "position": 2, "name": "Compress Image for Embassy Application", "item": "https://compressnow.net/compress-image-for-embassy-application/"}]}
     </script>
     <script type="application/ld+json">
-    {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Compress Image for Embassy Application — Meet Requirements", "url": "https://compressnow.net/compress-image-for-embassy-application/", "description": "Compress images for embassy applications. Meet strict file size limits. Free, instant.", "applicationCategory": "UtilityApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
+    {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Compress Image for Embassy Application — Meet Requirements", "url": "https://compressnow.net/compress-image-for-embassy-application/", "description": "Compress images for embassy applications. Meet strict file size limits. Free, instant.", "applicationCategory": "MultimediaApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
     </script>
 </head>
 <body>
     <header>
         <div class="container">
-            <a href="/" class="logo">Compressnow</a>
+            <a href="/" class="logo">CompressNow</a>
             <nav>
                 <a href="/">Home</a>
                 <a href="#faq">FAQ</a>
@@ -90,16 +89,20 @@ footer a{color:#CBD5E1;text-decoration:none}
             <p class="subtitle">Compress images for embassy applications. Meet strict file size limits. Free, instant.</p>
         </section>
         <section class="tool-area">
-            <div id="dropZone" style="border:2px dashed var(--border);border-radius:var(--radius);padding:40px 20px;text-align:center;cursor:pointer;background:var(--card-bg);transition:all .2s">
+            <div style="display:flex;gap:8px;justify-content:center;margin-bottom:16px;flex-wrap:wrap"><button id="modeExact" class="mode-btn active" onclick="switchMode('exact')" style="padding:8px 16px;border-radius:8px;border:1px solid var(--border);cursor:pointer;font-weight:600;background:var(--primary);color:#fff">🎯 Target Size (KB)</button><button id="modeQuality" class="mode-btn" onclick="switchMode('quality')" style="padding:8px 16px;border-radius:8px;border:1px solid var(--border);cursor:pointer;font-weight:600;background:var(--card-bg);color:var(--text)">🎚️ Quality Slider</button></div><div id="exactControls"><div style="display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap"><input type="number" id="targetKB" value="100" min="1" max="5000" style="width:80px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:1rem;text-align:center"><span style="color:var(--text-secondary)">KB</span></div></div><div id="qualityControls" style="display:none;max-width:400px;margin:0 auto"><input type="range" id="qualitySlider" min="1" max="100" value="75" style="width:100%;accent-color:var(--primary)"><div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-secondary)"><span>Smallest file</span><span id="qualityLabel">75%</span><span>Best quality</span></div></div><div id="dropZone" style="border:2px dashed var(--border);border-radius:var(--radius);padding:40px 20px;text-align:center;cursor:pointer;background:var(--card-bg);transition:all .2s">
                 <p style="font-size:2rem;margin-bottom:8px">📁</p>
                 <p style="font-weight:600;margin-bottom:4px">Drop image here or click to upload</p>
-                <p style="color:var(--text-secondary);font-size:.85rem">Supports PNG, JPEG, WebP</p>
+                <p style="color:var(--text-secondary);font-size:.85rem">Supports PNG, JPEG, WebP, HEIC</p>
                 <input type="file" id="fileInput" accept="image/*" style="display:none">
             </div>
             <div id="previewArea" style="display:none;margin-top:20px">
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
-                    <div style="text-align:center"><p style="font-size:.8rem;color:var(--text-secondary);margin-bottom:8px">Original</p><img id="originalPreview" style="max-width:100%;border-radius:8px;border:1px solid var(--border)"></div>
-                    <div style="text-align:center"><p style="font-size:.8rem;color:var(--text-secondary);margin-bottom:8px">Compressed</p><img id="compressedPreview" style="max-width:100%;border-radius:8px;border:1px solid var(--border)"></div>
+                <div style="position:relative;width:100%;max-width:500px;margin:0 auto 16px;overflow:hidden;border-radius:8px;border:1px solid var(--border)">
+                    <img id="compressedPreview" style="width:100%;display:block">
+                    <div style="position:absolute;top:0;left:0;width:50%;height:100%;overflow:hidden;border-right:2px solid #4F46E5">
+                        <img id="originalPreview" style="width:500px;max-width:500px;display:block;position:absolute;top:0;left:0">
+                    </div>
+                    <div id="sliderHandle" style="position:absolute;top:0;bottom:0;left:50%;width:4px;background:#4F46E5;cursor:ew-resize;z-index:2;transform:translateX(-2px)"></div>
+                    <div id="sliderLabel" style="position:absolute;top:8px;left:calc(50% - 24px);background:#4F46E5;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;z-index:3;pointer-events:none">◄ ►</div>
                 </div>
                 <div id="stats" style="background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px;font-size:.9rem"></div>
                 <div class="btn-row">
@@ -111,27 +114,31 @@ footer a{color:#CBD5E1;text-decoration:none}
             <p class="error-msg" id="errorMsg"></p>
         </section>
         <section class="scene-body">
+            <h2>What to Expect</h2>
+            <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:20px 0"><table style="width:100%;border-collapse:collapse;font-size:.9rem"><thead><tr style="background:#F1F5F9"><th style="padding:12px;text-align:left">Image Type</th><th style="padding:12px;text-align:left">Typical Before</th><th style="padding:12px;text-align:left">Typical After (Web-Optimized)</th><th style="padding:12px;text-align:left">Quality</th></tr></thead><tbody><tr><td style="padding:12px;border-top:1px solid var(--border)">Smartphone Photo</td><td style="padding:12px;border-top:1px solid var(--border)">~3-5 MB</td><td style="padding:12px;border-top:1px solid var(--border)">~100 KB</td><td style="padding:12px;border-top:1px solid var(--border);color:#16A34A">✅ Good</td></tr><tr><td style="padding:12px;border-top:1px solid var(--border)">DSLR Photo</td><td style="padding:12px;border-top:1px solid var(--border)">~8-15 MB</td><td style="padding:12px;border-top:1px solid var(--border)">~200 KB</td><td style="padding:12px;border-top:1px solid var(--border);color:#EAB308">⚠️ May lose detail</td></tr><tr><td style="padding:12px;border-top:1px solid var(--border)">Screenshot</td><td style="padding:12px;border-top:1px solid var(--border)">~500 KB-2 MB</td><td style="padding:12px;border-top:1px solid var(--border)">~100 KB</td><td style="padding:12px;border-top:1px solid var(--border);color:#16A34A">✅ Perfect</td></tr><tr><td style="padding:12px;border-top:1px solid var(--border)">Logo/Icon</td><td style="padding:12px;border-top:1px solid var(--border)">~50-200 KB</td><td style="padding:12px;border-top:1px solid var(--border)">~30-50 KB</td><td style="padding:12px;border-top:1px solid var(--border);color:#16A34A">✅ Excellent</td></tr></tbody></table></div>
+            <h2>Why compress to Web-Optimized?</h2>
+            <p>CompressNow compresses images for Embassy Application — meet the platform's file size requirements without losing quality. 100% browser-based, no upload, instant.</p>
+            <h2>How to Use This Tool</h2>
+            <p>Step 1: Click the upload area above and select the image you want to compress</p><p>Step 2: The tool automatically compresses to the platform's size requirements</p><p>Step 3: Click download to save the compressed image</p><p>Step 4: Upload the compressed image to your target platform</p>
+            <h2>When to Use This</h2>
+            <p>Compress images for  — meet platform upload limits, share photos faster, and save storage space. Used by content creators, marketers, and everyday users.</p>
             <h2>About This Tool</h2>
             <p>Compress images for embassy applications. Meet strict file size limits. Free, instant.</p>
-            <h2>How to Use</h2>
-            <p>Step 1: 点击上方的上传区域，选择要压缩的图片</p><p>Step 2: 工具会自动压缩到平台要求的大小</p><p>Step 3: 点击下载按钮保存压缩后的图片</p><p>Step 4: 将压缩后的图片上传到对应平台</p>
-            <h2>Tips</h2>
-            <p>每个平台对图片大小和格式有不同的要求。我们的工具会根据目标平台自动优化压缩参数，在文件大小和图片质量之间找到最佳平衡。</p>
+            <div class="cross-site">
+                <strong>💡 Pro Tip</strong> — Each platform has different image size and format requirements. Our tool automatically optimizes compression settings for your target platform, balancing file size and image quality.
+            </div>
         </section>
-        <div class="cross-site">
-            <strong>Pro Tip</strong> — Need to resize your image? Try <a href="https://resizenow.pages.dev">ResizeNow</a>. Need resume content? <a href="https://cvbuild-ai.com">CVBuild-AI</a>. Need emails? <a href="https://messagegen-ai.com">MessageGen-AI</a>. Need tone adjustment? <a href="https://tonemodifier.com">ToneModifier</a>.
-        </div>
         <section class="faq-section" id="faq">
             <div class="container">
                 <h2>Frequently Asked Questions</h2>
-                <div class="faq-item"><h3>平台图片大小限制是多少？</h3><p>不同平台有不同的限制。请查看上方工具区域的说明，或访问平台官网了解具体要求。</p></div><div class="faq-item"><h3>压缩后图片能正常显示吗？</h3><p>可以。压缩后的图片格式不变，在任何设备和平台上都能正常显示。</p></div><div class="faq-item"><h3>支持哪些图片格式？</h3><p>支持PNG、JPG、JPEG、WebP格式。压缩后会自动保留原始格式。</p></div>
+                <div class="faq-item"><h3>What are the image size limits for this platform?</h3><p>Limits vary by platform. Check the tool area above for specifics, or visit the platform's official docs.</p></div><div class="faq-item"><h3>Will the compressed image display correctly?</h3><p>Yes. The format stays the same; the compressed image displays normally on any device or platform.</p></div><div class="faq-item"><h3>What image formats are supported?</h3><p>PNG, JPG, JPEG, and WebP. The compressed file keeps its original format.</p></div>
             </div>
         </section>
         <section class="related-tools" id="related">
             <div class="container">
                 <h2>Related Tools</h2>
                 <ul>
-                    <li><a href="/compress-image-to-100kb/">Compress Image to 100KB Online</a></li><li><a href="/compress-image-to-50kb/">Compress Image to 50KB Online</a></li><li><a href="/compress-image-to-200kb/">Compress Image to 200KB Online</a></li><li><a href="/compress-image-for-email/">Compress Image for Email</a></li><li><a href="/compress-image-for-whatsapp/">Compress Image for WhatsApp</a></li><li><a href="/png-to-jpg/">Convert PNG to JPG Online</a></li>
+                    <li><a href="/compress-image-to-100kb/">100KB Image Compressor</a></li><li><a href="/compress-image-to-50kb/">Compress Image to 50KB Online</a></li><li><a href="/compress-image-to-200kb/">Compress Image to 200KB Online</a></li><li><a href="/compress-image-for-email/">Compress Image for Email</a></li><li><a href="/compress-image-for-whatsapp/">Compress Image for WhatsApp</a></li><li><a href="/png-to-jpg/">Convert PNG to JPG Online</a></li>
                 </ul>
             </div>
         </section>
@@ -139,7 +146,7 @@ footer a{color:#CBD5E1;text-decoration:none}
     <footer>
         <div class="container">
             <p>&copy; 2026 Compressnow. All rights reserved. | <a href="/">Home</a> | <a href="#faq">FAQ</a></p>
-            <p style="margin-top:8px">All processing happens locally in your browser. Your data is never uploaded.</p>
+            <p style="margin-top:8px;font-size:.8rem;color:#94A3B8">Also try: <a href="https://resizenow.net" style="color:#64748B">ResizeNow</a> (image resizer) · All processing happens locally in your browser. Your data is never uploaded.</p>
         </div>
     </footer>
     <script>
@@ -168,10 +175,15 @@ footer a{color:#CBD5E1;text-decoration:none}
     resetBtn.addEventListener('click', () => { previewArea.style.display = 'none'; dropZone.style.display = 'block'; fileInput.value = ''; if(resultUrl) URL.revokeObjectURL(resultUrl); resultBlob = null; resultUrl = null; errorMsg.style.display = 'none'; });
     downloadBtn.addEventListener('click', () => { if(!resultBlob) return; const a = document.createElement('a'); a.href = resultUrl; const ext = CONVERT_TO || 'jpg'; const name = fileInput.files[0].name.replace(/\.[^.]+$/, '') + '.' + ext; a.download = name; a.click(); });
     function formatSize(bytes) { if(bytes < 1024) return bytes + ' B'; if(bytes < 1048576) return (bytes/1024).toFixed(1) + ' KB'; return (bytes/1048576).toFixed(2) + ' MB'; }
-    function handleFile(file) { if(!file.type.match(/^image\/(png|jpeg|webp)$/)) { errorMsg.textContent = 'Please upload a PNG, JPEG, or WebP image.'; errorMsg.style.display = 'block'; return; } errorMsg.style.display = 'none'; const reader = new FileReader(); reader.onload = e => { const img = new Image(); img.onload = () => { originalPreview.src = e.target.result; dropZone.style.display = 'none'; previewArea.style.display = 'block'; progressBar.style.display = 'block'; progressFill.style.width = '30%'; if(IS_CONVERSION) convertImage(img); else compressImage(img, file.type); }; img.src = e.target.result; }; reader.readAsDataURL(file); }
+    function handleFile(file) { if(file.type==="image/heic"||file.name.match(/\.heic$/i)){loadHeicDecoder().then(()=>convertHeic(file));return;} if(!file.type.match(/^image\/(png|jpeg|webp)$/)) { errorMsg.textContent = 'Please upload a PNG, JPEG, or WebP image.'; errorMsg.style.display = 'block'; return; } errorMsg.style.display = 'none'; const reader = new FileReader(); reader.onload = e => { const img = new Image(); img.onload = () => { originalPreview.src = e.target.result; dropZone.style.display = 'none'; previewArea.style.display = 'block'; progressBar.style.display = 'block'; progressFill.style.width = '30%'; if(IS_CONVERSION) convertImage(img); else compressImage(img, file.type); }; img.src = e.target.result; }; reader.readAsDataURL(file); }
     function convertImage(img) { const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0); progressFill.style.width = '60%'; const mimeMap = {'png':'image/png','jpg':'image/jpeg','jpeg':'image/jpeg','webp':'image/webp'}; const mime = mimeMap[CONVERT_TO] || 'image/jpeg'; const quality = mime === 'image/png' ? undefined : 0.92; canvas.toBlob(blob => { resultBlob = blob; showResult(blob, img.width, img.height); }, mime, quality); }
     function compressImage(img, type) { const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0); progressFill.style.width = '60%'; const mimeType = type === 'image/png' ? 'image/png' : type === 'image/webp' ? 'image/webp' : 'image/jpeg'; if(mimeType === 'image/png') { canvas.toBlob(blob => { resultBlob = blob; showResult(blob, img.width, img.height); }, mimeType); } else { let low = 0.01, high = 1.0, bestBlob = null; function tryQuality(q) { canvas.toBlob(blob => { if(!blob) { showResult(bestBlob || new Blob(), img.width, img.height); return; } if(blob.size <= TARGET_BYTES * 1.05) { bestBlob = blob; low = q; } else { high = q; } if(high - low < 0.01) { resultBlob = bestBlob || blob; showResult(resultBlob, img.width, img.height); } else { progressFill.style.width = (60 + (1 - (high-low)) * 30) + '%'; tryQuality((low + high) / 2); } }, mimeType, q); } tryQuality(0.7); } }
     function showResult(blob, w, h) { if(resultUrl) URL.revokeObjectURL(resultUrl); resultBlob = blob; resultUrl = URL.createObjectURL(blob); compressedPreview.src = resultUrl; progressFill.style.width = '100%'; setTimeout(() => progressBar.style.display = 'none', 500); const originalSize = fileInput.files[0].size; const resultSize = blob.size; const change = ((1 - resultSize/originalSize) * 100).toFixed(1); const label = IS_CONVERSION ? 'Converted' : 'Compressed'; stats.innerHTML = '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><div><strong>Original:</strong> ' + formatSize(originalSize) + '</div><div><strong>' + label + ':</strong> ' + formatSize(resultSize) + '</div><div><strong>Change:</strong> ' + change + '%</div><div><strong>Dimensions:</strong> ' + w + ' x ' + h + '</div></div>'; }
+    // HEIC decoder (loaded from CDN on demand)
+    function loadHeicDecoder(){return new Promise((resolve)=>{if(window.heic2any)return resolve();const s=document.createElement("script");s.src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js";s.onload=resolve;document.head.appendChild(s);});}
+    function convertHeic(file){const reader=new FileReader();reader.onload=(e)=>{heic2any({blob:file,toType:"image/jpeg",quality:0.92}).then(jpgBlob=>{const ff=new File([jpgBlob],file.name.replace(/\.heic$/i,".jpg"),{type:"image/jpeg"});handleFile(ff);});};reader.readAsDataURL(file);}
+function switchMode(mode){const exactBtn=document.getElementById('modeExact');const qualityBtn=document.getElementById('modeQuality');const exactDiv=document.getElementById('exactControls');const qualityDiv=document.getElementById('qualityControls');if(mode==='quality'){exactBtn.style.background='var(--card-bg)';exactBtn.style.color='var(--text)';qualityBtn.style.background='var(--primary)';qualityBtn.style.color='#fff';exactDiv.style.display='none';qualityDiv.style.display='block';}else{exactBtn.style.background='var(--primary)';exactBtn.style.color='#fff';qualityBtn.style.background='var(--card-bg)';qualityBtn.style.color='var(--text)';exactDiv.style.display='block';qualityDiv.style.display='none';}currentMode=mode;}
+let currentMode='exact';
     </script>
 </body>
 </html>

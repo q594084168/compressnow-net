@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how image compression actually works — lossy vs lossless, JPEG vs PNG vs WebP, and how to choose the right settings for web, email, and social media.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://compressnow.net/blog/how-image-compression-works/">
+    <meta property="og:title" content="How Image Compression Works — JPEG, PNG, WebP Explained | CompressNow">
+    <meta property="og:description" content="Lossy vs lossless, when to use each format, and how to get the smallest file without visible quality loss.">
+    <title>How Image Compression Works — JPEG, PNG, WebP Explained | CompressNow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9NW1GSG04"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-Z9NW1GSG04')</script>
+    <style>
+        :root{--primary:#4F46E5;--bg:#F8FAFC;--card-bg:#FFFFFF;--text:#1E293B;--text-secondary:#64748B;--border:#E2E8F0}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.8}
+        header{background:#1E293B;color:#F1F5F9;padding:16px 0}
+        header .container,.container{max-width:800px;margin:0 auto;padding:0 24px}
+        header .container{display:flex;justify-content:space-between;align-items:center}
+        header a{color:#CBD5E1;text-decoration:none;font-weight:600}
+        article{padding:48px 0}
+        h1{font-size:2rem;font-weight:800;margin-bottom:12px;line-height:1.3}
+        h2{font-size:1.3rem;margin:36px 0 12px;color:#1E293B}
+        h3{font-size:1.1rem;margin:24px 0 8px}
+        p{color:#475569;margin-bottom:16px}
+        ul{margin:12px 0 20px 24px;color:#475569}
+        li{margin-bottom:8px}
+        .meta{color:var(--text-secondary);font-size:.85rem;margin-bottom:32px}
+        .tip-box{background:#EEF2FF;border-left:3px solid var(--primary);padding:16px 20px;margin:24px 0;border-radius:0 8px 8px 0}
+        .tip-box strong{color:var(--primary)}
+        .cta{background:var(--primary);color:#fff;text-align:center;padding:32px;border-radius:12px;margin:40px 0}
+        .cta a{color:#fff;font-weight:700;text-decoration:underline}
+        footer{background:#1E293B;color:#94A3B8;padding:32px 0;text-align:center;font-size:.85rem}
+        footer a{color:#CBD5E1;text-decoration:none}
+        table{width:100%;border-collapse:collapse;margin:20px 0}
+        th,td{padding:12px;border:1px solid var(--border);text-align:left;font-size:.9rem}
+        th{background:#F1F5F9;font-weight:600}
+    </style>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BlogPosting","headline":"How Image Compression Works — JPEG, PNG, WebP Explained","description":"Learn how image compression actually works — lossy vs lossless, JPEG vs PNG vs WebP, and how to choose the right settings.","datePublished":"2026-06-15","author":{"@type":"Organization","name":"CompressNow"}}
+    </script>
+</head>
+<body>
+    <header><div class="container"><a href="/">CompressNow</a><nav><a href="/">Home</a> <a href="/blog/">Blog</a></nav></div></header>
+    <article>
+        <div class="container">
+            <h1>How Image Compression Works — JPEG, PNG, WebP Explained</h1>
+            <p class="meta">June 15, 2026 · 5 min read · By CompressNow</p>
+
+            <p>Every time you upload a photo to a website, send an image via email, or post on social media, compression is happening — whether you realize it or not. But most people don't understand what compression actually does, which format to use, or why some images look terrible after being compressed. This guide explains it all in plain English.</p>
+
+            <h2>Lossy vs Lossless: The Two Types of Compression</h2>
+            <p>Image compression falls into two categories:</p>
+            <ul>
+                <li><strong>Lossy compression</strong> — permanently removes some image data to reduce file size. The removed data is chosen to be as invisible as possible. JPEG and WebP (lossy mode) use this. You can't get the original quality back.</li>
+                <li><strong>Lossless compression</strong> — reduces file size without removing any data. The image can be reconstructed perfectly. PNG and WebP (lossless mode) use this. File sizes are larger than lossy, but quality is preserved.</li>
+            </ul>
+
+            <h2>JPEG: The Workhorse of the Web</h2>
+            <p>JPEG (Joint Photographic Experts Group) has been the dominant image format since 1992. It uses lossy compression optimized for photographs — images with smooth color gradients and lots of detail.</p>
+            <h3>How JPEG compression works</h3>
+            <p>JPEG breaks an image into 8×8 pixel blocks, converts colors to a frequency domain, and discards high-frequency details the human eye struggles to see. At quality 80 (our default), most people can't tell the difference from the original. At quality 50, artifacts become visible — especially around text and sharp edges.</p>
+            <div class="tip-box"><strong>Pro tip:</strong> For photos, JPEG at quality 75-85 gives the best size/quality ratio. Never use JPEG for logos or text-heavy images — the compression creates visible artifacts around sharp edges.</div>
+
+            <h2>PNG: Quality Over Size</h2>
+            <p>PNG (Portable Network Graphics) uses lossless compression. Every pixel is preserved exactly as it was. PNG also supports transparency — something JPEG cannot do.</p>
+            <h3>How PNG compression works</h3>
+            <p>PNG uses DEFLATE compression (the same algorithm behind ZIP files) plus a pre-processing filter that rearranges pixel data to be more compressible. For images with large areas of solid color — like logos, icons, and screenshots — PNG can be surprisingly small. For photographs, PNG files can be 5-10× larger than JPEG.</p>
+            <div class="tip-box"><strong>Pro tip:</strong> Use PNG for logos, icons, screenshots, and any image that needs transparency. For photos on the web, convert to JPEG or WebP instead — you'll get 80% smaller files with no visible difference.</div>
+
+            <h2>WebP: The Modern Contender</h2>
+            <p>Developed by Google and released in 2010, WebP supports both lossy and lossless compression — and typically produces files 25-35% smaller than JPEG at the same quality. All modern browsers support WebP (97%+ global coverage).</p>
+            <h3>When to use WebP</h3>
+            <p>If your audience uses modern browsers, WebP is almost always the best choice. It gives you JPEG-quality photos at PNG-like file sizes. The main exception: apps and platforms that don't support WebP uploads (some government portals, older CMS systems).</p>
+
+            <table>
+                <tr><th>Format</th><th>Compression</th><th>Transparency</th><th>Best For</th><th>Typical Size</th></tr>
+                <tr><td>JPEG</td><td>Lossy</td><td>No</td><td>Photos</td><td>100-500 KB</td></tr>
+                <tr><td>PNG</td><td>Lossless</td><td>Yes</td><td>Logos, Icons</td><td>50-500 KB</td></tr>
+                <tr><td>WebP</td><td>Both</td><td>Yes</td><td>Web, Modern Apps</td><td>50-300 KB</td></tr>
+                <tr><td>HEIC</td><td>Lossy</td><td>No</td><td>iPhone Photos</td><td>1-5 MB</td></tr>
+            </table>
+
+            <div class="cta">
+                <h3 style="color:#fff;margin-bottom:8px">Ready to compress your images?</h3>
+                <p style="color:#CBD5E1;margin-bottom:12px">Try CompressNow — 100% browser-based, no upload, supports JPEG, PNG, WebP, and HEIC.</p>
+                <a href="/">Compress Images Now →</a>
+            </div>
+        </div>
+    </article>
+    <footer><div class="container"><p>&copy; 2026 CompressNow. <a href="/">Home</a> · <a href="/blog/">Blog</a> · <a href="/privacy/">Privacy</a></p></div></footer>
+</body>
+</html>
