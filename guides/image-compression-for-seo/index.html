@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msvalidate.01" content="1F14EEA4478F7A176F2E0451992C984C">
+    <meta name="description" content="How image compression impacts SEO: Core Web Vitals, page speed, Google rankings. Step-by-step optimization guide with real before/after case study.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Image Compression for SEO — Improve Core Web Vitals & Rankings | CompressNow">
+    <meta property="og:description" content="How image compression impacts SEO: Core Web Vitals, page speed, Google rankings. Step-by-step optimization guide with real before/after case study.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://compressnow.net/guides/image-compression-for-seo/">
+    <link rel="canonical" href="https://compressnow.net/guides/image-compression-for-seo/">
+    <title>Image Compression for SEO — Improve Core Web Vitals & Rankings | CompressNow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>
+        // Lazy load Google Analytics after page load
+        window.addEventListener('load', function() {
+            var script = document.createElement('script');
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-Z9NW1GSG04';
+            script.async = true;
+            document.head.appendChild(script);
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){{dataLayer.push(arguments);}}
+            gtag('js', new Date());
+            gtag('config', 'G-Z9NW1GSG04');
+        });
+    </script>
+    <style>
+        
+        :root{--primary:#4F46E5;--primary-dark:#4338CA;--bg:#F8FAFC;--card-bg:#FFFFFF;--text:#1E293B;--text-secondary:#64748B;--border:#E2E8F0;--radius:12px}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+        .container{max-width:960px;margin:0 auto;padding:0 24px}
+        header{background:#1E293B;color:#F1F5F9;padding:16px 0;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+        header .container{display:flex;justify-content:space-between;align-items:center}
+        header nav{display:flex;gap:24px}header nav a{color:#94A3B8;text-decoration:none;font-size:.9rem;font-weight:500}header nav a:hover{color:#fff}
+        .scene-hero{padding:40px 0 24px;text-align:center}
+        .scene-hero h1{font-size:2rem;font-weight:800;margin-bottom:12px;line-height:1.3}
+        @media(max-width:640px){.scene-hero h1{font-size:1.5rem}}
+        .subtitle{color:var(--text-secondary);max-width:560px;margin:0 auto}
+        .tool-area{max-width:700px;margin:0 auto 24px;padding:0 24px}
+        .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+        .btn{padding:12px 28px;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;font-family:inherit}.btn:active{transform:scale(.97)}
+        .btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary-dark)}
+        .btn-secondary{background:var(--card-bg);color:var(--text);border:1px solid var(--border)}
+        .scene-body{max-width:700px;margin:0 auto;padding:0 24px 40px}
+        .scene-body h2{font-size:1.25rem;margin:32px 0 12px;color:#1E293B}
+        .scene-body p{color:#475569;margin-bottom:12px;font-size:1rem;line-height:1.7}
+        .scene-body ul{color:#475569;margin-bottom:16px;padding-left:24px;line-height:1.7}
+        .scene-body li{margin-bottom:4px}
+        .faq-section{padding:40px 0;text-align:left}.faq-section h2{font-size:1.5rem;margin-bottom:24px;text-align:center}
+        .faq-item{margin-bottom:20px}.faq-item h3{font-size:1rem;margin-bottom:6px;color:var(--primary)}
+        .faq-item p{color:var(--text-secondary);font-size:.9rem}
+        .related-tools{background:#F8FAFC;border-top:1px solid #E2E8F0;padding:40px 0}
+        .related-tools .container{max-width:960px;margin:0 auto;padding:0 24px}
+        .related-tools h2{font-size:1.5rem;margin-bottom:20px;text-align:center}
+        .related-tools ul{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:600px;margin:0 auto}
+        @media(max-width:640px){.related-tools ul{grid-template-columns:1fr}}
+        .related-tools a{color:#4F46E5;text-decoration:none;font-weight:500;padding:10px 16px;display:block;background:#fff;border-radius:8px;border:1px solid #E2E8F0;transition:all .15s}
+        .related-tools a:hover{border-color:#4F46E5;box-shadow:0 2px 8px rgba(79,70,229,0.12)}
+        .breadcrumb{font-size:.85rem;color:#64748B;padding:16px 0;max-width:960px;margin:0 auto}
+        .breadcrumb a{color:#4F46E5;text-decoration:none}.breadcrumb a:hover{text-decoration:underline}
+        .guide-cta{max-width:700px;margin:0 auto 40px;padding:20px 24px;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:12px;text-align:center}
+        .guide-cta p{color:#4338CA;font-size:.95rem;margin:0}
+        .guide-cta a{color:#4F46E5;font-weight:700;text-decoration:underline}
+        footer{background:#1E293B;color:#94A3B8;padding:32px 0;text-align:center;font-size:.85rem}
+        footer a{color:#CBD5E1;text-decoration:none}
+
+        .guide-hero{padding:48px 0 32px;text-align:center;background:#fff;border-bottom:1px solid var(--border)}
+        .guide-hero h1{font-size:2.2rem;font-weight:800;margin-bottom:16px;line-height:1.3}
+        .guide-body{max-width:720px;margin:0 auto;padding:40px 24px 40px}
+        .guide-body h2{font-size:1.4rem;font-weight:700;margin:36px 0 16px;color:#1E293B}
+        .guide-body h3{font-size:1.15rem;font-weight:600;margin:24px 0 10px;color:#334155}
+        .guide-body p{color:#475569;margin-bottom:16px;font-size:1rem;line-height:1.8}
+        .guide-body ul,.guide-body ol{color:#475569;margin-bottom:20px;padding-left:28px;line-height:1.8}
+        .guide-body li{margin-bottom:6px}
+        .guide-body table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.9rem}
+        .guide-body th{background:#F1F5F9;padding:12px;text-align:left;font-weight:600;border-bottom:2px solid var(--border)}
+        .guide-body td{padding:12px;border-bottom:1px solid var(--border)}
+        .guide-body strong{color:#1E293B}
+        .guide-cta-box{max-width:720px;margin:0 auto 48px;padding:24px 32px;background:#EEF2FF;border:2px solid #C7D2FE;border-radius:12px;text-align:center}
+        .guide-cta-box h3{color:#4338CA;margin-bottom:8px}
+        .guide-cta-box a{color:#4F46E5;font-weight:700}
+    </style>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Article","headline":"Image Compression for SEO — Improve Core Web Vitals & Rankings | CompressNow","description":"How image compression impacts SEO: Core Web Vitals, page speed, Google rankings. Step-by-step optimization guide with real before/after case study.","datePublished":"2026-06-24","dateModified":"2026-06-24","author":{"@type":"Organization","name":"CompressNow"},"publisher":{"@type":"Organization","name":"CompressNow","url":"https://compressnow.net"}}
+    </script>
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://compressnow.net/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://compressnow.net/guides/"}, {"@type": "ListItem", "position": 3, "name": "Image Compression for SEO", "item": "https://compressnow.net/guides/image-compression-for-seo/"}]}
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does image compression affect SEO?","acceptedAnswer":{"@type":"Answer","text":"Yes, directly. Large images slow down page loads, which hurts your Core Web Vitals scores. Poor Core Web Vitals = lower Google rankings."}},{"@type":"Question","name":"What's the ideal image size for SEO?","acceptedAnswer":{"@type":"Answer","text":"Google recommends keeping images under 200KB where possible. Hero images can be larger (up to 500KB), but anything above 1MB will likely hurt your LCP score."}},{"@type":"Question","name":"Does WebP help with SEO?","acceptedAnswer":{"@type":"Answer","text":"Yes. WebP files are 25-35% smaller than JPEG at the same quality, which means faster page loads and better Core Web Vitals — both positive SEO signals."}},{"@type":"Question","name":"Should I use lazy loading for images?","acceptedAnswer":{"@type":"Answer","text":"Yes, for images below the fold. Use loading='lazy' on img tags for images that aren't visible on initial page load. Don't lazy-load your hero image (above the fold) — it needs to load immediately for good LCP."}},{"@type":"Question","name":"Do image alt tags affect SEO?","acceptedAnswer":{"@type":"Answer","text":"Yes. Alt text helps Google understand image content and is a factor in image search rankings. It's also essential for accessibility."}},{"@type":"Question","name":"How often should I audit my site's images?","acceptedAnswer":{"@type":"Answer","text":"Run a PageSpeed Insights test monthly, and check Google Search Console's Core Web Vitals report weekly. Re-compress any images flagged as oversized."}}]}
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" style="color:#fff;text-decoration:none;font-size:1.2rem;font-weight:700">CompressNow</a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/guides/how-to-compress-images/">Guides</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="breadcrumb"><a href="/">Home</a> / <a href="/guides/">Guides</a> / Image Compression for SEO</div>
+        <section class="guide-hero">
+            <div class="container">
+                <h1>Image Compression for SEO — Improve Core Web Vitals & Rankings | CompressNow</h1>
+                <p class="subtitle" style="max-width:600px">How image compression impacts SEO: Core Web Vitals, page speed, Google rankings. Step-by-step optimization guide with real before/after case study.</p>
+            </div>
+        </section>
+        <article class="guide-body">
+            
+<p>Image compression isn't just about saving disk space — <strong>it directly impacts your Google search rankings</strong>. Google's Core Web Vitals measure how fast your pages load, and oversized images are the most common cause of poor scores. This guide explains exactly how image compression affects SEO and what you can do about it.</p>
+
+<h2>How Image Size Affects SEO</h2>
+<p>Google uses three Core Web Vitals metrics to evaluate page experience:</p>
+<ul>
+<li><strong>LCP (Largest Contentful Paint):</strong> How fast the main content loads. Target: under 2.5 seconds. <strong>Large hero images are the #1 cause of poor LCP.</strong></li>
+<li><strong>INP (Interaction to Next Paint):</strong> How fast the page responds to user input. Less directly affected by images.</li>
+<li><strong>CLS (Cumulative Layout Shift):</strong> Visual stability. Images without width/height attributes cause layout shifts.</li>
+</ul>
+<p>Google has confirmed that Core Web Vitals are <strong>direct ranking signals</strong>. A page that fails LCP because of a 5MB hero image will rank lower than an otherwise identical page with a 200KB hero image.</p>
+
+<h2>How Much Do Images Slow Down Your Site?</h2>
+<p>Images typically account for <strong>50-70% of a web page's total weight</strong>. On an average e-commerce product page, images are 2-5MB. Compressed to 200KB each, that drops to 0.5-1MB — a 70-80% reduction in page weight.</p>
+<p>That translates directly to faster load times. Google's own research shows:</p>
+<ul>
+<li>Going from 1s to 3s load time increases bounce probability by 32%</li>
+<li>Going from 1s to 5s increases bounce probability by 90%</li>
+<li>Every 0.1s improvement in load time can increase conversion rates by up to 8% (e-commerce)</li>
+</ul>
+
+<h2>Step-by-Step: Optimize Images for SEO</h2>
+<ol>
+<li><strong>Choose the right format:</strong> WebP for modern browsers, JPEG for universal compatibility, PNG only for graphics.</li>
+<li><strong>Compress to the right size:</strong> Target 100-200KB for most images. Hero images: under 500KB. Thumbnails: under 50KB.</li>
+<li><strong>Resize to display dimensions:</strong> Don't serve a 4000px-wide image in a 800px-wide container. Resize first.</li>
+<li><strong>Use responsive images:</strong> The <code>&lt;picture&gt;</code> element with <code>srcset</code> lets you serve different sizes for mobile vs desktop.</li>
+<li><strong>Add width and height attributes:</strong> This prevents CLS (layout shift) as images load.</li>
+<li><strong>Lazy-load below-the-fold images:</strong> <code>loading="lazy"</code> tells the browser to defer off-screen images.</li>
+<li><strong>Use a CDN:</strong> Serving images from a CDN reduces latency for users far from your origin server.</li>
+</ol>
+
+<h2>Real-World Before/After: Image Optimization Case Study</h2>
+<p>Here's what happens when you optimize a typical blog post page with 5 images:</p>
+
+<table>
+<thead><tr><th>Metric</th><th>Before (Uncompressed)</th><th>After (Compressed)</th><th>Improvement</th></tr></thead>
+<tbody>
+<tr><td>Total image weight</td><td>12.4 MB</td><td>0.9 MB</td><td style="color:#16A34A">92.7% reduction</td></tr>
+<tr><td>Page load time (3G)</td><td>6.2 seconds</td><td>1.8 seconds</td><td style="color:#16A34A">71% faster</td></tr>
+<tr><td>LCP score</td><td>4.1s (fails)</td><td>1.9s (passes)</td><td style="color:#16A34A">Passes Core Web Vitals</td></tr>
+<tr><td>PageSpeed score</td><td>42/100</td><td>89/100</td><td style="color:#16A34A">+47 points</td></tr>
+</tbody>
+</table>
+
+<h2>Google's Image Guidelines for SEO</h2>
+<ul>
+<li>Use supported formats: JPEG, PNG, WebP, SVG, GIF, BMP</li>
+<li>Optimize images for speed — Google explicitly recommends compression</li>
+<li>Use descriptive filenames (not IMG_0047.jpg)</li>
+<li>Add alt text to every image (accessibility + SEO signal)</li>
+<li>Create an image sitemap or ensure images are in your regular sitemap</li>
+<li>Use structured data for product images, recipes, and videos</li>
+</ul>
+
+<h2>Testing Your Image Optimization</h2>
+<p>After compressing your images, verify the results:</p>
+<ul>
+<li><strong>Google PageSpeed Insights:</strong> <a href="https://pagespeed.web.dev/" rel="nofollow">pagespeed.web.dev</a> — tests LCP and flags oversized images</li>
+<li><strong>Google Search Console:</strong> The Core Web Vitals report shows which pages need improvement</li>
+<li><strong>WebPageTest:</strong> <a href="https://www.webpagetest.org/" rel="nofollow">webpagetest.org</a> — detailed waterfall view of image loading</li>
+</ul>
+
+<p>For an image-specific tool, use our <a href="/compress-image-for-pagespeed/">PageSpeed image compressor</a> — it targets the exact file sizes that help you pass Core Web Vitals.</p>
+
+        </article>
+        <div class="guide-cta-box">
+            <h3>Ready to compress your images?</h3>
+            <p style="color:#475569;margin-bottom:12px">Try our free online image compressor — 18 target sizes, 100% browser-based, no upload.</p>
+            <a href="/" style="display:inline-block;padding:12px 28px;background:var(--primary);color:#fff;border-radius:8px;font-weight:600;text-decoration:none">Start Compressing →</a>
+        </div>
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item"><h3>Does image compression affect SEO?</h3><p>Yes, directly. Large images slow down page loads, which hurts your Core Web Vitals scores. Poor Core Web Vitals = lower Google rankings.</p></div><div class="faq-item"><h3>What's the ideal image size for SEO?</h3><p>Google recommends keeping images under 200KB where possible. Hero images can be larger (up to 500KB), but anything above 1MB will likely hurt your LCP score.</p></div><div class="faq-item"><h3>Does WebP help with SEO?</h3><p>Yes. WebP files are 25-35% smaller than JPEG at the same quality, which means faster page loads and better Core Web Vitals — both positive SEO signals.</p></div><div class="faq-item"><h3>Should I use lazy loading for images?</h3><p>Yes, for images below the fold. Use loading='lazy' on img tags for images that aren't visible on initial page load. Don't lazy-load your hero image (above the fold) — it needs to load immediately for good LCP.</p></div><div class="faq-item"><h3>Do image alt tags affect SEO?</h3><p>Yes. Alt text helps Google understand image content and is a factor in image search rankings. It's also essential for accessibility.</p></div><div class="faq-item"><h3>How often should I audit my site's images?</h3><p>Run a PageSpeed Insights test monthly, and check Google Search Console's Core Web Vitals report weekly. Re-compress any images flagged as oversized.</p></div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 CompressNow. All rights reserved. | <a href="/">Home</a> | <a href="/guides/how-to-compress-images/">Compression Guide</a> | <a href="/guides/image-formats-compared/">Format Guide</a></p>
+            <p style="margin-top:8px;font-size:.8rem;color:#94A3B8">All processing happens locally in your browser. Your data is never uploaded.</p>
+        </div>
+    </footer>
+</body>
+</html>

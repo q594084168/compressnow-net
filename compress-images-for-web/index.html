@@ -6,47 +6,56 @@
     <link rel="apple-touch-icon" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="msvalidate.01" content="1F14EEA4478F7A176F2E0451992C984C">
-    <meta name="description" content="Compress images for web publishing. Free, browser-based, instant.">
+    <meta name="description" content="Batch compress images for web use. Improve page speed and SEO. Free, browser-based, instant.">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Compress Images for Web — Free Online Tool">
-    <meta property="og:description" content="Compress images for web publishing. Free, browser-based, instant.">
+    <meta property="og:title" content="Compress Images for Web — Optimize All Website Images">
+    <meta property="og:description" content="Batch compress images for web use. Improve page speed and SEO. Free, browser-based, instant.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://compressnow.net/compress-images-for-web/">
     <link rel="canonical" href="https://compressnow.net/compress-images-for-web/">
-    <title>Compress Images for Web — Free Online Tool</title>
+    <title>Compress Images for Web — Optimize All Website Images</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9NW1GSG04"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-Z9NW1GSG04");</script>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>
+        // Lazy load Google Analytics after page load
+        window.addEventListener('load', function() {
+            var script = document.createElement('script');
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-Z9NW1GSG04';
+            script.async = true;
+            document.head.appendChild(script);
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){{dataLayer.push(arguments);}}
+            gtag('js', new Date());
+            gtag('config', 'G-Z9NW1GSG04');
+        });
+    </script>
     <style>
         :root{--primary:#4F46E5;--primary-dark:#4338CA;--bg:#F8FAFC;--card-bg:#FFFFFF;--text:#1E293B;--text-secondary:#64748B;--border:#E2E8F0;--radius:12px}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-.container{max-width:960px;margin:0 auto;padding:0 24px}
-header{background:#1E293B;color:#F1F5F9;padding:16px 0;box-shadow:0 2px 8px rgba(0,0,0,.15)}
-header .container{display:flex;justify-content:space-between;align-items:center}
-header nav{display:flex;gap:24px}header nav a{color:#94A3B8;text-decoration:none;font-size:.9rem;font-weight:500}header nav a:hover{color:#fff}
-.subtitle{color:var(--text-secondary);max-width:560px;margin:0 auto}
-.tool-area{max-width:700px;margin:0 auto 24px;padding:0 24px}
-.tool-area textarea{width:100%;border:2px dashed var(--border);border-radius:var(--radius);padding:20px;font-family:'Consolas',monospace;font-size:14px;resize:vertical;background:var(--card-bg);min-height:200px}
-.tool-area textarea:focus{outline:none;border-color:var(--primary);border-style:solid}
-.btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
-.btn{padding:12px 28px;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;font-family:inherit}.btn:active{transform:scale(.97)}
-.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary-dark)}
-.btn-secondary{background:var(--card-bg);color:var(--text);border:1px solid var(--border)}
-.output-area{margin-top:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;min-height:80px;word-break:break-all;display:none}
-.error-msg{color:#DC2626;font-size:.85rem;margin-top:8px;display:none}
-.faq-section{padding:40px 0;text-align:left}.faq-section h2{font-size:1.5rem;margin-bottom:24px;text-align:center}
-.faq-item{margin-bottom:20px}.faq-item h3{font-size:1rem;margin-bottom:6px;color:var(--primary)}
-.faq-item p{color:var(--text-secondary);font-size:.9rem}
-footer{background:#1E293B;color:#94A3B8;padding:32px 0;text-align:center;font-size:.85rem}
-footer a{color:#CBD5E1;text-decoration:none}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+        .container{max-width:960px;margin:0 auto;padding:0 24px}
+        header{background:#1E293B;color:#F1F5F9;padding:16px 0;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+        header .container{display:flex;justify-content:space-between;align-items:center}
+        header nav{display:flex;gap:24px}header nav a{color:#94A3B8;text-decoration:none;font-size:.9rem;font-weight:500}header nav a:hover{color:#fff}
         .scene-hero{padding:40px 0 24px;text-align:center}
         .scene-hero h1{font-size:2rem;font-weight:800;margin-bottom:12px;line-height:1.3}
         @media(max-width:640px){.scene-hero h1{font-size:1.5rem}}
+        .subtitle{color:var(--text-secondary);max-width:560px;margin:0 auto}
+        .tool-area{max-width:700px;margin:0 auto 24px;padding:0 24px}
+        .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+        .btn{padding:12px 28px;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;font-family:inherit}.btn:active{transform:scale(.97)}
+        .btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary-dark)}
+        .btn-secondary{background:var(--card-bg);color:var(--text);border:1px solid var(--border)}
         .scene-body{max-width:700px;margin:0 auto;padding:0 24px 40px}
         .scene-body h2{font-size:1.25rem;margin:32px 0 12px;color:#1E293B}
         .scene-body p{color:#475569;margin-bottom:12px;font-size:1rem;line-height:1.7}
+        .scene-body ul{color:#475569;margin-bottom:16px;padding-left:24px;line-height:1.7}
+        .scene-body li{margin-bottom:4px}
+        .faq-section{padding:40px 0;text-align:left}.faq-section h2{font-size:1.5rem;margin-bottom:24px;text-align:center}
+        .faq-item{margin-bottom:20px}.faq-item h3{font-size:1rem;margin-bottom:6px;color:var(--primary)}
+        .faq-item p{color:var(--text-secondary);font-size:.9rem}
         .related-tools{background:#F8FAFC;border-top:1px solid #E2E8F0;padding:40px 0}
         .related-tools .container{max-width:960px;margin:0 auto;padding:0 24px}
         .related-tools h2{font-size:1.5rem;margin-bottom:20px;text-align:center}
@@ -56,37 +65,35 @@ footer a{color:#CBD5E1;text-decoration:none}
         .related-tools a:hover{border-color:#4F46E5;box-shadow:0 2px 8px rgba(79,70,229,0.12)}
         .breadcrumb{font-size:.85rem;color:#64748B;padding:16px 0;max-width:960px;margin:0 auto}
         .breadcrumb a{color:#4F46E5;text-decoration:none}.breadcrumb a:hover{text-decoration:underline}
-        .cross-site{max-width:700px;margin:0 auto 40px;padding:20px;background:#F5F0FF;border-left:3px solid #4F46E5;border-radius:0 8px 8px 0}
-        .cross-site strong{color:#4F46E5}
-        .cross-site a{color:#4F46E5;font-weight:600}
-    </style>
+        .guide-cta{max-width:700px;margin:0 auto 40px;padding:20px 24px;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:12px;text-align:center}
+        .guide-cta p{color:#4338CA;font-size:.95rem;margin:0}
+        .guide-cta a{color:#4F46E5;font-weight:700;text-decoration:underline}
+        footer{background:#1E293B;color:#94A3B8;padding:32px 0;text-align:center;font-size:.85rem}
+        footer a{color:#CBD5E1;text-decoration:none}
+</style>
     <script type="application/ld+json">
-    {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are the image size limits for this platform?", "acceptedAnswer": {"@type": "Answer", "text": "Limits vary by platform. Check the tool area above for specifics, or visit the platform's official docs."}}, {"@type": "Question", "name": "Will the compressed image display correctly?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The format stays the same; the compressed image displays normally on any device or platform."}}, {"@type": "Question", "name": "What image formats are supported?", "acceptedAnswer": {"@type": "Answer", "text": "PNG, JPG, JPEG, and WebP. The compressed file keeps its original format."}}]}
+    {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are my images uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. All processing is done locally in your browser."}}]}
     </script>
-
     <script type="application/ld+json">
     {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://compressnow.net/"}, {"@type": "ListItem", "position": 2, "name": "Compress Images for Web", "item": "https://compressnow.net/compress-images-for-web/"}]}
-    </script>
-    <script type="application/ld+json">
-    {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Compress Images for Web — Free Online Tool", "url": "https://compressnow.net/compress-images-for-web/", "description": "Compress images for web publishing. Free, browser-based, instant.", "applicationCategory": "MultimediaApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
     </script>
 </head>
 <body>
     <header>
         <div class="container">
-            <a href="/" class="logo">CompressNow</a>
+            <a href="/" style="color:#fff;text-decoration:none;font-size:1.2rem;font-weight:700">CompressNow</a>
             <nav>
                 <a href="/">Home</a>
+                <a href="/guides/how-to-compress-images/">Guides</a>
                 <a href="#faq">FAQ</a>
-                <a href="#related">Related Tools</a>
             </nav>
         </div>
     </header>
     <main>
         <div class="breadcrumb"><a href="/">Home</a> / Compress Images for Web</div>
         <section class="scene-hero">
-            <h1>Compress Images for Web — Free Online Tool</h1>
-            <p class="subtitle">Compress images for web publishing. Free, browser-based, instant.</p>
+            <h1>Compress Images for Web</h1>
+            <p class="subtitle">Batch compress images for web use. Improve page speed and SEO. Free, browser-based, instant.</p>
         </section>
         <section class="tool-area">
             <div style="display:flex;gap:8px;justify-content:center;margin-bottom:16px;flex-wrap:wrap"><button id="modeExact" class="mode-btn active" onclick="switchMode('exact')" style="padding:8px 16px;border-radius:8px;border:1px solid var(--border);cursor:pointer;font-weight:600;background:var(--primary);color:#fff">🎯 Target Size (KB)</button><button id="modeQuality" class="mode-btn" onclick="switchMode('quality')" style="padding:8px 16px;border-radius:8px;border:1px solid var(--border);cursor:pointer;font-weight:600;background:var(--card-bg);color:var(--text)">🎚️ Quality Slider</button></div><div id="exactControls"><div style="display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap"><input type="number" id="targetKB" value="100" min="1" max="5000" style="width:80px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:1rem;text-align:center"><span style="color:var(--text-secondary)">KB</span></div></div><div id="qualityControls" style="display:none;max-width:400px;margin:0 auto"><input type="range" id="qualitySlider" min="1" max="100" value="75" style="width:100%;accent-color:var(--primary)"><div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-secondary)"><span>Smallest file</span><span id="qualityLabel">75%</span><span>Best quality</span></div></div><div id="dropZone" style="border:2px dashed var(--border);border-radius:var(--radius);padding:40px 20px;text-align:center;cursor:pointer;background:var(--card-bg);transition:all .2s">
@@ -97,9 +104,9 @@ footer a{color:#CBD5E1;text-decoration:none}
             </div>
             <div id="previewArea" style="display:none;margin-top:20px">
                 <div style="position:relative;width:100%;max-width:500px;margin:0 auto 16px;overflow:hidden;border-radius:8px;border:1px solid var(--border)">
-                    <img id="compressedPreview" style="width:100%;display:block">
+                    <img id="compressedPreview" alt="Compressed image preview showing quality after compression" style="width:100%;display:block">
                     <div style="position:absolute;top:0;left:0;width:50%;height:100%;overflow:hidden;border-right:2px solid #4F46E5">
-                        <img id="originalPreview" style="width:500px;max-width:500px;display:block;position:absolute;top:0;left:0">
+                        <img id="originalPreview" alt="Original image before compression" style="width:500px;max-width:500px;display:block;position:absolute;top:0;left:0">
                     </div>
                     <div id="sliderHandle" style="position:absolute;top:0;bottom:0;left:50%;width:4px;background:#4F46E5;cursor:ew-resize;z-index:2;transform:translateX(-2px)"></div>
                     <div id="sliderLabel" style="position:absolute;top:8px;left:calc(50% - 24px);background:#4F46E5;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;z-index:3;pointer-events:none">◄ ►</div>
@@ -115,37 +122,45 @@ footer a{color:#CBD5E1;text-decoration:none}
         </section>
         <section class="scene-body">
             <h2>What to Expect</h2>
-            <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:20px 0"><table style="width:100%;border-collapse:collapse;font-size:.9rem"><thead><tr style="background:#F1F5F9"><th style="padding:12px;text-align:left">Image Type</th><th style="padding:12px;text-align:left">Typical Before</th><th style="padding:12px;text-align:left">Typical After (Web-Optimized)</th><th style="padding:12px;text-align:left">Quality</th></tr></thead><tbody><tr><td style="padding:12px;border-top:1px solid var(--border)">Smartphone Photo</td><td style="padding:12px;border-top:1px solid var(--border)">~3-5 MB</td><td style="padding:12px;border-top:1px solid var(--border)">~100 KB</td><td style="padding:12px;border-top:1px solid var(--border);color:#16A34A">✅ Good</td></tr><tr><td style="padding:12px;border-top:1px solid var(--border)">DSLR Photo</td><td style="padding:12px;border-top:1px solid var(--border)">~8-15 MB</td><td style="padding:12px;border-top:1px solid var(--border)">~200 KB</td><td style="padding:12px;border-top:1px solid var(--border);color:#EAB308">⚠️ May lose detail</td></tr><tr><td style="padding:12px;border-top:1px solid var(--border)">Screenshot</td><td style="padding:12px;border-top:1px solid var(--border)">~500 KB-2 MB</td><td style="padding:12px;border-top:1px solid var(--border)">~100 KB</td><td style="padding:12px;border-top:1px solid var(--border);color:#16A34A">✅ Perfect</td></tr><tr><td style="padding:12px;border-top:1px solid var(--border)">Logo/Icon</td><td style="padding:12px;border-top:1px solid var(--border)">~50-200 KB</td><td style="padding:12px;border-top:1px solid var(--border)">~30-50 KB</td><td style="padding:12px;border-top:1px solid var(--border);color:#16A34A">✅ Excellent</td></tr></tbody></table></div>
-            <h2>Why compress to Web-Optimized?</h2>
-            <p>CompressNow compresses images for Compress Images For Web — meet the platform's file size requirements without losing quality. 100% browser-based, no upload, instant.</p>
-            <h2>How to Use This Tool</h2>
-            <p>Step 1: Click the upload area above and select the image you want to compress</p><p>Step 2: The tool automatically compresses to the platform's size requirements</p><p>Step 3: Click download to save the compressed image</p><p>Step 4: Upload the compressed image to your target platform</p>
-            <h2>When to Use This</h2>
-            <p>Compress images for  — meet platform upload limits, share photos faster, and save storage space. Used by content creators, marketers, and everyday users.</p>
-            <h2>About This Tool</h2>
-            <p>Compress images for web publishing. Free, browser-based, instant.</p>
-            <div class="cross-site">
-                <strong>💡 Pro Tip</strong> — Each platform has different image size and format requirements. Our tool automatically optimizes compression settings for your target platform, balancing file size and image quality.
+            <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:20px 0"><table style="width:100%;border-collapse:collapse;font-size:.9rem"><thead><tr style="background:#F1F5F9"><th style="padding:12px;text-align:left">Image Type</th><th style="padding:12px;text-align:left">Typical Before</th><th style="padding:12px;text-align:left">Typical After (100 KB)</th><th style="padding:12px;text-align:left">Quality</th></tr></thead><tbody><tr><td style="padding:12px;border-top:1px solid var(--border)">Smartphone Photo</td><td style="padding:12px;border-top:1px solid var(--border)">~3-5 MB</td><td style="padding:12px;border-top:1px solid var(--border)">~100 KB</td><td style="padding:12px;border-top:1px solid var(--border);color:#16A34A">[OK] Good</td></tr><tr><td style="padding:12px;border-top:1px solid var(--border)">DSLR Photo</td><td style="padding:12px;border-top:1px solid var(--border)">~8-15 MB</td><td style="padding:12px;border-top:1px solid var(--border)">~200 KB</td><td style="padding:12px;border-top:1px solid var(--border);color:#EAB308">⚠️ May lose detail</td></tr><tr><td style="padding:12px;border-top:1px solid var(--border)">Screenshot</td><td style="padding:12px;border-top:1px solid var(--border)">~500 KB-2 MB</td><td style="padding:12px;border-top:1px solid var(--border)">~100 KB</td><td style="padding:12px;border-top:1px solid var(--border);color:#16A34A">[OK] Perfect</td></tr><tr><td style="padding:12px;border-top:1px solid var(--border)">Logo/Icon</td><td style="padding:12px;border-top:1px solid var(--border)">~50-200 KB</td><td style="padding:12px;border-top:1px solid var(--border)">~30-50 KB</td><td style="padding:12px;border-top:1px solid var(--border);color:#16A34A">[OK] Excellent</td></tr></tbody></table></div>
+            
+            <h2>When to Compress to 100 KB</h2>
+            <p>Compress images for websites, apps, social media, email, and any platform with file size restrictions.</p>
+            
+            <h2>Format Tips for 100 KB</h2>
+            <p>All processing happens locally in your browser — your images never leave your device, ensuring complete privacy.</p>
+
+            <div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:16px;margin-top:20px">
+                <p style="color:#C2410C;font-size:.9rem;margin:0"><strong>💡 Pro Tip:</strong> All processing happens locally in your browser — your images never leave your device, ensuring complete privacy.</p>
             </div>
+
+            <h2>Learn More About Image Optimization</h2>
+            <p>Want to dive deeper into image compression? Check out these authoritative resources:</p>
+            <ul style="color:var(--text-secondary);font-size:.9rem;line-height:1.8">
+                <li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization" target="_blank" rel="noopener noreferrer" style="color:var(--primary);text-decoration:none">Google Developers — Image Optimization Guide</a></li>
+                <li><a href="https://web.dev/fast/#optimize-your-images" target="_blank" rel="noopener noreferrer" style="color:var(--primary);text-decoration:none">Web.dev — Fast Image Optimization</a></li>
+                <li><a href="https://developers.google.com/speed/webp" target="_blank" rel="noopener noreferrer" style="color:var(--primary);text-decoration:none">Google — WebP Image Format</a></li>
+            </ul>
         </section>
+        <div class="guide-cta">
+            <p>[GUIDE] New to image compression? Read our <a href="/guides/how-to-compress-images/">Complete Guide to Image Compression</a> — learn how to choose the right format, size, and quality for any use case.</p>
+        </div>
         <section class="faq-section" id="faq">
             <div class="container">
                 <h2>Frequently Asked Questions</h2>
-                <div class="faq-item"><h3>What are the image size limits for this platform?</h3><p>Limits vary by platform. Check the tool area above for specifics, or visit the platform's official docs.</p></div><div class="faq-item"><h3>Will the compressed image display correctly?</h3><p>Yes. The format stays the same; the compressed image displays normally on any device or platform.</p></div><div class="faq-item"><h3>What image formats are supported?</h3><p>PNG, JPG, JPEG, and WebP. The compressed file keeps its original format.</p></div>
+                <div class="faq-item"><h3>Are my images uploaded to a server?</h3><p>No. All processing is done locally in your browser.</p></div>
             </div>
         </section>
         <section class="related-tools" id="related">
             <div class="container">
                 <h2>Related Tools</h2>
-                <ul>
-                    <li><a href="/compress-image-to-100kb/">100KB Image Compressor</a></li><li><a href="/compress-image-to-50kb/">Compress Image to 50KB Online</a></li><li><a href="/compress-image-to-200kb/">Compress Image to 200KB Online</a></li><li><a href="/compress-image-for-email/">Compress Image for Email</a></li><li><a href="/compress-image-for-whatsapp/">Compress Image for WhatsApp</a></li><li><a href="/png-to-jpg/">Convert PNG to JPG Online</a></li>
-                </ul>
+                <ul><li><a href="/compress-image-to-100kb/">100KB Image Compressor</a></li><li><a href="/compress-image-to-50kb/">Compress Image to 50KB Online</a></li><li><a href="/compress-image-for-email/">Compress Image for Email</a></li><li><a href="/compress-image-for-discord/">Compress Image for Discord</a></li><li><a href="/bulk-image-compressor/">Bulk Compress Up to 20 Images</a></li></ul>
             </div>
         </section>
     </main>
     <footer>
         <div class="container">
-            <p>&copy; 2026 Compressnow. All rights reserved. | <a href="/">Home</a> | <a href="#faq">FAQ</a></p>
+            <p>&copy; 2026 CompressNow. All rights reserved. | <a href="/">Home</a> | <a href="/guides/how-to-compress-images/">Compression Guide</a> | <a href="/guides/image-formats-compared/">Format Guide</a> | <a href="#faq">FAQ</a></p>
             <p style="margin-top:8px;font-size:.8rem;color:#94A3B8">Also try: <a href="https://resizenow.net" style="color:#64748B">ResizeNow</a> (image resizer) · All processing happens locally in your browser. Your data is never uploaded.</p>
         </div>
     </footer>
@@ -175,15 +190,127 @@ footer a{color:#CBD5E1;text-decoration:none}
     resetBtn.addEventListener('click', () => { previewArea.style.display = 'none'; dropZone.style.display = 'block'; fileInput.value = ''; if(resultUrl) URL.revokeObjectURL(resultUrl); resultBlob = null; resultUrl = null; errorMsg.style.display = 'none'; });
     downloadBtn.addEventListener('click', () => { if(!resultBlob) return; const a = document.createElement('a'); a.href = resultUrl; const ext = CONVERT_TO || 'jpg'; const name = fileInput.files[0].name.replace(/\.[^.]+$/, '') + '.' + ext; a.download = name; a.click(); });
     function formatSize(bytes) { if(bytes < 1024) return bytes + ' B'; if(bytes < 1048576) return (bytes/1024).toFixed(1) + ' KB'; return (bytes/1048576).toFixed(2) + ' MB'; }
-    function handleFile(file) { if(file.type==="image/heic"||file.name.match(/\.heic$/i)){loadHeicDecoder().then(()=>convertHeic(file));return;} if(!file.type.match(/^image\/(png|jpeg|webp)$/)) { errorMsg.textContent = 'Please upload a PNG, JPEG, or WebP image.'; errorMsg.style.display = 'block'; return; } errorMsg.style.display = 'none'; const reader = new FileReader(); reader.onload = e => { const img = new Image(); img.onload = () => { originalPreview.src = e.target.result; dropZone.style.display = 'none'; previewArea.style.display = 'block'; progressBar.style.display = 'block'; progressFill.style.width = '30%'; if(IS_CONVERSION) convertImage(img); else compressImage(img, file.type); }; img.src = e.target.result; }; reader.readAsDataURL(file); }
-    function convertImage(img) { const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0); progressFill.style.width = '60%'; const mimeMap = {'png':'image/png','jpg':'image/jpeg','jpeg':'image/jpeg','webp':'image/webp'}; const mime = mimeMap[CONVERT_TO] || 'image/jpeg'; const quality = mime === 'image/png' ? undefined : 0.92; canvas.toBlob(blob => { resultBlob = blob; showResult(blob, img.width, img.height); }, mime, quality); }
-    function compressImage(img, type) { const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0); progressFill.style.width = '60%'; const mimeType = type === 'image/png' ? 'image/png' : type === 'image/webp' ? 'image/webp' : 'image/jpeg'; if(mimeType === 'image/png') { canvas.toBlob(blob => { resultBlob = blob; showResult(blob, img.width, img.height); }, mimeType); } else { let low = 0.01, high = 1.0, bestBlob = null; function tryQuality(q) { canvas.toBlob(blob => { if(!blob) { showResult(bestBlob || new Blob(), img.width, img.height); return; } if(blob.size <= TARGET_BYTES * 1.05) { bestBlob = blob; low = q; } else { high = q; } if(high - low < 0.01) { resultBlob = bestBlob || blob; showResult(resultBlob, img.width, img.height); } else { progressFill.style.width = (60 + (1 - (high-low)) * 30) + '%'; tryQuality((low + high) / 2); } }, mimeType, q); } tryQuality(0.7); } }
-    function showResult(blob, w, h) { if(resultUrl) URL.revokeObjectURL(resultUrl); resultBlob = blob; resultUrl = URL.createObjectURL(blob); compressedPreview.src = resultUrl; progressFill.style.width = '100%'; setTimeout(() => progressBar.style.display = 'none', 500); const originalSize = fileInput.files[0].size; const resultSize = blob.size; const change = ((1 - resultSize/originalSize) * 100).toFixed(1); const label = IS_CONVERSION ? 'Converted' : 'Compressed'; stats.innerHTML = '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><div><strong>Original:</strong> ' + formatSize(originalSize) + '</div><div><strong>' + label + ':</strong> ' + formatSize(resultSize) + '</div><div><strong>Change:</strong> ' + change + '%</div><div><strong>Dimensions:</strong> ' + w + ' x ' + h + '</div></div>'; }
-    // HEIC decoder (loaded from CDN on demand)
-    function loadHeicDecoder(){return new Promise((resolve)=>{if(window.heic2any)return resolve();const s=document.createElement("script");s.src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js";s.onload=resolve;document.head.appendChild(s);});}
-    function convertHeic(file){const reader=new FileReader();reader.onload=(e)=>{heic2any({blob:file,toType:"image/jpeg",quality:0.92}).then(jpgBlob=>{const ff=new File([jpgBlob],file.name.replace(/\.heic$/i,".jpg"),{type:"image/jpeg"});handleFile(ff);});};reader.readAsDataURL(file);}
-function switchMode(mode){const exactBtn=document.getElementById('modeExact');const qualityBtn=document.getElementById('modeQuality');const exactDiv=document.getElementById('exactControls');const qualityDiv=document.getElementById('qualityControls');if(mode==='quality'){exactBtn.style.background='var(--card-bg)';exactBtn.style.color='var(--text)';qualityBtn.style.background='var(--primary)';qualityBtn.style.color='#fff';exactDiv.style.display='none';qualityDiv.style.display='block';}else{exactBtn.style.background='var(--primary)';exactBtn.style.color='#fff';qualityBtn.style.background='var(--card-bg)';qualityBtn.style.color='var(--text)';exactDiv.style.display='block';qualityDiv.style.display='none';}currentMode=mode;}
-let currentMode='exact';
-    </script>
+    function handleFile(file) {
+        if(file.type==="image/heic"||file.name.match(/\.heic$/i)){loadHeicDecoder().then(()=>convertHeic(file));return;}
+        if(!file.type.match(/^image\/(png|jpeg|webp)$/)) { errorMsg.textContent = 'Please upload a PNG, JPEG, or WebP image.'; errorMsg.style.display = 'block'; return; }
+        errorMsg.style.display = 'none';
+        const reader = new FileReader();
+        reader.onload = e => {
+            const img = new Image();
+            img.onload = () => {
+                originalPreview.src = e.target.result;
+                dropZone.style.display = 'none';
+                previewArea.style.display = 'block';
+                progressBar.style.display = 'block';
+                progressFill.style.width = '30%';
+                if(IS_CONVERSION) convertImage(img);
+                else compressImage(img, file.type);
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+    function compressImage(img, mime) {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        progressFill.style.width = '60%';
+        const quality = currentMode === 'quality' ? parseInt(document.getElementById('qualitySlider').value)/100 : 0.75;
+        canvas.toBlob(blob => {
+            progressFill.style.width = '90%';
+            finishCompression(blob, img, 'image/jpeg');
+        }, 'image/jpeg', quality);
+    }
+    function convertImage(img) {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        progressFill.style.width = '60%';
+        const mime = CONVERT_TO === 'jpg' ? 'image/jpeg' : 'image/' + CONVERT_TO;
+        canvas.toBlob(blob => {
+            progressFill.style.width = '90%';
+            finishCompression(blob, img, mime);
+        }, mime, 0.85);
+    }
+    function finishCompression(blob, img, mime) {
+        if(currentMode === 'exact' && !IS_CONVERSION) {
+            const targetKB = parseInt(document.getElementById('targetKB').value) || 100;
+            const targetBytes = targetKB * 1024;
+            if(blob.size > targetBytes) {
+                const ratio = targetBytes / blob.size;
+                const canvas2 = document.createElement('canvas');
+                canvas2.width = img.width;
+                canvas2.height = img.height;
+                const ctx2 = canvas2.getContext('2d');
+                ctx2.drawImage(img, 0, 0);
+                const q = Math.max(0.01, Math.min(1.0, ratio * 0.85));
+                canvas2.toBlob(finalBlob => {
+                    resultBlob = finalBlob;
+                    resultUrl = URL.createObjectURL(finalBlob);
+                    showResult(finalBlob, img);
+                }, 'image/jpeg', q);
+                return;
+            }
+        }
+        resultBlob = blob;
+        resultUrl = URL.createObjectURL(blob);
+        showResult(blob, img);
+    }
+    function showResult(blob, img) {
+        compressedPreview.src = resultUrl;
+        progressBar.style.display = 'none';
+        stats.innerHTML = '<strong>Original:</strong> ' + formatSize(img.src.length) + ' → <strong>Compressed:</strong> ' + formatSize(blob.size) + ' (' + (100-blob.size/img.src.length*100).toFixed(1) + '% smaller)';
+    }
+    function loadHeicDecoder() {
+        if(window.heic2any) return Promise.resolve();
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js';
+            script.onload = resolve;
+            script.onerror = () => { errorMsg.textContent = 'HEIC decoder failed to load. Try a different format.'; errorMsg.style.display = 'block'; reject(); };
+            document.head.appendChild(script);
+        });
+    }
+    function convertHeic(file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            window.heic2any({blob: file, toType: 'image/jpeg'}).then(jpgBlob => {
+                const img = new Image();
+                img.onload = () => {
+                    originalPreview.src = URL.createObjectURL(jpgBlob);
+                    dropZone.style.display = 'none';
+                    previewArea.style.display = 'block';
+                    progressBar.style.display = 'block';
+                    progressFill.style.width = '30%';
+                    if(IS_CONVERSION) convertImage(img);
+                    else compressImage(img, 'image/jpeg');
+                };
+                img.src = URL.createObjectURL(jpgBlob);
+            }).catch(() => { errorMsg.textContent = 'HEIC conversion failed. Try converting to JPG first.'; errorMsg.style.display = 'block'; });
+        };
+        reader.readAsDataURL(file);
+    }
+    function switchMode(mode) {
+        const exactBtn = document.getElementById('modeExact');
+        const qualityBtn = document.getElementById('modeQuality');
+        const exactDiv = document.getElementById('exactControls');
+        const qualityDiv = document.getElementById('qualityControls');
+        if(mode === 'quality') {
+            exactBtn.style.background = 'var(--card-bg)'; exactBtn.style.color = 'var(--text)';
+            qualityBtn.style.background = 'var(--primary)'; qualityBtn.style.color = '#fff';
+            exactDiv.style.display = 'none'; qualityDiv.style.display = 'block';
+        } else {
+            exactBtn.style.background = 'var(--primary)'; exactBtn.style.color = '#fff';
+            qualityBtn.style.background = 'var(--card-bg)'; qualityBtn.style.color = 'var(--text)';
+            exactDiv.style.display = 'block'; qualityDiv.style.display = 'none';
+        }
+        currentMode = mode;
+    }
+    let currentMode = 'exact';
+</script>
 </body>
 </html>

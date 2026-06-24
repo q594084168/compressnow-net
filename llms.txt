@@ -1,0 +1,24 @@
+# CompressNow
+> Free online image compression tool — compress to exact sizes from 10KB to 5MB, 100% browser-based.
+
+## Tools
+- Image Compressor: https://compressnow.net/
+- Bulk Compressor: https://compressnow.net/bulk-image-compressor/
+- Format Converter: https://compressnow.net/free-image-converter/
+
+## Guides
+- How to Compress Images: https://compressnow.net/guides/how-to-compress-images/
+- Image Formats Compared: https://compressnow.net/guides/image-formats-compared/
+- Image Compression for SEO: https://compressnow.net/guides/image-compression-for-seo/
+
+## Key Pages
+- Compress Image to 10KB Online: https://compressnow.net/compress-image-to-10kb/
+- Compress Image to 20KB Online: https://compressnow.net/compress-image-to-20kb/
+- Compress Image to 30KB Online: https://compressnow.net/compress-image-to-30kb/
+- Compress Image to 40KB Online: https://compressnow.net/compress-image-to-40kb/
+- Compress Image to 50KB Online: https://compressnow.net/compress-image-to-50kb/
+- Compress Image for Email: https://compressnow.net/compress-image-for-email/
+- Compress Image for WhatsApp: https://compressnow.net/compress-image-for-whatsapp/
+- Compress Image for Instagram: https://compressnow.net/compress-image-for-instagram/
+- Compress Image for Facebook: https://compressnow.net/compress-image-for-facebook/
+- Compress Image for Discord: https://compressnow.net/compress-image-for-discord/

@@ -1,0 +1,4 @@
+.env
+deploy/
+deploy_out/
+.wrangler/
