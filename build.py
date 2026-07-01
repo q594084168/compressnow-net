@@ -1626,3 +1626,143 @@ if __name__ == "__main__":
     print(f"   [STATS] Indexed: {1 + len(ALL_SCENARIOS) + 3} | Noindex: {len(NOINDEX_FINAL)}")
     print(f"   [MAP]  Sitemap: {sitemap_count} URLs")
     print(f"   [GUIDE] Guides: 3 pillar pages")
+
+# ═══ 优化内容 CSS ═══════════════════════════════════
+OPTIMIZED_CSS = """
+<style>
+/* Why Choose Section */
+.why-choose {
+    padding: 48px 0;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+}
+.why-choose h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 32px;
+    color: #1e293b;
+}
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+@media (max-width: 768px) {
+    .benefits-grid { grid-template-columns: 1fr; }
+}
+.benefit {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.benefit h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #2563eb;
+}
+.benefit p {
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* How It Works Detail */
+.how-it-works-detail {
+    padding: 48px 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.how-it-works-detail h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 32px;
+    color: #1e293b;
+}
+.steps-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.step-detail {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.step-number {
+    width: 48px;
+    height: 48px;
+    background: #2563eb;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+.step-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #1e293b;
+}
+.step-content p {
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* Use Cases Detail */
+.use-cases-detail {
+    padding: 48px 0;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+}
+.use-cases-detail h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 32px;
+    color: #1e293b;
+}
+.use-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+@media (max-width: 768px) {
+    .use-cases-grid { grid-template-columns: 1fr; }
+}
+.use-case {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.use-case h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #2563eb;
+}
+.use-case p {
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.6;
+}
+</style>
+"""
